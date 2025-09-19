@@ -1,0 +1,14 @@
+{
+  "Usuarios": [
+    {
+      "id": "9ae7",
+      "username": "Reychel Fallas",
+      "email": "rfallasbfwd@gmail.com",
+      "password": "22222222"
+    }
+  ],
+  "Productos": [],
+  "Carritos": [],
+  "Ordenes": [],
+  "Facturacion": []
+}

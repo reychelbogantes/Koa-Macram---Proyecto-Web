@@ -1,0 +1,165 @@
+/* Login.css */
+
+.login-layout {
+  display: flex;
+  height: 100vh; /* toda la altura de la ventana */
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Columna izquierda: formulario */
+.form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff; 
+  padding: 2rem;
+}
+
+.form-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.form-container input {
+  width: 100%;
+  max-width: 300px;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 14px;
+}
+
+.Iniciar-sesion {
+  background-color: #a792f5;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  width: 100%;
+  max-width: 300px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+.Iniciar-sesion:hover {
+  background-color: #8d72e1;
+}
+
+.mensaje {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: red;
+}
+
+.mensaje.exito {
+  color: green;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: #6a5acd;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.form-container p {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.form-container a {
+  color: #6a5acd;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Columna derecha: imagen */
+.image-container {
+  flex: 1;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Botón */
+.modal button {
+    width: 100%;
+    padding: 12px;
+    background-color: #34d5cd;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.modal button:hover {
+    background-color: #1ea8a1;
+    transform: translateY(-2px);
+}
+
+.modal button:active {
+    transform: translateY(0);
+}
+
+/* Para móviles */
+@media (max-width: 400px) {
+    .container {
+        width: 90%;
+        padding: 30px 20px;
+    }
+}
+
+.modal {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.5);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+.modal-content {
+  background:white;
+  padding:20px;
+  border-radius:8px;
+  text-align:center;
+  width:300px;
+}
+
+.inputs-row {
+  gap: 12px; 
+  width: 100%;
+  max-width: 320px;
+}
+
+.Logo{
+    width: 20%;
+    height: auto;
+}
