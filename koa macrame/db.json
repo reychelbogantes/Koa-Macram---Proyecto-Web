@@ -1,10 +1,18 @@
 {
   "Usuarios": [
     {
-      "id": "9ae7",
-      "username": "Reychel Fallas",
+      "id": "f7f8",
+      "googleId": "106849135678478340643",
+      "name": "Reychel Fallas",
       "email": "rfallasbfwd@gmail.com",
-      "password": "22222222"
+      "picture": "https://lh3.googleusercontent.com/a/ACg8ocJroE-J80KDFfRPaMl2fqwLHqkQx5bd7uR99QVwwkFxFg4FvDU=s96-c"
+    },
+    {
+      "id": "3515",
+      "googleId": "114708078770287835411",
+      "name": "Reychell Fallas",
+      "email": "reychelfallasbogantes@gmail.com",
+      "picture": "https://lh3.googleusercontent.com/a/ACg8ocKfffXl9Hn0f2tn9TjIW6HqWiyAsLPRGYgqzMwxUyJZtqcPxQi5=s96-c"
     }
   ],
   "Productos": [],

@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react"; 
-import { GetUsers, cambiarPassword } from '../../services/Servicios'; 
+import { GetUsers, cambiarPassword, postGoogleUser } from '../../services/Servicios'; 
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
+
+import { GoogleLogin } from "@react-oauth/google";
+import * as jwt_decode from "jwt-decode";
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -96,6 +99,51 @@ function Login() {
     }
   };
 
+  const handleSuccess = async (credentialResponse) => {
+  try {
+    const decoded = jwt_decode.default(credentialResponse.credential);
+    console.log("Usuario de Google:", decoded);
+
+    // Construir objeto usuario
+    const user = {
+      googleId: decoded.sub,
+      name: decoded.name,
+      email: decoded.email,
+      picture: decoded.picture
+    };
+
+    // 1️⃣ Obtener todos los usuarios
+    const usuarios = await GetUsers();
+
+    // 2️⃣ Verificar si ya existe por googleId o email
+    const usuarioExistente = usuarios.find(
+      u => u.googleId === user.googleId || u.email === user.email
+    );
+
+    if (usuarioExistente) {
+      console.log("Usuario ya registrado:", usuarioExistente);
+      setMensaje("Ingreso con Google exitoso ✅");
+      localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioExistente));
+    } else {
+      // 3️⃣ Guardar en db.json si no existe
+      const savedUser = await postGoogleUser(user);
+      console.log("Usuario guardado en db.json:", savedUser);
+      setMensaje("Ingreso con Google exitoso ✅");
+      localStorage.setItem("usuarioLogueado", JSON.stringify(savedUser));
+    }
+
+    setTimeout(() => navigate("/homepage"), 1000);
+
+  } catch (error) {
+    console.error("Error al procesar login con Google:", error);
+    setMensaje("Error al iniciar sesión con Google ❌");
+  }
+};
+  // Google Login - error
+  const handleError = () => {
+    console.error("Error en el inicio de sesión con Google");
+    setMensaje("Error al iniciar sesión con Google ❌");
+  };
 
   return (
     <div className="login-layout">
@@ -106,7 +154,7 @@ function Login() {
           src="/logo.png"
           alt="Logo"
         />
-        <h2>Inicio de Sesión</h2>
+        <h2>Iniciar sesión</h2>
         <p>Introduzca sus datos</p>
 
         <div className="inputs-row">
@@ -142,7 +190,11 @@ function Login() {
 
         <button className="Iniciar-sesion" onClick={CargarIngreso} type="submit">
           Iniciar sesión
-        </button>
+        </button> <br />
+
+        <div className="google-login">
+         <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
+        </div>
 
         <p>
           ¿Todavía no estás registrado? <br />

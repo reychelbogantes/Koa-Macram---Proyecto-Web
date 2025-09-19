@@ -1,3 +1,22 @@
+// --- Registro de usuario de Google ---
+async function postGoogleUser(googleUser) {
+  try {
+    // googleUser = { googleId, name, email, picture }
+    const response = await fetch("http://localhost:3000/Usuarios", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(googleUser)
+    });
+
+    return await response.json();
+  } catch (error) {
+    console.error("Error posting Google user:", error);
+    throw error;
+  }
+}
+
 
 // --- Registro de usuario ---
 async function postUsers(username,email,password) {
@@ -66,4 +85,4 @@ async function cambiarPassword(id, nuevaPassword) {
   }
 }
 
-export { postUsers, GetUsers, cambiarPassword };
+export { postUsers, GetUsers, cambiarPassword, postGoogleUser };
