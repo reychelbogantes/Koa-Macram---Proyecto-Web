@@ -1,0 +1,190 @@
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #f5f5f8;
+}
+
+/* Contenedor principal */
+.registro-wrapper {
+  display: flex;
+  min-height: 100vh;
+  position: relative;      /* para manejar capas */
+  align-items: center;   /* centra verticalmente las dos mitades */
+  overflow: hidden;        /* evita barras de scroll por la sombra */
+}
+/* ----- Columna izquierda ----- */
+.left-side {
+  flex: 1;
+  background: url('/fotoRegistro.jpg') center/cover no-repeat;
+  position: relative;
+  z-index: 0;
+  height: 100vh;        /* ⚠️ Ajusta: por ejemplo 500px de alto visible */
+  align-self: center;   /* centra la caja verticalmente dentro del wrapper */
+ 
+   /* overflow: hidden;    recorta el exceso de imagen si se pasa */
+}
+
+/* Logo encima de la imagen */
+.left-side .logo {
+  position: absolute;    /* ⬅️ lo coloca respecto a .left-side */
+  bottom: 20px;          /* espacio desde el borde inferior */
+  left: 20px;            /* espacio desde el borde izquierdo */
+  top: 80%;
+  width: 300px;          /* tamaño del logo */
+  height: auto;
+}
+
+/* ----- Columna derecha (panel con formulario) ----- */
+.right-side {
+  flex: 1;
+  position: relative;
+  z-index: 1;              /* ⬅️ panel por encima de la imagen */
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  margin-left: -10px;        /* desplaza 10px hacia la izquierda */
+  height: 100vh; 
+  max-height: 100vh;       /* evita que crezca más */
+  border-radius: 20px;  /* si quieres redondear la foto misma */
+  box-shadow: -8px 0 15px rgba(0,0,0,0.15); /* sombra hacia la izquierda */
+}
+
+/* --- Caja del formulario --- */
+.form-box {
+  background: #fff;
+  border-radius: 20px 0 0 20px;  /* redondea solo el lado izquierdo */
+  width: 100%;
+  max-height: 100%;        /* ⬅️ se adapta a la altura de .right-side */
+  padding: 40px;
+  box-shadow: none;              /* la sombra la tiene la columna derecha */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center; 
+}
+
+.form-box h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #000;
+}
+/*
+.social-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.social-buttons button {
+  flex: 1;
+  margin: 0 8px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.social-buttons button img {
+  margin-right: 8px;
+  height: 20px;
+}
+
+.social-buttons button:hover {
+  background: #f0f0f0;
+}*/
+
+
+.google-login{
+  width: 500px;
+  display: flex;           /* centra su propio contenido interno */
+  justify-content: center;
+
+
+}
+
+.separator {
+  margin: 20px 0;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.form-box input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: transparent;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-box input:focus {
+  border-color: #9b9b9b;
+}
+
+.btnRegistrarse {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background: #b3b0da;
+  color: #fdf7f7;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btnRegistrarse:hover {
+  background: #a29fcb;
+}
+
+.form-box p {
+  font-size: 0.9rem;
+  margin-top: 20px;
+  color: #555;
+}
+
+.form-box a {
+  color: #7a6fd0;
+  text-decoration: none;
+}
+
+.form-box a:hover {
+  text-decoration: underline;
+}
+
+.mensaje.success {
+  color: #2e7d32;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.mensaje.error {
+  color: #c62828;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .registro-wrapper {
+    flex-direction: column;
+  }
+  .left-side {
+    height: 200px;
+    flex: none;
+    padding-bottom: 0;
+    justify-content: center;
+    align-items: center;
+  }
+}

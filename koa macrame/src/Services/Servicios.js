@@ -19,11 +19,11 @@ async function postGoogleUser(googleUser) {
 
 
 // --- Registro de usuario ---
-async function postUsers(username,email,password) {
+async function postUsers(name,email,password) {
     try {
      
         const userData = { 
-            username,email,password
+            name,email,password
         
         };
 
