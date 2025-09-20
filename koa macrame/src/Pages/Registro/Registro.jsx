@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"; 
 import { Link, useNavigate } from 'react-router-dom';
-import { postUsers, GetUsers, postGoogleUser } from '../../services/Servicios'; 
+import { postUsers, GetUsers, postGoogleUser } from '../../Services/Servicios'; 
 import './Registro.css'
 import { GoogleLogin } from '@react-oauth/google';
 import * as jwt_decode from "jwt-decode";

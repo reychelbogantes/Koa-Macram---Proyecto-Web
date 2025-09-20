@@ -55,7 +55,10 @@
   cursor: pointer;
   transition: background 0.3s;
 }
-
+.logout-btn a {
+  text-decoration: none;   /* quita la línea */
+  color: inherit;          /* hereda el color del botón */
+}
 .logout-btn:hover {
   background: #566034;
 }

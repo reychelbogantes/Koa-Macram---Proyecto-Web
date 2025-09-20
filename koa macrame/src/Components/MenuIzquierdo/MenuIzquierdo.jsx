@@ -14,7 +14,7 @@ function MenuIzquierdo() {
 
       <nav className="menu-links">
         <Link to="/admin/dashboard">📊 Dashboard</Link>
-        <Link to="/admin/usuarios">👥 Usuarios</Link>
+        <Link to="/usuarios">👥 Usuarios</Link>
 
         {/* Sección Productos con sub-opciones */}
         <div className="submenu">
@@ -38,7 +38,7 @@ function MenuIzquierdo() {
       </nav>
 
       <div className="menu-footer">
-        <button className="logout-btn">🚪 Cerrar sesión</button>
+        <button className="logout-btn"><Link to="/login">🚪 Cerrar sesión</Link></button>
       </div>
       <br /><br />
 

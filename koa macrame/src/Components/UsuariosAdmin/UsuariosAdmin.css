@@ -1,0 +1,22 @@
+.tabla-usuarios {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.tabla-usuarios th,
+.tabla-usuarios td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.tabla-usuarios th {
+  background: #839252;
+  color: #fff;
+}
+
+.tabla-usuarios tr:nth-child(even) {
+  background: #f9f9f9;
+}

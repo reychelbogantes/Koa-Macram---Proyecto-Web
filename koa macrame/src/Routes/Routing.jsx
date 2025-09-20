@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import Inventario from '../Components/Inventario/Inventario'
 import ProductosAdmin from '../Components/ProductosAdmin/ProductosAdmin'
+import UsuariosAdmin from '../Components/UsuariosAdmin/UsuariosAdmin';
 
 function Routing() {
   return (
@@ -21,6 +22,7 @@ function Routing() {
                 <Route path='/admin' element={<Admin/>}/>
                 <Route path='/inventario' element={<Inventario/>}/>
                 <Route path='/productosadmin' element={<ProductosAdmin/>}/>
+                <Route path="/usuarios" element={<UsuariosAdmin />} />
             </Routes>    
         </Router>
 
