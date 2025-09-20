@@ -85,4 +85,46 @@ async function cambiarPassword(id, nuevaPassword) {
   }
 }
 
+const API_URL = "http://localhost:3000/Productos";
+
+export async function getProductos() {
+  const res = await fetch(API_URL);
+  if (!res.ok) throw new Error("Error al obtener productos");
+  return await res.json();
+}
+
+export async function postProducto(producto) {
+  const nuevoProducto = {
+    ...producto,
+    activo: true,
+    destacado: false
+  };
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(nuevoProducto),
+  });
+  if (!res.ok) throw new Error("Error al guardar producto");
+  return await res.json();
+}
+
+export async function updateProducto(id, data) {
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) throw new Error("Error al actualizar producto");
+  return await res.json();
+}
+
+export async function deleteProducto(id) {
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: "DELETE"
+  });
+  if (!res.ok) throw new Error("Error al eliminar producto");
+  return await res.json();
+}
+
+
 export { postUsers, GetUsers, cambiarPassword, postGoogleUser };

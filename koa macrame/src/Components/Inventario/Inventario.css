@@ -1,0 +1,58 @@
+.tabla-inventario {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.tabla-inventario th,
+.tabla-inventario td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.tabla-inventario th {
+  background: #b1aff86e;
+  color: #382c46;
+}
+
+.thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.desactivado {
+  background: #f3f3f3;
+  color: #999;
+}
+
+
+.acciones button {
+  margin-right: 6px;
+  margin-top: 4px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #b1aff86e;
+  color: #382c46;
+  transition: background 0.3s;
+  font-size: 0.9rem;
+  align-content: center;
+
+}
+
+.acciones button:hover {
+  background: #b2aff8;
+}
+
+.Titulo{
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: bold;
+   color: #382c46;
+}

@@ -1,0 +1,104 @@
+.menu-izquierdo {
+  width: 240px;
+  height: 100vh;
+  background: #b1aff86e;          /* color principal */
+  color: #382c46;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Header arriba, footer abajo */
+  padding: 0px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+  position: fixed;               /* fijo en la izquierda */
+  top: 0;
+  left: 0;
+}
+
+.menu-header {
+  text-decoration: none;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.menu-links a {
+  color: #393242;
+  text-decoration: none;
+  font-size: 1.1rem;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.menu-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.menu-footer {
+  text-align: center;
+  margin-top: auto;
+}
+
+.logout-btn {
+  background: #839252;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background: #566034;
+}
+
+/* contenedor del submenú */
+.submenu {
+  display: flex;
+  flex-direction: column;
+}
+
+.submenu-toggle {
+  background: none;
+  border: none;
+  color: #393242;
+  font-size: 1.1rem;
+  text-align: left;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submenu-toggle:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* items internos del submenú */
+.submenu-items {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;     /* indentado */
+  gap: 0.5rem;
+  margin-top: 5px;
+}
+
+.submenu-items a {
+  color: #393242;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 5px 12px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.submenu-items a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
