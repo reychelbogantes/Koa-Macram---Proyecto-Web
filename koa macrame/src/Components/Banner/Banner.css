@@ -1,0 +1,43 @@
+.banner-container {
+  position: relative;
+  width: 100%;
+  height: 60vh;          /* alto del banner, ajusta según diseño */
+  overflow: hidden;
+}
+
+/* Imágenes del carrusel */
+.banner-slider img {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;     /* recorta para cubrir sin deformar */
+}
+
+/* Logo centrado y siempre visible */
+.banner-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.banner-logo img {
+  width: 250px;          /* tamaño del logo, ajusta a gusto */
+  height: auto;
+}
+
+/* Dots (puntos de navegación) */
+.slick-dots li button:before {
+  color: white;          /* color de los dots */
+  font-size: 12px;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000057; /* negro con 90% de opacidad */
+  z-index: 9; /* por encima de las imágenes, debajo del logo */
+}

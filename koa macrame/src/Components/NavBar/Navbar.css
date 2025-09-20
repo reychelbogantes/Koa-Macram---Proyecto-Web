@@ -1,0 +1,70 @@
+.navbar {
+  /* --- tamaño y posición --- */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 99vw;        /* 100% del ancho de la ventana */
+  max-width: 99vw;    /* evita que crezca más de la ventana */
+  height: 12vh;      /* 20 % de la altura de la ventana */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  z-index: 100;
+  box-sizing: border-box; /* incluye el padding dentro del ancho */
+
+  /* --- degradado vertical --- */
+  background: linear-gradient(to bottom, #566034 0%, /* más concentrado arriba */ #566034b3 50%, /* se suaviza en el medio */ #5660346b 100% /* casi transparente abajo */);
+}
+
+.navbar-logo img {
+  width: 45px; /* ajusta el tamaño de tu logo */
+  height: auto;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: #f5ebd7; /* tono beige similar a la imagen */
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-links li a:hover {
+  color: #fff;
+}
+
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-icons a,
+.navbar-icons .menu-btn {
+  color: #f5ebd7;
+  font-size: 1.4rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-icons a:hover,
+.navbar-icons .menu-btn:hover {
+  color: #fff;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none; /* puedes luego implementar un menú hamburguesa */
+  }
+}

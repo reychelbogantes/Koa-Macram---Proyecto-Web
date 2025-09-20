@@ -10,7 +10,7 @@ import * as jwt_decode from "jwt-decode";
 function Registro() {
    useEffect(() => {
     const link = document.querySelector("link[rel~='icon']");
-    if (link) link.href = "/favicon-32x32.png"; // nuevo favicon
+    if (link) link.href = "/logo.png";
     document.title = "Registro | Koa Macramé";
   }, []);
 
@@ -78,7 +78,8 @@ function Registro() {
       setMensaje("❌ Error al registrar, intenta de nuevo");
       console.error(error);
     }
-  }
+
+   }
 
   const handleSuccess = async (credentialResponse) => {
   try {
@@ -127,6 +128,7 @@ function Registro() {
   };
 
   return (
+    <div>
      <div className="registro-wrapper">
       
       {/* --- Columna izquierda con imagen y logo --- */}
@@ -179,7 +181,9 @@ function Registro() {
         </div>
       </div>
     </div>
+  </div>
   )
 }
+
 
 export default Registro

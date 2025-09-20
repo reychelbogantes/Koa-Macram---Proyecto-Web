@@ -1,0 +1,47 @@
+.body {
+  background-color: #9695c76e;
+}
+.Texto-homepage {
+  /* --- contenedor --- */
+  max-width: 900px;           /* ancho máximo para que no se estire demasiado */
+  margin: 60px auto;          /* centrado horizontal con espacio superior/inferior */
+  padding: 40px 60px;         /* espacio interno */
+  background: #9695c749; /* un leve fondo translúcido */
+  border-radius: 20px;        /* bordes redondeados */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* sombra suave */
+  color: #566034;             /* texto claro (si usas fondo oscuro) */
+  font-family: "Segoe UI", Roboto, sans-serif;
+  text-align: center;
+  line-height: 1.8;
+}
+
+.Texto-homepage h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  color: #3c4324;             /* color de acento (cámbialo por tu paleta) */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.Texto-homepage p {
+  font-size: 1.2rem;
+  margin: 0 auto;
+  max-width: 700px;
+  text-align: justify;        /* justifica el texto para un look más elegante */
+}
+
+/* --- Responsive: pantallas pequeñas --- */
+@media (max-width: 768px) {
+  .Texto-homepage {
+    padding: 25px 20px;
+    margin: 40px 15px;
+  }
+
+  .Texto-homepage h2 {
+    font-size: 2rem;
+  }
+
+  .Texto-homepage p {
+    font-size: 1rem;
+  }
+}
