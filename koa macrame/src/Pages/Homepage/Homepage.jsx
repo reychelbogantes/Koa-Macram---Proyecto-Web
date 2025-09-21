@@ -4,6 +4,10 @@ import Banner from '../../Components/Banner/Banner'
 import { getProductos } from '../../Services/Servicios'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
+import WhatsAppButton from '../../Components/WhatsAppButton/WhatsAppButton';
+import { FaWhatsapp } from 'react-icons/fa';
+import Footer from '../../Components/Footer/Footer'
+
 
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -66,36 +70,25 @@ function Homepage() {
           ))}
         </Swiper>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       
-      </div>
+       <h2>También puedes hacer tus pedidos personalizados</h2>
 
+       <p>Creaciones únicas en macramé hechas a mano, con diseños personalizados que llenan de estilo y calidez cualquier espacio. Encuentra piezas decorativas y accesorios elaborados con amor y detalle, o solicita tu pedido especial adaptado a tus gustos y necesidades.</p>
+      
+       <a
+        href="https://wa.me/50687913622?text=Hola%20quiero%20información"
+        className="whatsapp-btn"
+        target="_blank"
+        rel="noopener noreferrer">
+        <FaWhatsapp size={22} style={{ marginRight: '8px' }}/> Inicia chat</a>
+
+
+        <WhatsAppButton />
+
+
+      </div>
+        <img className='bannerFijo' src="/BannerFijo.png" alt="BannerFijo" />
+         <Footer />
 
 
 

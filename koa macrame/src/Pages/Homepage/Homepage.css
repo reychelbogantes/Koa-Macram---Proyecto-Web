@@ -103,3 +103,30 @@
 .card-carrusel:hover .overlay {
   opacity: 1;
 }
+
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  background: #25d366;         /* color oficial WhatsApp */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px;         /* hace el botón redondeado */
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;       /* quita el subrayado */
+  transition: background 0.3s ease;
+}
+
+.whatsapp-btn:hover {
+  background: #1ebe5b;         /* un verde un poco más oscuro al pasar el mouse */
+}
+
+.whatsapp-btn i {
+  margin-right: 8px;           /* espacio entre icono y texto */
+  font-size: 20px;
+}
+
+.bannerFijo{
+  width: 100%;
+  height: auto;
+}

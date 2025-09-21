@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"; 
-import { GetUsers, cambiarPassword, postGoogleUser } from '../../services/Servicios'; 
+import { GetUsers, cambiarPassword, postGoogleUser } from '../../Services/Servicios'; 
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
 
