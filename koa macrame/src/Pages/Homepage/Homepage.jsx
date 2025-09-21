@@ -71,7 +71,7 @@ function Homepage() {
         </Swiper>
       </div>
       
-       <h2>También puedes hacer tus pedidos personalizados</h2>
+       <h2 id="pedidos-personalizados">También puedes hacer tus pedidos personalizados</h2>
 
        <p>Creaciones únicas en macramé hechas a mano, con diseños personalizados que llenan de estilo y calidez cualquier espacio. Encuentra piezas decorativas y accesorios elaborados con amor y detalle, o solicita tu pedido especial adaptado a tus gustos y necesidades.</p>
       

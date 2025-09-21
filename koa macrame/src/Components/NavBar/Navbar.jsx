@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
 import logo from "/logoK.png"; // ⬅️ tu logo en /assets
 import { FaShoppingCart, FaUser, FaHeart } from "react-icons/fa";
 
@@ -19,9 +20,9 @@ function Navbar() {
 
       {/* --- Enlaces de navegación --- */}
       <ul className="navbar-links">
-        <li><Link to="/">Inicio</Link></li>
+        <li><Link to="/homepage">Inicio</Link></li>
         <li><Link to="/catalogo">Catálogo</Link></li>
-        <li><Link to="/pedidos">Pedidos personalizados</Link></li>
+        <li> <HashLink smooth to="/homepage#pedidos-personalizados">Pedidos personalizados</HashLink></li>
         <li><Link to="/contacto">Contáctanos</Link></li>
       </ul>
 

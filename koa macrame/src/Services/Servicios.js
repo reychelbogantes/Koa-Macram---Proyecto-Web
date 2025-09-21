@@ -126,5 +126,25 @@ export async function deleteProducto(id) {
   return await res.json();
 }
 
+// ---- Servicios de Contacto ----
+const API_CONTACTOS = "http://localhost:3000/Contactos";
+
+export async function postContacto(contacto) {
+  const nuevo = { ...contacto, fecha: new Date().toISOString() };
+  const res = await fetch(API_CONTACTOS, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(nuevo),
+  });
+  if (!res.ok) throw new Error("Error al enviar contacto");
+  return await res.json();
+}
+
+export async function getContactos() {
+  const res = await fetch(API_CONTACTOS);
+  if (!res.ok) throw new Error("Error al obtener contactos");
+  return await res.json();
+}
+
 
 export { postUsers, GetUsers, cambiarPassword, postGoogleUser };

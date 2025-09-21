@@ -1,0 +1,75 @@
+.contacto-page {
+  background: #9695c76e;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: row;
+}
+
+.info-negocio,
+.formulario-contacto,
+.datos-contacto {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 40px 60px;
+  background: #9695c700;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0);
+  margin-bottom: 40px;
+}
+
+h1, h2 {
+  color: #3c4324;
+  margin-bottom: 20px;
+}
+
+.info-negocio p,
+.datos-contacto p,
+.formulario-contacto p,
+.info-negocio li {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.formulario-contacto form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formulario-contacto input,
+.formulario-contacto textarea {
+  padding: 12px;
+  border: 1px solid #cccccc92;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.formulario-contacto textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.formulario-contacto button {
+  background: #839252;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.formulario-contacto button:hover {
+  background: #64703efa;
+}
+
+.exito {
+  color: green;
+  margin-top: 10px;
+}
+.error {
+  color: red;
+  margin-top: 10px;
+}

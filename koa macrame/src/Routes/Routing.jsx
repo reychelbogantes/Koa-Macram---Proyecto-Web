@@ -3,12 +3,17 @@ import Login from '../Pages/Login/Login'
 import Homepage from '../Pages/Homepage/Homepage'
 import Registro from '../Pages/Registro/Registro'
 import Admin from '../Pages/Admin/Admin'
+import TerminosCondiciones from '../Pages/TerminosCondiciones/TerminosCondiciones'
+import PoliticaReembolso from '../Pages/TerminosCondiciones/PoliticaReembolso'
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import Inventario from '../Components/Inventario/Inventario'
 import ProductosAdmin from '../Components/ProductosAdmin/ProductosAdmin'
 import UsuariosAdmin from '../Components/UsuariosAdmin/UsuariosAdmin';
+import Catalogo from '../Pages/Catalogo/Catalogo'
+import Contactanos from '../Pages/Contactanos/Contactanos';
+import ContactosAdmin from '../Components/ContactosAdmin/ContactosAdmin';
 
 function Routing() {
   return (
@@ -23,6 +28,11 @@ function Routing() {
                 <Route path='/inventario' element={<Inventario/>}/>
                 <Route path='/productosadmin' element={<ProductosAdmin/>}/>
                 <Route path="/usuarios" element={<UsuariosAdmin />} />
+                <Route path="/terminos-condiciones" element={<TerminosCondiciones />} />
+                <Route path="/politica-reembolso" element={<PoliticaReembolso />} />
+                <Route path="/catalogo" element={<Catalogo />} />
+                <Route path="/contacto" element={<Contactanos />} />
+                <Route path="/admin/contactos" element={<ContactosAdmin />} />
             </Routes>    
         </Router>
 

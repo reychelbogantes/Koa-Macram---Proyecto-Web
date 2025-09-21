@@ -2,6 +2,7 @@ import React from 'react';
 import { FaFacebook, FaInstagram, FaTiktok, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 import './Footer.css';
 
+
 function Footer() {
   return (
     <footer className="footer">
@@ -10,8 +11,8 @@ function Footer() {
         {/* Políticas */}
         <div className="footer-col">
           <h3>Políticas</h3>
-          <a href="#">Términos del servicio</a>
-          <a href="#">Política de reembolso</a>
+          <a href="/terminos-condiciones">Términos del servicio</a>
+          <a href="/politica-reembolso">Política de reembolso</a>
         </div>
 
         {/* Envío */}
@@ -35,7 +36,7 @@ function Footer() {
           <div className="social-icons">
             <a href="#"><FaTiktok /></a>
             <a href="#"><FaFacebook /></a>
-            <a href="#"><FaInstagram /></a>
+            <a href="https://www.instagram.com/koamacrame?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><FaInstagram /></a>
           </div>
         </div>
 
