@@ -6,9 +6,9 @@
   max-width: 900px;           /* ancho máximo para que no se estire demasiado */
   margin: 60px auto;          /* centrado horizontal con espacio superior/inferior */
   padding: 40px 60px;         /* espacio interno */
-  background: #9695c749; /* un leve fondo translúcido */
+  background: #9695c700; /* un leve fondo translúcido */
   border-radius: 20px;        /* bordes redondeados */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* sombra suave */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0); /* sombra suave */
   color: #566034;             /* texto claro (si usas fondo oscuro) */
   font-family: "Segoe UI", Roboto, sans-serif;
   text-align: center;
@@ -44,4 +44,62 @@
   .Texto-homepage p {
     font-size: 1rem;
   }
+}
+
+.productos-destacados {
+  margin: 50px auto;
+  max-width: 1100px;
+  padding: 0 20px;
+}
+
+.card-carrusel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%;
+  height: 300px;
+}
+
+.card-carrusel img {
+  width: 100%;
+  height: 300px; 
+  object-fit: cover;
+  transition: filter 0.4s ease;
+}
+
+/* Capa oculta que aparece al hacer hover */
+.card-carrusel .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.btn-vermas {
+  background: #839252;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-vermas:hover {
+  background: #64703efa;
+}
+
+/* Efecto al pasar el cursor */
+.card-carrusel:hover img {
+  filter: blur(4px);
+}
+
+.card-carrusel:hover .overlay {
+  opacity: 1;
 }

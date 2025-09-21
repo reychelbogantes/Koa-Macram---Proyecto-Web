@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../Components/NavBar/Navbar'
 import Banner from '../../Components/Banner/Banner'
+import { getProductos } from '../../Services/Servicios'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Pagination } from 'swiper/modules'
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 import './Homepage.css'
+
 function Homepage() {
+  const [destacados, setDestacados] = useState([]);
+
+  useEffect(() => {
+    getProductos()
+      .then(productos => {
+        const filtrados = productos.filter(p => p.destacado && p.activo);
+        setDestacados(filtrados);
+      })
+      .catch(console.error);
+  }, []);
+
+
   return (
     <div>
       <div className='body'>
@@ -18,6 +38,34 @@ function Homepage() {
       <br /> <br />Nuestra filosofía se basa en el respeto a la tierra, es por eso que los materiales utilizados para este proyecto son amigables con el medioambiente o reciclados, como acto de reciprocidad con nuestro planeta.
       <br /> <br />Al igual que el árbol de Koa, que crece con fuerza y belleza en las islas hawaianas, aspiramos a crecer y florecer. Te invito a seguir mi proyecto y a que juntas le demos vida a Koa </p>
       <br />
+
+    <div className="productos-destacados">
+        <h2>✨ Productos destacados</h2>
+
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={20}
+          slidesPerView={3}
+          navigation
+          pagination={{ clickable: true }}
+          breakpoints={{
+            0: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 }
+          }}
+        >
+          {destacados.map(prod => (
+            <SwiperSlide key={prod.id}>
+              <div className="card-carrusel">
+                <img src={prod.foto} alt={prod.nombre} />
+                <div className="overlay">
+                  <button className="btn-vermas">Ver más</button>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
 
 
 
