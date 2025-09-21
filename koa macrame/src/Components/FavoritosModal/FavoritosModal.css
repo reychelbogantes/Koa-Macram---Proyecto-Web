@@ -1,0 +1,67 @@
+/* Cubre toda la pantalla pero solo oscurece el resto */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: flex-end;   /* ✅ el contenido se pega a la derecha */
+  z-index: 9999;
+}
+
+/* Panel lateral */
+.modal-content {
+  width: 20%;                  /* ✅ ancho del panel lateral */
+  height: 100vh;               /* ✅ alto de toda la pantalla */
+  background: #fff;
+  box-shadow: -4px 0 10px rgba(0,0,0,0.2);
+  padding: 20px;
+  position: relative;
+  overflow-y: auto;            /* scroll interno si hay muchos favoritos */
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* Botón de cierre (X) */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.modal-msg {
+  text-align: center;
+}
+
+/* --- Lista de favoritos --- */
+.lista-favoritos {
+  list-style: none;
+  padding: 0;
+  margin-top: 50px; /* deja espacio debajo de la X y del título */
+}
+
+.lista-favoritos li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.lista-favoritos img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.lista-favoritos span {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+  line-height: 1.4;
+}

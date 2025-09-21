@@ -146,5 +146,16 @@ export async function getContactos() {
   return await res.json();
 }
 
+export async function getFavoritosPorUsuario(userId) {
+  const res = await fetch("http://localhost:3000/Productos");
+  if (!res.ok) throw new Error("Error al obtener productos");
+  const productos = await res.json();
+
+  return productos.filter(
+    p => Array.isArray(p.favoritoDe) && p.favoritoDe.includes(userId)
+  );
+}
+
+
 
 export { postUsers, GetUsers, cambiarPassword, postGoogleUser };

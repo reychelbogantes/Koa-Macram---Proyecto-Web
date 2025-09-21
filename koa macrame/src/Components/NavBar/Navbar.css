@@ -58,7 +58,7 @@
 }
 
 .navbar-icons a:hover,
-.navbar-icons .menu-btn:hover {
+.navbar-icons .menu-btn :hover {
   color: #fff;
 }
 
@@ -67,4 +67,16 @@
   .navbar-links {
     display: none; /* puedes luego implementar un menú hamburguesa */
   }
+}
+
+.btn-heart-nav{
+  color: #f5ebd7;
+  font-size: 1.4rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.3s ease;
+}
+.btn-heart-nav:hover {
+  color: #fff;
 }
