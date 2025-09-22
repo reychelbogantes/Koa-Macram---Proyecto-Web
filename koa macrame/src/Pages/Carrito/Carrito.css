@@ -1,0 +1,218 @@
+.carrito-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  display: flex;
+  gap: 30px;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* ----- COLUMNA IZQUIERDA ----- */
+.carrito-left {
+  flex: 2;
+}
+
+.filtro-seleccion {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 2px solid #eaeaea;
+  font-weight: 600;
+}
+
+.lista-productos {
+  margin-top: 20px;
+}
+
+.producto-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.producto-item img {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.producto-item .info {
+  flex: 1;
+}
+
+.producto-item .precio {
+  color: #e63946;
+  font-weight: bold;
+}
+
+.producto-item .acciones input {
+  width: 60px;
+  padding: 5px;
+}
+
+/* ----- COLUMNA DERECHA ----- */
+.carrito-right {
+  flex: 1;
+}
+
+.resumen-pedido {
+  background: #9695c7;
+  color: #fff;
+  border-radius: 20px;        /* bordes redondeados */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.234); /* sombra suave */
+
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.resumen-pedido h3 {
+  margin-top: 0;
+}
+
+.precio-estimado {
+  font-size: 1.2rem;
+  margin: 15px 0;
+}
+
+.btn-comprar {
+  width: 100%;
+  background: #64703efa;
+  color: #fff;
+  padding: 12px 0;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-comprar:hover {
+  background: #333;
+}
+
+.nota {
+  font-size: 0.85rem;
+  margin-top: 10px;
+  color: #666;
+}
+
+.metodos-pago{
+    text-align: center;
+    justify-items: center;
+}
+
+.metodos-pago h4 {
+  margin: 15px 0;
+}
+
+.metodos-pago .logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.metodos-pago .logos img {
+  height: 55px;
+}
+
+.botones-extra {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 15px;
+}
+
+.btn-favorito,
+.btn-eliminar {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-favorito {
+  color: #e63946; /* corazón rojo */
+}
+
+.btn-eliminar {
+  color: #444;
+}
+
+.btn-favorito:hover,
+.btn-eliminar:hover {
+  transform: scale(1.2);
+}
+
+.costo-envio, .monto-total {
+  font-size: 1.1rem;
+  margin: 8px 0;
+}
+.monto-total strong {
+  color: #dae0c5fa;
+}
+/* Contenedor general */
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+.acciones label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+/* Contenedor del input y los botones + / – */
+.cantidad-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+/* Botones personalizados */
+.btn-cantidad {
+  background: #e0e0e0;
+  border: none;
+  padding: 6px 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  user-select: none;
+}
+
+.btn-cantidad:hover {
+  background: #d0d0d0;
+}
+
+/* Input de cantidad */
+.cantidad-wrapper input[type="number"] {
+  width: 60px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  padding: 6px 0;
+  outline: none;
+}
+
+/* 🔹 Quitar flechitas nativas */
+.cantidad-wrapper input[type="number"]::-webkit-inner-spin-button,
+.cantidad-wrapper input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.cantidad-wrapper input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.acciones button{
+  background: #b1aff800;
+}

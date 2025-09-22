@@ -14,6 +14,9 @@ import UsuariosAdmin from '../Components/UsuariosAdmin/UsuariosAdmin';
 import Catalogo from '../Pages/Catalogo/Catalogo'
 import Contactanos from '../Pages/Contactanos/Contactanos';
 import ContactosAdmin from '../Components/ContactosAdmin/ContactosAdmin';
+import ProductoDetalle from '../Components/ProductoDetalle/ProductoDetalle'
+import ProductosCatalogo from '../Components/ProductosCatalogo/ProductosCatalogo'
+import Carrito from '../Pages/Carrito/Carrito'
 
 function Routing() {
   return (
@@ -33,6 +36,10 @@ function Routing() {
                 <Route path="/catalogo" element={<Catalogo />} />
                 <Route path="/contacto" element={<Contactanos />} />
                 <Route path="/admin/contactos" element={<ContactosAdmin />} />
+                <Route path="/producto/:id" element={<ProductoDetalle />} />
+                <Route path="/producto" element={<ProductosCatalogo />} />
+                <Route path="/carrito" element={<Carrito />} />
+
             </Routes>    
         </Router>
 

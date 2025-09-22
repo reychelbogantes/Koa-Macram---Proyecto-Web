@@ -156,6 +156,47 @@ export async function getFavoritosPorUsuario(userId) {
   );
 }
 
+const API_CARRITOS = "http://localhost:3000/Carritos";
+/**
+ * Obtiene el carrito del usuario logueado.
+ * Si no existe devuelve null.
+ */
+export async function getCarritoPorUsuario(userId) {
+  const res = await fetch(`${API_CARRITOS}?userId=${userId}`);
+  if (!res.ok) throw new Error("Error al obtener carrito");
+  const carritos = await res.json();
+  return carritos[0] || null; // asumimos 1 carrito por usuario
+}
+
+/**
+ * Crea un carrito nuevo para el usuario.
+ */
+export async function crearCarrito(userId, productoId, cantidad) {
+  const nuevo = {
+    userId,
+    productos: [{ productoId, cantidad }]
+  };
+  const res = await fetch(API_CARRITOS, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(nuevo)
+  });
+  if (!res.ok) throw new Error("Error al crear carrito");
+  return await res.json();
+}
+
+/**
+ * Actualiza productos en un carrito existente.
+ */
+export async function updateCarrito(idCarrito, productos) {
+  const res = await fetch(`${API_CARRITOS}/${idCarrito}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ productos })
+  });
+  if (!res.ok) throw new Error("Error al actualizar carrito");
+  return await res.json();
+}
 
 
 export { postUsers, GetUsers, cambiarPassword, postGoogleUser };

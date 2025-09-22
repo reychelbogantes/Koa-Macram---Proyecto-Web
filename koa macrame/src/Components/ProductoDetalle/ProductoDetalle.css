@@ -1,0 +1,100 @@
+.detalle-container {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.detalle-imagen img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.detalle-info {
+  flex: 1;
+}
+
+.detalle-precio {
+  font-size: 2rem;
+  color: #1ea8a1;
+  margin: 10px 0;
+}
+
+.detalle-descripcion {
+  margin: 20px 0;
+  font-size: 1.1rem;
+}
+
+
+/* Contenedor de los dos botones */
+.detalle-acciones {
+  display: flex;
+  align-items: center;     /* centra verticalmente */
+  gap: 20px;               /* espacio entre los botones */
+  margin-top: 30px;
+}
+
+/* Botón de volver */
+.btn-volver {
+  background: #1ea8a1;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.btn-volver:hover {
+  background: #14807a;
+}
+
+/* Botón de favorito (corazón) */
+.btn-heart-detallado {
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: #566034;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-heart-detallado:hover {
+  transform: scale(1.2);
+}
+
+.btn-heart-detallado.activo {
+  color: #e63946;  /* rojo si es favorito */
+}
+
+.agregar-carrito {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.agregar-carrito input {
+  width: 60px;
+  padding: 6px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-agregar {
+  background: #1ea8a1;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-agregar:hover {
+  background: #14807a;
+}

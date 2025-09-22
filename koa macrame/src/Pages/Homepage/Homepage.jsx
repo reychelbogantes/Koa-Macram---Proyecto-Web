@@ -7,6 +7,7 @@ import { Navigation, Pagination } from 'swiper/modules'
 import WhatsAppButton from '../../Components/WhatsAppButton/WhatsAppButton';
 import { FaWhatsapp } from 'react-icons/fa';
 import Footer from '../../Components/Footer/Footer'
+import { Link } from 'react-router-dom'; 
 
 
 import 'swiper/css'
@@ -63,7 +64,7 @@ function Homepage() {
               <div className="card-carrusel">
                 <img src={prod.foto} alt={prod.nombre} />
                 <div className="overlay">
-                  <button className="btn-vermas">Ver más</button>
+                  <Link to={`/producto/${prod.id}`} className="btn-vermas"> Ver más </Link>
                 </div>
               </div>
             </SwiperSlide>

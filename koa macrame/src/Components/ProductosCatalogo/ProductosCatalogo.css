@@ -1,12 +1,15 @@
-.catalogo-container {
-  background-color: #9695c700;
-  max-width: 1200px;
-  margin: 60px auto;
-  padding: 40px 60px;
-  border-radius: 20px;
+/* ===== Fondo general ===== */
+body {
+  background-color: #9695c76e;
   font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* ===== Contenedor principal del catálogo ===== */
+.catalogo-container {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
   text-align: center;
-  line-height: 1.8;
 }
 
 .catalogo-container h1 {
@@ -17,101 +20,114 @@
   text-transform: uppercase;
 }
 
+/* ===== Grid de productos ===== */
 .catalogo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 30px;
 }
 
+/* ===== Tarjeta de cada producto ===== */
 .producto-card {
-  background: #9695c73f;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  color: #566034;
-  padding: 20px;
   position: relative;
-  transition: transform 0.2s ease;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
 }
 
 .producto-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
 }
 
-.imagen-container {
-  position: relative;
+.producto-card img {
   width: 100%;
   height: 300px;
-  background: #fff;
-  border-radius: 15px;
-  overflow: hidden;
+  object-fit: cover;
+  transition: filter 0.4s ease;
 }
 
-.imagen-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* muestra la imagen completa */
-  transition: transform 0.4s ease;
+/* ===== Capa oscura y botón Ver Más ===== */
+.producto-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.imagen-container:hover img {
-  transform: scale(1.03);
+.btn-vermas {
+  background: #839252;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-/* Botón de corazón */
+.btn-vermas:hover {
+  background: #64703e;
+}
+
+/* ===== Efecto hover: blur + overlay visible ===== */
+.producto-card:hover img {
+  filter: blur(4px);
+}
+
+.producto-card:hover .overlay {
+  opacity: 1;
+}
+
+/* ===== Información de texto debajo de la imagen ===== */
+.producto-card h3 {
+  margin: 15px 0 5px;
+  color: #3c4324;
+  font-size: 1.3rem;
+}
+
+.precio {
+  font-size: 1.1rem;
+  color: #566034;
+  margin-bottom: 15px;
+}
+
+/* ===== Botón de favoritos ===== */
 .btn-heart {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: rgba(255,255,255,0.8);
+  background: transparent;
   border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #566034;
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.4);
   cursor: pointer;
-  font-size: 1.2rem;
-  transition: background 0.3s ease, color 0.3s ease;
+  z-index: 2;
+  transition: transform 0.2s ease;
 }
 
 .btn-heart:hover {
-  background: #fff;
+  transform: scale(1.2);
 }
 
 .btn-heart.activo {
-  color: #e74c3c;   /* rojo cuando está marcado */
+  color: #e63946; /* corazón rojo si es favorito */
 }
 
-.producto-card h3 {
-  margin-top: 20px;
-  font-size: 1.4rem;
-  color: #3c4324;
-}
-
-.producto-card .precio {
-  font-weight: bold;
-  color: #64703e;
-  font-size: 1.2rem;
-  margin-top: 8px;
-}
-
+/* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .catalogo-container {
-    padding: 25px 20px;
-    margin: 40px 15px;
-  }
-
   .catalogo-container h1 {
     font-size: 2rem;
   }
-
-  .producto-card h3 {
-    font-size: 1.2rem;
-  }
-
-  .producto-card .precio {
-    font-size: 1rem;
+  .producto-card img {
+    height: 220px;
   }
 }
+

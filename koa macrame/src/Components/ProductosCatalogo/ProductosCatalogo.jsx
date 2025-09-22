@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { getProductos, updateProducto } from '../../Services/Servicios';
 import { FaHeart } from 'react-icons/fa';
 import './ProductosCatalogo.css';
+import { Link } from 'react-router-dom'; 
+
 
 function ProductosCatalogo() {
   const [productos, setProductos] = useState([]);
@@ -59,21 +61,28 @@ function ProductosCatalogo() {
             : false;
 
           return (
-            <div className="producto-card" key={p.id}>
-              <div className="imagen-container">
-                <img src={p.foto} alt={p.nombre} />
-                <button
-                  className={`btn-heart ${esFavorito ? 'activo' : ''}`}
-                  onClick={() => toggleFavorito(p)}
-                  aria-label="Guardar en favoritos"
-                >
-                  <FaHeart />
-                </button>
-              </div>
+<div className="producto-card" key={p.id}>
+  <div className="imagen-container">
+    <img src={p.foto} alt={p.nombre} />
+    <button
+      className={`btn-heart ${esFavorito ? 'activo' : ''}`}
+      onClick={() => toggleFavorito(p)}
+      aria-label="Guardar en favoritos"
+    >
+      <FaHeart />
+    </button>
 
-              <h3>{p.nombre}</h3>
-              <p className="precio">₡{p.precio}</p>
-            </div>
+    {/* ✨ Overlay con el botón Ver más ✨ */}
+    <div className="overlay">
+      <Link to={`/producto/${p.id}`} className="btn-vermas">
+        Ver más
+      </Link>
+    </div>
+  </div>
+
+  <h3>{p.nombre}</h3>
+  <p className="precio">₡{p.precio}</p>
+</div>
           );
         })}
         {productos.length === 0 && (
