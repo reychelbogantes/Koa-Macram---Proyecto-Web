@@ -198,6 +198,18 @@ export async function updateCarrito(idCarrito, productos) {
   return await res.json();
 }
 
+export async function vaciarCarrito(idsProductos) {
+  const resp = await fetch("http://localhost:3000/Carritos");
+  const items = await resp.json();
+   // Filtrar los items cuyo productoId coincida con los ids seleccionados
+  const borrar = items.filter(item => idsProductos.includes(item.productoId));
+  await Promise.all(
+    borrar.map(item =>
+      fetch(`http://localhost:3000/Carritos/${item.id}`, { method: "DELETE" })
+    )
+  );
+}
+
 export async function guardarDireccionUsuario(idUsuario, nuevaDireccion) {
   try {
     // 1. Obtener datos del usuario actual
@@ -247,6 +259,18 @@ export async function actualizarDireccionesUsuario(idUsuario, direcciones) {
 // Genera un id único para cada dirección
 export function generarIdDireccion() {
   return Date.now() + "-" + Math.random().toString(36).slice(2,8);
+}
+
+export async function guardarFactura(factura) {
+  const resp = await fetch("http://localhost:3000/Facturacion", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(factura)
+  });
+  if (!resp.ok) throw new Error("Error al guardar la factura");
+  return resp.json();
 }
 
 

@@ -118,7 +118,7 @@
       "productos": [
         {
           "productoId": "70fa",
-          "cantidad": 4
+          "cantidad": 1
         },
         {
           "productoId": "043e",
@@ -138,6 +138,28 @@
     }
   ],
   "Ordenes": [],
-  "Facturacion": [],
+  "Facturacion": [
+    {
+      "id": "6ec5",
+      "fecha": "2025-09-23T20:41:07.661Z",
+      "usuario": {
+        "nombre": "Reychel",
+        "email": "rfallasbfwd@gmail.com"
+      },
+      "productos": [
+        {
+          "id": "043e",
+          "nombre": "Tapiz Encanto",
+          "cantidad": 2,
+          "precio": "1.600"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 3.2,
+      "costoEnvio": 7,
+      "total": 10.2,
+      "idTransaccion": "0UA42276XY4381246"
+    }
+  ],
   "Contactos": []
 }

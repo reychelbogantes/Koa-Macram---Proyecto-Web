@@ -21,6 +21,7 @@ function Carrito() {
   const [seleccionados, setSeleccionados] = useState([]);
   const [usuario, setUsuario] = useState(null);
   const [carritoId, setCarritoId] = useState(null);
+  const productosSeleccionados = productosCarrito.filter(p => seleccionados.includes(p.id));
 
   useEffect(() => {
     const userData = localStorage.getItem("usuarioLogueado");
@@ -97,8 +98,6 @@ function Carrito() {
     alert("Producto guardado en favoritos");
   };
 
-  const productosSeleccionados = productosCarrito.filter(p => seleccionados.includes(p.id));
-
   if (!usuario) return <p>Debes iniciar sesión para ver tu carrito.</p>;
   if (!productosCarrito.length) return <p>Tu carrito está vacío.</p>;
    
@@ -149,8 +148,12 @@ function Carrito() {
       </div>
 
       <div className="carrito-right">
-        <ResumenPedido productos={productosSeleccionados}
-        tipoEnvio={direccionSeleccionada?.metodoEnvio} />
+        <ResumenPedido
+         productos={productosSeleccionados}
+         tipoEnvio={direccionSeleccionada?.metodoEnvio}
+         setCarrito={setProductosCarrito}
+         seleccionados={seleccionados} 
+         />
         <MetodosPago />
       </div>
     </div>
