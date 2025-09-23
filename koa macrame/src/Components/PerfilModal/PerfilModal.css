@@ -1,0 +1,80 @@
+/* Fondo semitransparente */
+.perfil-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: flex-end; /* alinea el modal a la derecha */
+  z-index: 1000;
+}
+
+/* Panel lateral derecho */
+.perfil-modal {
+  background: #fff;
+  width: 150px;
+  max-width: 80%;
+  height: 20%;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: -4px 0 8px rgba(0,0,0,0.2);
+  position: relative;
+  animation: slideIn 0.3s ease forwards;
+}
+
+/* Animación de entrada */
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+/* Botón cerrar */
+.perfil-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* Info usuario */
+.perfil-info h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.perfil-info h2 {
+  font-size: 1rem;
+  
+}
+
+/* Botón Perdidos */
+.perfil-actions {
+  margin-top: 2rem;
+}
+
+.perfil-btn {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: #64703efa;      /* color de tu marca */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.perfil-btn:hover {
+  background: #4a532ffa;
+}
+
+.perfil-login-link {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}

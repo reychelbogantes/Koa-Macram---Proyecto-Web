@@ -4,6 +4,7 @@ import { HashLink } from 'react-router-hash-link';
 import logo from "/logoK.png";
 import { FaShoppingCart, FaUser, FaHeart } from "react-icons/fa";
 import FavoritosModal from '../FavoritosModal/FavoritosModal';
+import PerfilModal from '../PerfilModal/PerfilModal';
 
 
 
@@ -11,11 +12,18 @@ import './Navbar.css';
 function Navbar() {
   const [modalAbierto, setModalAbierto] = useState(false);
   const [usuario, setUsuario] = useState(null);
+  const [perfilAbierto, setPerfilAbierto] = useState(false);
 
   useEffect(() => {
-    const userData = localStorage.getItem("usuarioLogueado");
-    if (userData) setUsuario(JSON.parse(userData));
-  }, []);
+  const loadUser = () => {
+    const data = localStorage.getItem("usuarioLogueado");
+    setUsuario(data ? JSON.parse(data) : null);
+  };
+
+  loadUser();
+  window.addEventListener("storage", loadUser);
+  return () => window.removeEventListener("storage", loadUser);
+}, []);
 
    const abrirModal = () => {
     const userData = localStorage.getItem("usuarioLogueado");
@@ -23,6 +31,11 @@ function Navbar() {
     setModalAbierto(true);
   };
 
+  const abrirPerfil = () => {
+  const userData = localStorage.getItem("usuarioLogueado");
+  setUsuario(userData ? JSON.parse(userData) : null);
+  setPerfilAbierto(true);
+};
 
   return (
     <div>
@@ -50,13 +63,28 @@ function Navbar() {
           <button className="btn-heart-nav" onClick={abrirModal} >
             <FaHeart />
           </button>
+          
 
-          <Link to="/"><FaUser /></Link>
+           <button className="btn-heart-nav" onClick={abrirPerfil}><FaUser /></button>
+          
+
+            {/* <Link to="/"><FaUser /></Link> */}
+          
            </div>
            </nav>
 
         {/* Modal de favoritos */}
         <FavoritosModal isOpen={modalAbierto} onClose={() => setModalAbierto(false)} usuario={usuario} />
+        <PerfilModal
+        isOpen={perfilAbierto}
+        onClose={() => setPerfilAbierto(false)}
+        usuario={usuario}
+        onPerdidos={() => alert("Acción Perdidos")}
+      />
+        
+        
+
+
     </div>
     
   );
