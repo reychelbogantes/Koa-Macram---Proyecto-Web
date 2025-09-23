@@ -19,7 +19,7 @@
 
 .detalle-precio {
   font-size: 2rem;
-  color: #1ea8a1;
+  color: #64703efa;
   margin: 10px 0;
 }
 
@@ -39,7 +39,7 @@
 
 /* Botón de volver */
 .btn-volver {
-  background: #1ea8a1;
+  background: #9695c7dd;
   color: #fff;
   padding: 10px 20px;
   border-radius: 8px;
@@ -49,7 +49,7 @@
 }
 
 .btn-volver:hover {
-  background: #14807a;
+  background: #5c5c7ddd;
 }
 
 /* Botón de favorito (corazón) */
@@ -85,16 +85,19 @@
   border-radius: 4px;
 }
 
-.btn-agregar {
-  background: #1ea8a1;
-  color: #fff;
+
+/* Botón de carrito */
+.btn-agregar1 {
+  background: transparent;
   border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
+  font-size: 1.8rem;
+  color: #9695c7dd;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
-.btn-agregar:hover {
-  background: #14807a;
+.btn-agregar1:hover {
+  transform: scale(1.2);
+  color: #5c5c7ddd;
 }
+

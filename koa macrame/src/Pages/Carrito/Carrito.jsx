@@ -8,10 +8,15 @@ import MetodosPago from'../../Components/ComponentsCarrito/MetodosPago';
 import Navbar from '../../Components/NavBar/Navbar'
 import Footer from '../../Components/Footer/Footer'
 
+import UbicacionesUsuario from '../../Components/ComponentsCarrito/UbicacionesUsuario';
 
-import { getCarritoPorUsuario, getProductos, updateCarrito, updateProducto } from '../../Services/Servicios';
+
+import { getCarritoPorUsuario, getProductos, updateCarrito, updateProducto, guardarDireccionUsuario } from '../../Services/Servicios';
+
+
 
 function Carrito() {
+  const [direccionSeleccionada, setDireccionSeleccionada] = useState(null);
   const [productosCarrito, setProductosCarrito] = useState([]);
   const [seleccionados, setSeleccionados] = useState([]);
   const [usuario, setUsuario] = useState(null);
@@ -96,6 +101,25 @@ function Carrito() {
 
   if (!usuario) return <p>Debes iniciar sesión para ver tu carrito.</p>;
   if (!productosCarrito.length) return <p>Tu carrito está vacío.</p>;
+   
+  const handleEnvio = async (datos) => {
+    try {
+      const userData = localStorage.getItem("usuarioLogueado");
+      if (!userData) {
+        alert("Debes iniciar sesión para guardar la dirección.");
+        return;
+      }
+      const usuario = JSON.parse(userData);
+
+      // Llamamos al servicio pasando el id del usuario y los datos del formulario
+      await guardarDireccionUsuario(usuario.id, datos);
+      alert("✅ Dirección guardada correctamente en la base de datos");
+    } catch (error) {
+      alert("❌ Ocurrió un error al guardar la dirección");
+      console.error(error);
+    }
+  };
+
 
   return (
     <div>
@@ -120,10 +144,13 @@ function Carrito() {
           onEliminar={handleEliminar}
           onFavorito={handleFavorito}
         />
+      
+        <UbicacionesUsuario onSeleccion={setDireccionSeleccionada}/>
       </div>
 
       <div className="carrito-right">
-        <ResumenPedido productos={productosSeleccionados} />
+        <ResumenPedido productos={productosSeleccionados}
+        tipoEnvio={direccionSeleccionada?.metodoEnvio} />
         <MetodosPago />
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {getProductos, updateProducto, getCarritoPorUsuario, crearCarrito, updateCarrito } from '../../Services/Servicios';
-import { FaHeart } from 'react-icons/fa';
+import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import './ProductoDetalle.css';
 import Navbar from '../../Components/NavBar/Navbar';
 import Footer from '../../Components/Footer/Footer';
@@ -111,22 +111,23 @@ function ProductoDetalle() {
        
         <div className="detalle-acciones">
         <Link to="/catalogo" className="btn-volver">Volver al catálogo</Link>
-        <button
+            <button
               className={`btn-heart-detallado ${esFavorito ? 'activo' : ''}`}
               onClick={() => toggleFavorito(producto)}
               aria-label="Guardar en favoritos"
             >
               <FaHeart />
             </button>
-             
-             {/* === Nuevo bloque === */}
+
+            <button className="btn-agregar1" onClick={agregarAlCarrito}>
+            <FaShoppingCart />
+            </button>
+
+              {/* === Nuevo bloque === */}
             <div className="agregar-carrito">
              <input type="number" min="1" value={cantidad} onChange={e => setCantidad(parseInt(e.target.value))} />
-
-            <button className="btn-agregar" onClick={agregarAlCarrito}>
-             Agregar al carrito
-            </button>
             </div>
+            
 
 
 

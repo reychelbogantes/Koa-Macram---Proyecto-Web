@@ -210,9 +210,196 @@
   margin: 0;
 }
 .cantidad-wrapper input[type="number"] {
-  -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 .acciones button{
   background: #b1aff800;
+}
+
+/* ----- Formulario de envio ----- */
+.form-envio {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.form-envio h2 {
+  text-align: center;
+  color: #64703efa;
+  margin-bottom: 1rem;
+}
+
+.form-envio label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-envio input,
+.form-envio textarea,
+.form-envio select {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.form-envio input:focus,
+.form-envio textarea:focus,
+.form-envio select:focus {
+  border-color:#995fd3;
+  outline: none;
+}
+
+.form-envio textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.btn-enviar {
+  display: block;
+  width: 100%;
+  margin-top: 2rem;
+  background: #7b8a4bfa;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-enviar:hover {
+  background: #505c2dfa;
+}
+
+.error {
+  color: #d9534f;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* ----- Ubicaciones ----- */
+.ubicaciones-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.icono-ubicacion {
+  color: #5d5d80;
+  margin-right: 0.5rem;
+}
+
+.tarjeta-direccion {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.tarjeta-direccion.seleccionada {
+  border: 2px solid #9695c7dd;
+}
+
+.tarjeta-direccion strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.click-hint {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.acciones-1 {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.acciones-1 button {
+  background: #9695c7dd;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: background 0.3s ease;
+}
+
+.acciones-1 button:hover {
+  background: #56567ccf;
+}
+
+.btn-seleccionar.activo {
+  background: #9695c7dd;
+  cursor: default;
+}
+
+.btn-agregar {
+  margin-top: 1.2rem;
+  background: #9695c7dd;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-agregar:hover {
+  background: #56567ccf;
+}
+
+/* --- Modal --- */
+.modal-overlay-1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content-1 {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-height: 80vh;
+  width: 90%;
+  max-width: 600px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-close-1 {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #333;
 }

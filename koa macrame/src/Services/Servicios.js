@@ -198,5 +198,56 @@ export async function updateCarrito(idCarrito, productos) {
   return await res.json();
 }
 
+export async function guardarDireccionUsuario(idUsuario, nuevaDireccion) {
+  try {
+    // 1. Obtener datos del usuario actual
+    const resUsuario = await fetch(`http://localhost:3000/Usuarios/${idUsuario}`);
+    if (!resUsuario.ok) throw new Error("Usuario no encontrado");
+    const usuario = await resUsuario.json();
+
+    // 2. Asegurar que exista el array direccion
+    const direcciones = usuario.direccion || [];
+
+    // 3. Agregar la nueva dirección al array
+    const nuevasDirecciones = [...direcciones, nuevaDireccion];
+
+    // 4. PATCH para actualizar solo la llave direccion
+    const res = await fetch(`http://localhost:3000/Usuarios/${idUsuario}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ direccion: nuevasDirecciones })
+    });
+    if (!res.ok) throw new Error("Error al guardar dirección");
+    return await res.json();
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+
+// Obtiene todas las direcciones de un usuario
+export async function obtenerDireccionesUsuario(idUsuario) {
+  const res = await fetch(`http://localhost:3000/Usuarios/${idUsuario}`);
+  if (!res.ok) throw new Error("Usuario no encontrado");
+  const usuario = await res.json();
+  return usuario.direccion || [];
+}
+
+// Guarda el array completo de direcciones (después de agregar/editar/eliminar)
+export async function actualizarDireccionesUsuario(idUsuario, direcciones) {
+  const res = await fetch(`http://localhost:3000/Usuarios/${idUsuario}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ direccion: direcciones })
+  });
+  if (!res.ok) throw new Error("Error al actualizar direcciones");
+  return await res.json();
+}
+
+// Genera un id único para cada dirección
+export function generarIdDireccion() {
+  return Date.now() + "-" + Math.random().toString(36).slice(2,8);
+}
+
 
 export { postUsers, GetUsers, cambiarPassword, postGoogleUser };
