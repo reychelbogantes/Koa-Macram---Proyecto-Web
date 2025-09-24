@@ -59,8 +59,8 @@ function Inventario() {
 
   return (
     <div>
-      <MenuIzquierdo/>
-      <div style={{ marginLeft: '240px', padding: '20px' }}>
+      
+      <div >
         <h1 className='Titulo'>Inventario</h1>
         <table className="tabla-inventario">
           <thead>

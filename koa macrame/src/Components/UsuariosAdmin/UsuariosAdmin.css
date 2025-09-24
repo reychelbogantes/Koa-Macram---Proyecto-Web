@@ -1,22 +1,35 @@
+
+
+/* Filas impares */
+.tabla-usuarios tr:nth-child(odd) {
+  background: #9695c71e;   /* ⬅️ el color que quieras para las “sin color” */
+  color: #3a3a58dd;
+}
+
+/* Filas pares */
+.tabla-usuarios tr:nth-child(even) {
+  background: #3f3e655f;   /* ⬅️ el color para las alternadas */
+  color: #3a3a58dd;
+}
+
 .tabla-usuarios {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: collapse; /* puedes dejarlo o quitarlo */
   margin-top: 20px;
   font-family: "Helvetica Neue", Arial, sans-serif;
+  border-radius: 20px;
 }
 
 .tabla-usuarios th,
 .tabla-usuarios td {
-  border: 1px solid #ddd;
+  border: none;       /* ✅ quita los bordes */
   padding: 10px;
   text-align: left;
+  border-radius: 20px;
 }
 
 .tabla-usuarios th {
   background: #839252;
   color: #fff;
-}
-
-.tabla-usuarios tr:nth-child(even) {
-  background: #f9f9f9;
+  border-radius: 20px;
 }

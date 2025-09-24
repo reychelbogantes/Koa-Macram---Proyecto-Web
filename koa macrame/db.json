@@ -32,7 +32,18 @@
       "googleId": "114708078770287835411",
       "name": "Reychell Fallas",
       "email": "reychelfallasbogantes@gmail.com",
-      "picture": "https://lh3.googleusercontent.com/a/ACg8ocKfffXl9Hn0f2tn9TjIW6HqWiyAsLPRGYgqzMwxUyJZtqcPxQi5=s96-c"
+      "picture": "https://lh3.googleusercontent.com/a/ACg8ocKfffXl9Hn0f2tn9TjIW6HqWiyAsLPRGYgqzMwxUyJZtqcPxQi5=s96-c",
+      "direccion": [
+        {
+          "nombre": "Reychel",
+          "direccion": "Puntarenas, Central, El Roble",
+          "telefono": "1111111111",
+          "metodoEnvio": "Correo de Costa Rica",
+          "observaciones": "Hola",
+          "id": "1758731413798-9jnxde",
+          "seleccionada": true
+        }
+      ]
     },
     {
       "id": "b6be",
@@ -48,6 +59,15 @@
           "metodoEnvio": "standard",
           "observaciones": "1",
           "id": "1758571656889-rkd0sw",
+          "seleccionada": false
+        },
+        {
+          "nombre": "Emma",
+          "direccion": "San Jose, Santa Ana, Centro.",
+          "telefono": "22222222",
+          "metodoEnvio": "Correo de Costa Rica",
+          "observaciones": "Hello",
+          "id": "1758731585474-3zopup",
           "seleccionada": true
         }
       ]
@@ -97,7 +117,7 @@
       "userId": "3515",
       "productos": [
         {
-          "productoId": "0370",
+          "productoId": "043e",
           "cantidad": 1
         }
       ]
@@ -137,7 +157,103 @@
       ]
     }
   ],
-  "Ordenes": [],
+  "Ordenes": [
+    {
+      "id": "6ec5",
+      "fecha": "2025-09-23T20:41:07.661Z",
+      "usuario": {
+        "nombre": "Reychel",
+        "email": "rfallasbfwd@gmail.com"
+      },
+      "productos": [
+        {
+          "id": "043e",
+          "nombre": "Tapiz Encanto",
+          "cantidad": 2,
+          "precio": "1.600"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 3.2,
+      "costoEnvio": 7,
+      "total": 10.2,
+      "idTransaccion": "0UA42276XY4381246",
+      "estado": "enviado"
+    },
+    {
+      "id": "000c",
+      "fecha": "2025-09-24T16:30:52.596Z",
+      "usuario": {
+        "nombre": "Reychel",
+        "email": "Reychel@personal.example.com",
+        "direccion": "Dirección no especificada",
+        "telefono": ""
+      },
+      "productos": [
+        {
+          "id": "043e",
+          "nombre": "Tapiz Encanto",
+          "cantidad": 1,
+          "precio": "1.600"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 1.6,
+      "costoEnvio": 7,
+      "total": 8.6,
+      "idTransaccion": "8P567515BA588884L",
+      "estado": "pendiente"
+    },
+    {
+      "id": "38ed",
+      "fecha": "2025-09-24T16:33:29.992Z",
+      "usuario": {
+        "nombre": "Reychel",
+        "email": "Reychel@personal.example.com",
+        "direccion": "Dirección no especificada",
+        "telefono": ""
+      },
+      "productos": [
+        {
+          "id": "70fa",
+          "nombre": "Atrapasuños \"Flor\"",
+          "cantidad": 2,
+          "precio": "420"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 840,
+      "costoEnvio": 7,
+      "total": 847,
+      "idTransaccion": "3WL453797B7184109",
+      "estado": "enviado"
+    },
+    {
+      "id": "1e3c",
+      "fecha": "2025-09-24T16:42:50.796Z",
+      "usuario": {
+        "nombre": "Reychel",
+        "email": "Reychel@personal.example.com",
+        "direccion": "Puntarenas, Central, El Roble",
+        "telefono": "1111111111",
+        "observaciones": "Hola"
+      },
+      "productos": [
+        {
+          "id": "043e",
+          "nombre": "Tapiz Encanto",
+          "cantidad": 1,
+          "precio": "1.600"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 1.6,
+      "costoEnvio": 7,
+      "total": 8.6,
+      "idTransaccion": "5Y353443M9612864K",
+      "estado": "cancelado"
+    }
+  ],
   "Facturacion": [
     {
       "id": "6ec5",
@@ -159,6 +275,90 @@
       "costoEnvio": 7,
       "total": 10.2,
       "idTransaccion": "0UA42276XY4381246"
+    },
+    {
+      "id": "a512",
+      "fecha": "2025-09-24T16:30:52.596Z",
+      "usuario": {
+        "nombre": "Reychel",
+        "email": "Reychel@personal.example.com"
+      },
+      "productos": [
+        {
+          "id": "043e",
+          "nombre": "Tapiz Encanto",
+          "cantidad": 1,
+          "precio": "1.600"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 1.6,
+      "costoEnvio": 7,
+      "total": 8.6,
+      "idTransaccion": "8P567515BA588884L"
+    },
+    {
+      "id": "05cc",
+      "fecha": "2025-09-24T16:33:29.992Z",
+      "usuario": {
+        "nombre": "Reychel",
+        "email": "Reychel@personal.example.com"
+      },
+      "productos": [
+        {
+          "id": "70fa",
+          "nombre": "Atrapasuños \"Flor\"",
+          "cantidad": 2,
+          "precio": "420"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 840,
+      "costoEnvio": 7,
+      "total": 847,
+      "idTransaccion": "3WL453797B7184109"
+    },
+    {
+      "id": "84b7",
+      "fecha": "2025-09-24T16:41:43.193Z",
+      "usuario": {
+        "nombre": "Reychel",
+        "email": "Reychel@personal.example.com"
+      },
+      "productos": [
+        {
+          "id": "70fa",
+          "nombre": "Atrapasuños \"Flor\"",
+          "cantidad": 1,
+          "precio": "420"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 420,
+      "costoEnvio": 7,
+      "total": 427,
+      "idTransaccion": "63U07478084010117"
+    },
+    {
+      "id": "4ddf",
+      "fecha": "2025-09-24T16:42:50.796Z",
+      "usuario": {
+        "nombre": "Reychel",
+        "email": "Reychel@personal.example.com"
+      },
+      "productos": [
+        {
+          "id": "043e",
+          "nombre": "Tapiz Encanto",
+          "cantidad": 1,
+          "precio": "1.600"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 1.6,
+      "costoEnvio": 7,
+      "total": 8.6,
+      "idTransaccion": "5Y353443M9612864K"
     }
   ],
   "Contactos": []

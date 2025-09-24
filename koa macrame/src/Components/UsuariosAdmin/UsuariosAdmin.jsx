@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { GetUsers } from '../../Services/Servicios';
-import MenuIzquierdo from '../MenuIzquierdo/MenuIzquierdo';
+
 import './UsuariosAdmin.css';
 
 function UsuariosAdmin() {
@@ -14,8 +14,8 @@ function UsuariosAdmin() {
 
   return (
     <div>
-      <MenuIzquierdo />
-      <div style={{ marginLeft: '240px', padding: '20px' }}>
+     
+      <div className='Usuarios-A' >
         <h1 className='Titulo'>Usuarios registrados</h1>
         <table className="tabla-usuarios">
           <thead>

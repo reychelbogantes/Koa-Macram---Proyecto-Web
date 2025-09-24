@@ -1,0 +1,4 @@
+.ordenes-finalizadas .orden-card {
+  border-left: 6px solid #9695c7dd; /* Verde agua para indicar finalizado */
+  background: #f8fff9;
+}

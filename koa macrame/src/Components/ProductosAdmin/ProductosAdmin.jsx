@@ -48,11 +48,7 @@ function ProductosAdmin() {
 
   return (
     <div>
-
-    <MenuIzquierdo/>
-    <div style={{ marginLeft: '240px', padding: '20px' }}>
        
-      
     <div className="productos-admin">
       <h2>Ingresar nuevo producto</h2>
 
@@ -113,8 +109,7 @@ function ProductosAdmin() {
       </form>
     </div>
     </div>
-    </div>
-
+ 
   );
 }
 

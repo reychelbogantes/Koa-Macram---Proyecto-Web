@@ -274,4 +274,99 @@ export async function guardarFactura(factura) {
 }
 
 
+// src/Services/ServiciosFacturas.js
+const API_URLF = "http://localhost:3000/Facturacion";
+
+/**
+ * Obtiene todas las facturas
+ */
+export async function getFacturas() {
+  const res = await fetch(API_URLF);
+  if (!res.ok) {
+    throw new Error("Error al obtener las facturas");
+  }
+  return await res.json();
+}
+
+/**
+ * Obtiene una factura por ID
+ * @param {string} id - ID de la factura
+ */
+export async function getFacturaById(id) {
+  const res = await fetch(`${API_URLF}/${id}`);
+  if (!res.ok) {
+    throw new Error("Error al obtener la factura");
+  }
+  return await res.json();
+}
+
+/**
+ * Crea una nueva factura
+ * @param {object} factura - Objeto con los datos de la factura
+ */
+export async function postFactura(factura) {
+  const res = await fetch(API_URLF, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(factura),
+  });
+  if (!res.ok) {
+    throw new Error("Error al crear la factura");
+  }
+  return await res.json();
+}
+
+/**
+ * Elimina una factura
+ * @param {string} id - ID de la factura a eliminar
+ */
+export async function deleteFactura(id) {
+  const res = await fetch(`${API_URLF}/${id}`, { method: "DELETE" });
+  if (!res.ok) {
+    throw new Error("Error al eliminar la factura");
+  }
+  return true;
+}
+
+const API_URLO = "http://localhost:3000/Ordenes";
+
+// Obtener todas las órdenes
+export async function getOrdenes() {
+  const res = await fetch(API_URLO);
+  if (!res.ok) throw new Error("Error al obtener las órdenes");
+  return res.json();
+}
+
+// Cambiar estado de una orden (pendiente -> enviado)
+export async function updateOrdenEstado(id, nuevoEstado) {
+  const res = await fetch(`${API_URLO}/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ estado: nuevoEstado }),
+  });
+  if (!res.ok) throw new Error("Error al actualizar el estado");
+  return res.json();
+}
+
+export async function guardarOrden(orden) {
+  const resp = await fetch("http://localhost:3000/Ordenes", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(orden)
+  });
+  if (!resp.ok) throw new Error("Error al guardar la orden");
+  return await resp.json();
+}
+
+export async function getDireccionSeleccionada(userId) {
+  const res = await fetch(`http://localhost:3000/Usuarios/${userId}`);
+  if (!res.ok) throw new Error("Usuario no encontrado");
+  const usuario = await res.json();
+
+  // Busca la dirección que tenga seleccionada = true
+  const direccionSel = (usuario.direccion || []).find(d => d.seleccionada);
+  return direccionSel || null;
+}
+
+
 export { postUsers, GetUsers, cambiarPassword, postGoogleUser };

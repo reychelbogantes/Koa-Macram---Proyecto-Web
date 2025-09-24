@@ -14,7 +14,7 @@ function PerfilModal({ isOpen, onClose, usuario, onPerdidos }) {
         onClick={(e) => e.stopPropagation()}
       >
         <button className="perfil-close" onClick={onClose}>
-          ×
+         ×
         </button>
 
         <div className="perfil-info">
@@ -22,7 +22,12 @@ function PerfilModal({ isOpen, onClose, usuario, onPerdidos }) {
 
           {hayUsuario ? (
             <>
-              <h2><strong>Perfil: <br /></strong> {usuario.name}</h2>
+              <h2>{usuario.name}</h2>
+              <hr />
+
+              <button className="perfil-btn">
+              Mis Notificaciones <span className="perfil-notif-dot"></span>
+              </button>
 
               <div className="perfil-actions">
                 <button className="perfil-btn" onClick={onPerdidos}>

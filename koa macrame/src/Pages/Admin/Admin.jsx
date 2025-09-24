@@ -6,7 +6,7 @@ import { Outlet } from "react-router-dom";
 import './Admin.css';
 function Admin() {
   return (
-    <div>
+    <div className='body-Admin'>
       <MenuIzquierdo/>
       <div style={{ marginLeft: '240px', padding: '20px' }}>
         <Outlet />

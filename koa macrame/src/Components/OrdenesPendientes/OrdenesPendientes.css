@@ -1,0 +1,72 @@
+.ordenes-pendientes {
+  padding: 2rem;
+  background: #f7f7f7;
+  min-height: 100vh;
+}
+
+.lista-ordenes {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.orden-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.orden-card h3 {
+  margin-top: 0;
+  color: #566034;
+}
+
+.orden-card p {
+  margin: 0.3rem 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.orden-card ul {
+  margin: 0.5rem 0;
+  padding-left: 20px;
+}
+
+.btn-M-enviar {
+  margin-top: 1rem;
+  padding: 10px 15px;
+  background: #9695c7dd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-M-enviar:hover {
+  background: #646483dd;
+}
+
+.acciones-pedido {
+  margin-top: 1rem;
+  display: flex;
+  gap: 10px;
+}
+
+.btn-cancelar {
+margin-top: 1rem;
+  padding: 10px 15px;
+  background: #7a884d;  /* rojo para cancelar */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-cancelar:hover {
+  background: #566034;
+}
