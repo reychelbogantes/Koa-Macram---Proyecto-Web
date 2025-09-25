@@ -2,12 +2,17 @@
 async function postGoogleUser(googleUser) {
   try {
     // googleUser = { googleId, name, email, picture }
+    const nuevoGoogleUser = {
+      ...googleUser,
+      fechaRegistro: new Date().toISOString()   // ✅ fecha de registro
+    };
+
     const response = await fetch("http://localhost:3000/Usuarios", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(googleUser)
+      body: JSON.stringify(nuevoGoogleUser)
     });
 
     return await response.json();
@@ -23,7 +28,7 @@ async function postUsers(name,email,password) {
     try {
      
         const userData = { 
-            name,email,password
+            name,email,password, fechaRegistro: new Date().toISOString()  
         
         };
 

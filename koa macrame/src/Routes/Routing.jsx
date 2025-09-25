@@ -19,12 +19,13 @@ import FacturasAdmin from '../Components/FacturasAdmin/FacturasAdmin'
 import OrdenesPendientes from '../Components/OrdenesPendientes/OrdenesPendientes'
 import OrdenesCanceladas from '../Components/OrdenesCanceladas/OrdenesCanceladas'
 import OrdenesFinalizadas from '../Components/OrdenesFinalizadas/OrdenesFinalizadas'
-
+import Estadisticas from '../Components/Estadisticas/Estadisticas'
 
 /* --- Otros --- */
 import ProductoDetalle from '../Components/ProductoDetalle/ProductoDetalle'
 import ProductosCatalogo from '../Components/ProductosCatalogo/ProductosCatalogo'
 import Carrito from '../Pages/Carrito/Carrito'
+
 
 function Routing() {
   return (
@@ -46,8 +47,8 @@ function Routing() {
         {/* Rutas anidadas del panel de administración */}
         <Route path='/admin' element={<Admin/>}>
           {/* 👇 Todo esto aparecerá dentro del <Outlet /> de Admin */}
-          <Route index element={<Admin />} />                {/* /admin */}
 
+          <Route index element={<Estadisticas/>}/>
           <Route path='inventario' element={<Inventario/>} />                {/* /admin */}
           <Route path='productos' element={<ProductosAdmin/>} />  {/* /admin/productos */}
           <Route path='usuarios' element={<UsuariosAdmin/>} />    {/* /admin/usuarios */}

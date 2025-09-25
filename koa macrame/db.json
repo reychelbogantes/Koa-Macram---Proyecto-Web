@@ -142,7 +142,7 @@
         },
         {
           "productoId": "043e",
-          "cantidad": 2
+          "cantidad": 3
         }
       ]
     },
@@ -202,7 +202,7 @@
       "costoEnvio": 7,
       "total": 8.6,
       "idTransaccion": "8P567515BA588884L",
-      "estado": "pendiente"
+      "estado": "enviado"
     },
     {
       "id": "38ed",
@@ -359,6 +359,33 @@
       "costoEnvio": 7,
       "total": 8.6,
       "idTransaccion": "5Y353443M9612864K"
+    },
+    {
+      "id": "c504",
+      "fecha": "2025-09-24T20:52:23.948Z",
+      "usuario": {
+        "nombre": "Reychel",
+        "email": "Reychel@personal.example.com"
+      },
+      "productos": [
+        {
+          "id": "70fa",
+          "nombre": "Atrapasuños \"Flor\"",
+          "cantidad": 1,
+          "precio": "420"
+        },
+        {
+          "id": "043e",
+          "nombre": "Tapiz Encanto",
+          "cantidad": 3,
+          "precio": "1.600"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 424.8,
+      "costoEnvio": 7,
+      "total": 431.8,
+      "idTransaccion": "0J883496XE700692L"
     }
   ],
   "Contactos": []

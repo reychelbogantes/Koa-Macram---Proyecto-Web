@@ -15,7 +15,7 @@ function MenuIzquierdo() {
       </div>
 
       <nav className="menu-links">
-        <Link to="/admin/dashboard">📊 Dashboard</Link>
+        <Link to=".">📊 Estadísticas</Link>
 
          {/* Sección Usuarios con sub-opciones */}
          <div className="submenu">
