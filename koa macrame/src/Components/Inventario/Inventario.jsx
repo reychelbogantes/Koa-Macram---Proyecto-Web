@@ -118,7 +118,7 @@ function Inventario() {
                   <button className='desactivar' onClick={() => toggleDestacado(p)}>
                     {p.destacado ? 'Quitar destacado' : '⭐ Destacar'}
                   </button>
-                  <button onClick={() => remove(p.id)}>🗑 Eliminar</button>
+                  <button onClick={() => remove(p.id)}>🗑️ Eliminar</button>
                 </td>
               </tr>
             ))}

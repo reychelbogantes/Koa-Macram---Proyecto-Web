@@ -1,0 +1,108 @@
+/* ---------- Contenedor general ---------- */
+.usuarios-admin-container {
+  padding: 2rem;
+  background: #f4f4f800;     /* fondo suave */
+  min-height: 100vh;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------- Títulos ---------- */
+.usuarios-admin-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #3a3a58;
+}
+
+/* ---------- Formulario de creación ---------- */
+.form-crear-admin {
+  margin-bottom: 2rem;
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.form-crear-admin h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #3a3a58;
+}
+
+.form-crear-admin input {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.form-crear-admin button {
+  background: #839252;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.form-crear-admin button:hover {
+  background: #6b793f;
+}
+
+/* ---------- Tabla de administradores ---------- */
+.tabla-usuarios-admin {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden; /* para que el border-radius afecte al head */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Encabezado */
+.tabla-usuarios-admin thead tr {
+  background: #839252;
+  color: #fff;
+}
+
+.tabla-usuarios-admin th,
+.tabla-usuarios-admin td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+/* Filas alternadas */
+.tabla-usuarios-admin tbody tr:nth-child(odd) {
+  background: #9695c71e;   /* color claro */
+  color: #3a3a58dd;
+}
+
+.tabla-usuarios-admin tbody tr:nth-child(even) {
+  background: #3f3e6546;   /* color alterno */
+  color: #3a3a58dd;
+}
+
+/* Botones de acción */
+.tabla-usuarios-admin button {
+  background: #7c7aab;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+  margin-right: 6px;
+}
+
+.tabla-usuarios-admin button:hover {
+  background: #48476e;
+}
+
+.tabla-usuarios-admin input {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}

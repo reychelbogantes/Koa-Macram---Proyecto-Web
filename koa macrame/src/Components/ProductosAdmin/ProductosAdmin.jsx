@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './ProductosAdmin.css';
 import { postProducto, } from '../../Services/Servicios';
-import MenuIzquierdo from '../MenuIzquierdo/MenuIzquierdo';
 
 function ProductosAdmin() {
   const [producto, setProducto] = useState({

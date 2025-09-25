@@ -9,11 +9,14 @@ export default function NightingaleUsuarios() {
     async function cargarDatos() {
       try {
         const usuarios = await GetUsers();
-        const datosSemana = promedioUsuariosPorDiaSemana(usuarios);
+        // ✅ Filtrar solo los usuarios con rol "user"
+        const soloUser = usuarios.filter(u => u.rol === "user");
+
+        const datosSemana = promedioUsuariosPorDiaSemana(soloUser);
 
         // ✅ asigna un valor mínimo de 0.2 a los días con promedio 0
         const datosConMinimo = datosSemana.map(d => ({
-          value: d.promedio > 0 ? d.promedio : 0.2,
+          value: d.promedio > 0 ? d.promedio : 0.5,
           name: d.dia,
           real: d.promedio
         }));

@@ -29,7 +29,7 @@ function MenuIzquierdo() {
 
           {openUsuarios && (
             <div className="submenu-items">
-              <Link to="/productosadmin">👤 Usuarios Admin</Link>
+              <Link to="usuarios-admin">👤 Usuarios Admin</Link>
               <Link to="usuarios">👥 Usuarios Clientes</Link>
             </div>
           )}

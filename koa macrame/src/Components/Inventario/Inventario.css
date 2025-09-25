@@ -1,58 +1,98 @@
+/* ---------- Contenedor general ---------- */
+.inventario-container {
+  padding: 2rem;
+  background: #f4f4f8cb;     /* Fondo suave para mantener coherencia */
+  min-height: 100vh;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------- Título ---------- */
+.Titulo {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: bold;
+  color: #382c46;
+}
+
+/* ---------- Tabla ---------- */
 .tabla-inventario {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden; /* para que el border-radius afecte a los bordes */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+
+/* Encabezado de la tabla */
+.tabla-inventario thead tr {
+  background: #b1aff86e;  /* tono lavanda pastel */
+  color: #382c46;
 }
 
 .tabla-inventario th,
 .tabla-inventario td {
-  border: 1px solid #ddd;
-  padding: 10px;
+  padding: 12px 16px;
   text-align: left;
   vertical-align: top;
+  font-size: 0.95rem;
 }
 
-.tabla-inventario th {
-  background: #b1aff86e;
-  color: #382c46;
+/* Filas alternadas */
+.tabla-inventario tbody tr:nth-child(odd) {
+  background: #9695c71e;   /* tono claro */
+  color: #3a3a58dd;
+}
+.tabla-inventario tbody tr:nth-child(even) {
+  background: #9695c71e;   /* tono intermedio */
+  color: #3a3a58dd;
 }
 
+/* Filas desactivadas */
+.desactivado {
+  background: #f3f3f3 !important;
+  color: #999 !important;
+  font-style: italic;
+}
+
+/* Miniatura de la foto */
 .thumb {
   width: 60px;
   height: 60px;
   object-fit: cover;
   border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
 
-.desactivado {
-  background: #f3f3f3;
-  color: #999;
-}
-
-
+/* ---------- Botones de acción ---------- */
 .acciones button {
   margin-right: 6px;
   margin-top: 4px;
   padding: 6px 12px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   background: #b1aff86e;
   color: #382c46;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.1s;
   font-size: 0.9rem;
-  align-content: center;
-
 }
 
 .acciones button:hover {
   background: #b2aff8;
+  transform: scale(1.03);
 }
 
-.Titulo{
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  font-weight: bold;
-   color: #382c46;
+
+
+/* Inputs de edición dentro de la tabla */
+.tabla-inventario input,
+.tabla-inventario textarea {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  resize: vertical;
 }

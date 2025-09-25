@@ -26,7 +26,7 @@ function Login() {
     document.title = "Inicio Sesión | Koa Macramé";
   }, []);
 
-  // Login normal
+  // Login normal con verificación de rol
   const CargarIngreso = async () => {
     if (logueado) {
       setLogueado(false);
@@ -36,14 +36,20 @@ function Login() {
       try {
         const usuarios = await GetUsers();
         const usuarioValido = usuarios.find(
-          u => u.username === username && u.password === password
-        );
+           u =>
+       (u.name === username || u.email === username) && u.password === password);
 
         if (usuarioValido) {
           setMensaje("Ingreso exitoso ✅");
           setLogueado(true);
           localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioValido));
-          setTimeout(() => navigate("/Index"), 1000);
+          
+          // ✅ Redirección según rol
+          if (usuarioValido.rol === "admin") {
+            setTimeout(() => navigate("/admin"), 1000);
+          } else {
+            setTimeout(() => navigate("/homepage"), 1000);
+          }
         } else {
           setMensaje("Usuario o contraseña incorrectos ❌");
         }
@@ -54,7 +60,7 @@ function Login() {
     }
   };
 
-  // Abrir modal
+  // Abrir modal de olvido de contraseña
   const handleOlvide = () => {
     setShowModal(true);
     setUserCheck('');
@@ -63,7 +69,7 @@ function Login() {
     setMensaje('');
   };
 
-  // Verificar usuario/email
+  // Verificar usuario/email para cambio de contraseña
   const handleVerificarUsuario = async () => {
     try {
       const usuarios = await GetUsers();
@@ -90,7 +96,7 @@ function Login() {
     }
 
     try {
-      await cambiarPassword(verifiedUser.id, newPassword); // PATCH con id del usuario
+      await cambiarPassword(verifiedUser.id, newPassword);
       setMensaje("Contraseña cambiada ✅");
       setShowModal(false);
     } catch (error) {
@@ -99,47 +105,52 @@ function Login() {
     }
   };
 
+  // Login con Google con verificación de rol
   const handleSuccess = async (credentialResponse) => {
-  try {
-    const decoded = jwt_decode.default(credentialResponse.credential);
-    console.log("Usuario de Google:", decoded);
+    try {
+      const decoded = jwt_decode.default(credentialResponse.credential);
 
-    // Construir objeto usuario
-    const user = {
-      googleId: decoded.sub,
-      name: decoded.name,
-      email: decoded.email,
-      picture: decoded.picture
-    };
+      const user = {
+        googleId: decoded.sub,
+        name: decoded.name,
+        email: decoded.email,
+        picture: decoded.picture,
+        rol: "user" // ✅ Asignar rol por defecto, cámbialo si quieres otros roles
+      };
 
-    // 1️⃣ Obtener todos los usuarios
-    const usuarios = await GetUsers();
+      const usuarios = await GetUsers();
+      const usuarioExistente = usuarios.find(
+        u => u.googleId === user.googleId || u.email === user.email
+      );
 
-    // 2️⃣ Verificar si ya existe por googleId o email
-    const usuarioExistente = usuarios.find(
-      u => u.googleId === user.googleId || u.email === user.email
-    );
+      if (usuarioExistente) {
+        setMensaje("Ingreso con Google exitoso ✅");
+        localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioExistente));
 
-    if (usuarioExistente) {
-      console.log("Usuario ya registrado:", usuarioExistente);
-      setMensaje("Ingreso con Google exitoso ✅");
-      localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioExistente));
-    } else {
-      // 3️⃣ Guardar en db.json si no existe
-      const savedUser = await postGoogleUser(user);
-      console.log("Usuario guardado en db.json:", savedUser);
-      setMensaje("Ingreso con Google exitoso ✅");
-      localStorage.setItem("usuarioLogueado", JSON.stringify(savedUser));
+        // ✅ Redirección según rol
+        if (usuarioExistente.rol === "admin") {
+          setTimeout(() => navigate("/admin"), 1000);
+        } else {
+          setTimeout(() => navigate("/homepage"), 1000);
+        }
+      } else {
+        const savedUser = await postGoogleUser(user);
+        setMensaje("Ingreso con Google exitoso ✅");
+        localStorage.setItem("usuarioLogueado", JSON.stringify(savedUser));
+
+        // ✅ Redirección según rol
+        if (savedUser.rol === "admin") {
+          setTimeout(() => navigate("/admin"), 1000);
+        } else {
+          setTimeout(() => navigate("/homepage"), 1000);
+        }
+      }
+    } catch (error) {
+      console.error("Error al procesar login con Google:", error);
+      setMensaje("Error al iniciar sesión con Google ❌");
     }
+  };
 
-    setTimeout(() => navigate("/homepage"), 1000);
-
-  } catch (error) {
-    console.error("Error al procesar login con Google:", error);
-    setMensaje("Error al iniciar sesión con Google ❌");
-  }
-};
-  // Google Login - error
   const handleError = () => {
     console.error("Error en el inicio de sesión con Google");
     setMensaje("Error al iniciar sesión con Google ❌");
@@ -150,10 +161,7 @@ function Login() {
 
       {/* Columna Izquierda: El formulario */}
       <div className="form-container">
-        <img className="Logo"
-          src="/logo.png"
-          alt="Logo"
-        />
+        <img className="Logo" src="/logo.png" alt="Logo"/>
         <h2>Iniciar sesión</h2>
         <p>Introduzca sus datos</p>
 
@@ -161,24 +169,22 @@ function Login() {
           <input
             type="text"
             id="username"
-            name="username"
             placeholder="👤 Usuario"
             required
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
-
           <input
             type="password"
             id="password"
-            name="password"
             placeholder="🔒 Contraseña"
             required
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
         </div>
-         <button className="link-button" onClick={handleOlvide}>
+
+        <button className="link-button" onClick={handleOlvide}>
           ¿Olvidaste tu contraseña?
         </button>
 
@@ -193,15 +199,13 @@ function Login() {
         </button> <br />
 
         <div className="google-login">
-         <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
+          <GoogleLogin onSuccess={handleSuccess} onError={handleError} />
         </div>
 
         <p>
           ¿Todavía no estás registrado? <br />
           Puedes ir a <Link to="/Registro">registrarte</Link>
         </p>
-
-       
       </div>
 
       {/* Columna Derecha: La imagen */}
@@ -212,7 +216,7 @@ function Login() {
         />
       </div>
 
-      {/* Modal */}
+      {/* Modal para recuperar contraseña */}
       {showModal && (
         <div className="modal">
           <div className="modal-content">
@@ -249,4 +253,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Login;

@@ -20,11 +20,13 @@ import OrdenesPendientes from '../Components/OrdenesPendientes/OrdenesPendientes
 import OrdenesCanceladas from '../Components/OrdenesCanceladas/OrdenesCanceladas'
 import OrdenesFinalizadas from '../Components/OrdenesFinalizadas/OrdenesFinalizadas'
 import Estadisticas from '../Components/Estadisticas/Estadisticas'
+import UsuariosAdminAdmin from '../Components/UsuariosAdminAdmin/UsuariosAdminAdmin'
 
 /* --- Otros --- */
 import ProductoDetalle from '../Components/ProductoDetalle/ProductoDetalle'
 import ProductosCatalogo from '../Components/ProductosCatalogo/ProductosCatalogo'
 import Carrito from '../Pages/Carrito/Carrito'
+
 
 
 function Routing() {
@@ -52,6 +54,7 @@ function Routing() {
           <Route path='inventario' element={<Inventario/>} />                {/* /admin */}
           <Route path='productos' element={<ProductosAdmin/>} />  {/* /admin/productos */}
           <Route path='usuarios' element={<UsuariosAdmin/>} />    {/* /admin/usuarios */}
+           <Route path='usuarios-admin' element={<UsuariosAdminAdmin/>} />
           <Route path='contactos' element={<ContactosAdmin/>} />  {/* /admin/contactos */}
           <Route path='facturas' element={<FacturasAdmin/>} />    {/* /admin/facturas */}
           <Route path='ordenes-pendientes' element={<OrdenesPendientes/>} />

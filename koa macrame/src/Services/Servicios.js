@@ -4,7 +4,8 @@ async function postGoogleUser(googleUser) {
     // googleUser = { googleId, name, email, picture }
     const nuevoGoogleUser = {
       ...googleUser,
-      fechaRegistro: new Date().toISOString()   // ✅ fecha de registro
+      rol: googleUser.rol || "user",              // ✅ Rol por defecto "user"
+      fechaRegistro: new Date().toISOString()     // ✅ Fecha de registro
     };
 
     const response = await fetch("http://localhost:3000/Usuarios", {
@@ -24,13 +25,17 @@ async function postGoogleUser(googleUser) {
 
 
 // --- Registro de usuario ---
-async function postUsers(name,email,password) {
+async function postUsers(name,email,password, rol="user") {
     try {
      
-        const userData = { 
-            name,email,password, fechaRegistro: new Date().toISOString()  
-        
-        };
+      const userData = { 
+      name,
+      email,
+      password,
+      rol,                                       // ✅ Rol, por defecto "user"
+      fechaRegistro: new Date().toISOString()    // ✅ Fecha de registro
+    };
+
 
         const response = await fetch("http://localhost:3000/Usuarios", {
             method: 'POST',
@@ -371,6 +376,48 @@ export async function getDireccionSeleccionada(userId) {
   // Busca la dirección que tenga seleccionada = true
   const direccionSel = (usuario.direccion || []).find(d => d.seleccionada);
   return direccionSel || null;
+}
+
+
+// Servicios para Usuarios Administrativos
+
+const API_URLU = "http://localhost:3000/Usuarios";
+
+// ✅ Obtener todos los usuarios con rol admin
+export async function getAdmins() {
+  const res = await fetch(`${API_URLU}?rol=admin`);
+  if (!res.ok) throw new Error("Error al obtener administradores");
+  return await res.json();
+}
+
+// ✅ Crear nuevo usuario admin
+export async function createAdmin({ name, email, password }) {
+  const nuevo = {
+    name,
+    email,
+    password,
+    rol: "admin",
+    fechaRegistro: new Date().toISOString()
+  };
+
+  const res = await fetch(API_URLU, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(nuevo)
+  });
+  if (!res.ok) throw new Error("Error al crear administrador");
+  return await res.json();
+}
+
+// ✅ Actualizar datos de un admin
+export async function updateAdmin(id, data) {
+  const res = await fetch(`${API_URLU}/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+  if (!res.ok) throw new Error("Error al actualizar administrador");
+  return await res.json();
 }
 
 

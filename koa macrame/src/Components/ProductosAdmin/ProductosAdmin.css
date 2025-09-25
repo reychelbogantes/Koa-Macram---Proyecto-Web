@@ -1,71 +1,97 @@
+/* ---------- Contenedor general ---------- */
 .productos-admin {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #0d0d9300;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
+  padding: 2rem;
+  background: #f4f4f800;     /* fondo suave pastel */
+  min-height: 100vh;
   font-family: "Helvetica Neue", Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0);
+  border-radius: 12px;
 }
 
+/* ---------- Título ---------- */
 .productos-admin h2 {
+  font-size: 1.8rem;
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 2rem;
   color: #382c46;
-;
+  font-weight: bold;
 }
 
+/* ---------- Formulario ---------- */
 .form-producto {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.5rem;
 }
 
+/* Labels */
 .form-producto label {
   display: flex;
   flex-direction: column;
   font-weight: 600;
-  color: #333;
-}
-
-.form-producto input[type="text"],
-.form-producto input[type="number"],
-.form-producto textarea,
-.form-producto input[type="file"] {
-  margin-top: 8px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  color: #3a3a58dd;
   font-size: 1rem;
 }
 
+/* Inputs y textarea */
+.form-producto input[type="text"],
+.form-producto input[type="number"],
 .form-producto textarea {
-  resize: vertical;
+  margin-top: 0.4rem;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #ffffff;
+  transition: border-color 0.2s ease;
 }
 
+.form-producto input:focus,
+.form-producto textarea:focus {
+  outline: none;
+  border-color: #b2aff8;
+  box-shadow: 0 0 0 2px rgba(178,175,248,0.3);
+}
+
+/* Input de archivo */
+.foto-label input[type="file"] {
+  margin-top: 0.6rem;
+  padding: 4px;
+  font-size: 0.9rem;
+}
+
+/* ---------- Vista previa de la imagen ---------- */
 .preview-container {
   text-align: center;
 }
 
 .preview-container img {
-  max-width: 100%;
-  max-height: 250px;
+  margin-top: 0.8rem;
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: cover;
   border-radius: 10px;
-  margin-top: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
+/* ---------- Botón de guardado ---------- */
 .btn-guardar {
-  background-color: #b2aff88e;
-  color: #fff;
+  background: #b1aff86e;
+  color: #382c46;
   border: none;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 1.1rem;
+  padding: 10px 18px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  font-size: 1rem;
+  font-weight: 600;
+  align-self: center;
+  transition: background 0.3s, transform 0.1s;
 }
 
 .btn-guardar:hover {
-  background-color: #b2aff8;
+  background: #b2aff8;
+  transform: scale(1.03);
 }
+

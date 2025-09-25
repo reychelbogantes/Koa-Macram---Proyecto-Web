@@ -6,9 +6,13 @@ import './UsuariosAdmin.css';
 function UsuariosAdmin() {
   const [usuarios, setUsuarios] = useState([]);
 
-  useEffect(() => {
+ useEffect(() => {
     GetUsers()
-      .then(setUsuarios)
+      .then(data => {
+        // ✅ Filtramos solo los que tienen rol "user"
+        const usuariosFiltrados = data.filter(u => u.rol === "user");
+        setUsuarios(usuariosFiltrados);
+      })
       .catch(console.error);
   }, []);
 
