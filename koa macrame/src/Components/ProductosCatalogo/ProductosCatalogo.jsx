@@ -81,7 +81,7 @@ function ProductosCatalogo() {
   </div>
 
   <h3>{p.nombre}</h3>
-  <p className="precio">₡{p.precio}</p>
+  <p className="precio">${p.precio}</p>
 </div>
           );
         })}

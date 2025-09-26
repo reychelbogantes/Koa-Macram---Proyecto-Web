@@ -26,10 +26,17 @@ import UsuariosAdminAdmin from '../Components/UsuariosAdminAdmin/UsuariosAdminAd
 import ProductoDetalle from '../Components/ProductoDetalle/ProductoDetalle'
 import ProductosCatalogo from '../Components/ProductosCatalogo/ProductosCatalogo'
 import Carrito from '../Pages/Carrito/Carrito'
+import BuzonContactos from '../Components/BuzonContactos/BuzonContactos'
+import PedidosUsuario from '../Components/PedidosUsuario/PedidosUsuario'
+import MisNotificaciones from '../Components/MisNotificaciones/MisNotificaciones'
 
 
 
 function Routing() {
+
+    const usuarioLogueado = JSON.parse(localStorage.getItem("usuarioLogueado") || "null");
+
+
   return (
     <Router>    
       <Routes>    
@@ -45,6 +52,8 @@ function Routing() {
         <Route path='/producto/:id' element={<ProductoDetalle/>}/>
         <Route path='/producto' element={<ProductosCatalogo/>}/>
         <Route path='/carrito' element={<Carrito/>}/>
+        <Route path="/mispedidos" element={<PedidosUsuario usuario={usuarioLogueado} />} />
+        <Route path="/mis-notificaciones" element={<MisNotificaciones usuario={usuarioLogueado} />}/>
 
         {/* Rutas anidadas del panel de administración */}
         <Route path='/admin' element={<Admin/>}>
@@ -60,6 +69,7 @@ function Routing() {
           <Route path='ordenes-pendientes' element={<OrdenesPendientes/>} />
           <Route path='ordenes-canceladas' element={<OrdenesCanceladas/>} />
           <Route path='ordenes-finalizadas' element={<OrdenesFinalizadas/>} />
+          <Route path='buzon' element={<BuzonContactos/>} />
         </Route>
       </Routes>    
     </Router>

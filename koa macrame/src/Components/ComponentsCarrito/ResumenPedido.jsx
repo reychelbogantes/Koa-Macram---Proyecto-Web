@@ -10,7 +10,7 @@ function ResumenPedido({ productos = [], tipoEnvio, setCarrito, seleccionados = 
   let costoEnvio = 0;
   switch (tipoEnvio) {
     case "Correo de Costa Rica":
-      // ₡7 si subtotal < 1500, gratis si >= 1500
+      // $7 si subtotal < 1500, gratis si >= 1500
       costoEnvio = subtotal >= 1500 ? 0 : 7;
       break;
     case "retiro":
@@ -29,24 +29,24 @@ function ResumenPedido({ productos = [], tipoEnvio, setCarrito, seleccionados = 
       <h3>Resumen Del Pedido</h3>
 
       <p className="precio-estimado">
-        Precio Estimado: <strong>₡{subtotal.toLocaleString()}</strong>
+        Precio Estimado: <strong>${subtotal.toLocaleString()}</strong>
       </p>
 
       <p className="costo-envio">
         Costo de envío:{" "}
         {tipoEnvio === "retiro" ? (
-          <strong>₡0 por retiro local</strong>
+          <strong>$0 por retiro local</strong>
         ) : costoEnvio === 0 ? (
-          <strong>Envío gratis en compras de ₡1,500 o más.</strong>
+          <strong>Envío gratis en compras de $1500 o más.</strong>
         ) : (
-          <strong>₡{costoEnvio.toLocaleString()}</strong>
+          <strong>${costoEnvio.toLocaleString()}</strong>
         )}
       </p>
 
       <hr />
 
       <p className="monto-total">
-        Total a pagar: <strong>₡{total.toLocaleString()}</strong>
+        Total a pagar: <strong>${total.toLocaleString()}</strong>
       </p>
 
       <PayPalButtons
@@ -85,37 +85,37 @@ function ResumenPedido({ productos = [], tipoEnvio, setCarrito, seleccionados = 
               if (!direccionSel) throw new Error("No hay dirección seleccionada");
 
               // ✅ 3. Armar factura
-              const nuevaFactura = {
-                fecha: new Date().toISOString(),
+             // ✅ Usar los datos del usuario logueado
+             const nuevaFactura = {
+               fecha: new Date().toISOString(),
                 usuario: {
-                  nombre: details.payer.name.given_name,
-                  email: details.payer.email_address,
+                nombre: userData.name,    // 👈 nombre del usuario logueado
+                email: userData.email,    // 👈 email del usuario logueado
                 },
                 productos: productos.map((p) => ({
-                  id: p.id,
-                  nombre: p.nombre,
-                  cantidad: p.cantidad,
-                  precio: p.precio,
+                id: p.id,
+                nombre: p.nombre,
+                cantidad: p.cantidad,
+                precio: p.precio,
                 })),
-                tipoEnvio,
-                subtotal,
-                costoEnvio,
-                total,
-                idTransaccion: details.id,
-              };
+                   tipoEnvio,
+                   subtotal,
+                   costoEnvio,
+                   total,
+                   idTransaccion: details.id,  // Podés seguir guardando el id de la transacción de PayPal
+                };
 
               // ✅ 4. Armar orden con dirección y estado "pendiente"
               const nuevaOrden = {
-                ...nuevaFactura,
+                 ...nuevaFactura,
                 usuario: {
-                  ...nuevaFactura.usuario,
-                  nombre: direccionSel.nombre,
-                  direccion: direccionSel.direccion,
-                  telefono: direccionSel.telefono,
-                  observaciones: direccionSel.observaciones || "",
-                },
-                estado: "pendiente",
-              };
+                 ...nuevaFactura.usuario,
+              // ✅ añadimos la dirección seleccionada
+               direccion: direccionSel.direccion,
+               telefono: direccionSel.telefono,
+               observaciones: direccionSel.observaciones || "",
+               },
+                 estado: "pendiente", };
 
               // ✅ 5. Guardar factura y orden
               await guardarFactura(nuevaFactura);

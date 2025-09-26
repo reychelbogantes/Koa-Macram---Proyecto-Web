@@ -1,0 +1,68 @@
+.buzon-contactos {
+  padding: 2rem;
+  background: #f9f9fb;
+  min-height: 100vh;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.buzon-contactos h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* 🔎 Contenedor de filtros */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filtros input[type="text"],
+.filtros input[type="date"] {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.filtros button {
+  padding: 0.5rem 1rem;
+  background: #C5CAE9; /* lavanda pastel */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.filtros button:hover {
+  background: #B3E5FC; /* celeste pastel */
+}
+
+.tabla-contactos {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla-contactos th,
+.tabla-contactos td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.tabla-contactos th {
+  background: #C5CAE9;
+  color: #333;
+  font-weight: 600;
+}
+
+.tabla-contactos tr:nth-child(even) {
+  background: #f4f4f8;
+}
+
+.tabla-contactos tr:hover {
+  background: #eaeaf4;
+}

@@ -46,13 +46,13 @@ function OrdenesFinalizadas() {
                   <p><strong>Observaciones:</strong> {o.usuario.observaciones}</p>
                 )}
                 <p><strong>Tipo de Envío:</strong> {o.tipoEnvio}</p>
-                <p><strong>Total:</strong> ₡{o.total.toLocaleString()}</p>
+                <p><strong>Total:</strong> ${o.total.toLocaleString()}</p>
 
                 <h4>Productos:</h4>
                 <ul>
                   {o.productos.map((p) => (
                     <li key={p.id}>
-                      {p.nombre} – Cant: {p.cantidad} – Precio: ₡{p.precio}
+                      {p.nombre} – Cant: {p.cantidad} – Precio: ${p.precio}
                     </li>
                   ))}
                 </ul>

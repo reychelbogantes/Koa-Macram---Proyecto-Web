@@ -157,6 +157,7 @@ function Login() {
   };
 
   return (
+    <div>
     <div className="login-layout">
 
       {/* Columna Izquierda: El formulario */}
@@ -218,8 +219,8 @@ function Login() {
 
       {/* Modal para recuperar contraseña */}
       {showModal && (
-        <div className="modal">
-          <div className="modal-content">
+        <div className="modal-L">
+          <div className="modal-content-L">
             {!verifiedUser ? (
               <>
                 <h3>Verificar usuario o correo</h3>
@@ -230,7 +231,7 @@ function Login() {
                   onChange={e => setUserCheck(e.target.value)}
                 />
                 {mensaje && <p className="mensaje">{mensaje}</p>}
-                <button onClick={handleVerificarUsuario}>Verificar</button>
+                <button className="btn-modal-L" onClick={handleVerificarUsuario}>Verificar</button>
               </>
             ) : (
               <>
@@ -249,6 +250,7 @@ function Login() {
           </div>
         </div>
       )}
+    </div>
     </div>
   )
 }

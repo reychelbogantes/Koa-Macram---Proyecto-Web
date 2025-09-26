@@ -106,7 +106,7 @@
 .modal button {
     width: 100%;
     padding: 12px;
-    background-color: #34d5cd;
+    background-color: #b3b0da;
     color: #ffffff;
     border: none;
     border-radius: 6px;
@@ -116,7 +116,7 @@
 }
 
 .modal button:hover {
-    background-color: #1ea8a1;
+    background-color: #b3b0da;
     transform: translateY(-2px);
 }
 
@@ -132,7 +132,7 @@
     }
 }
 
-.modal {
+.modal-L {
   position: fixed;
   top:0;
   left:0;
@@ -145,7 +145,7 @@
   z-index:1000;
 }
 
-.modal-content {
+.modal-content-L{
   background:white;
   padding:20px;
   border-radius:8px;
@@ -153,6 +153,23 @@
   width:300px;
 }
 
+.btn-modal-L{
+  margin-right: 6px;
+  margin-top: 4px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #b1aff86e;
+  color: #382c46;
+  transition: background 0.3s, transform 0.1s;
+  font-size: 0.9rem;
+}
+
+.btn-modal-L:hover {
+  background: #b2aff8;
+  transform: scale(1.03);
+}
 .inputs-row {
   gap: 12px; 
   width: 100%;

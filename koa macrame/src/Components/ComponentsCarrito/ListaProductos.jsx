@@ -22,7 +22,7 @@ function ListaProductos({
           <img src={p.foto} alt={p.nombre}/>
           <div className="info">
             <h4>{p.nombre}</h4>
-            <p className="precio">₡{p.precio}</p>
+            <p className="precio">${p.precio}</p>
           </div>
           
 <div className="acciones">

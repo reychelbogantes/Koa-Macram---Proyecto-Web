@@ -73,6 +73,7 @@ function MenuIzquierdo() {
             </div>
           )}
         </div>
+        <Link to="buzon">📬 Buzón de Contacto</Link>
 
         <Link to="/admin/configuracion">⚙️ Configuración</Link>
       </nav>

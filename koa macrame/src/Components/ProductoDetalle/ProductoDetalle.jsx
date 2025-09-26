@@ -105,7 +105,7 @@ function ProductoDetalle() {
 
       <div className="detalle-info">
         <h1>{producto.nombre}</h1>
-        <p className="detalle-precio">₡{producto.precio}</p>
+        <p className="detalle-precio">${producto.precio}</p>
         <p className="detalle-descripcion">{producto.descripcion}</p>
 
        

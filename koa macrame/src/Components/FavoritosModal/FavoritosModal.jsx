@@ -40,7 +40,7 @@ function FavoritosModal({ isOpen, onClose, usuario }) {
                 {favoritos.map(p => (
                   <li key={p.id}>
                     <img src={p.foto} alt={p.nombre} />
-                    <span>{p.nombre} – ₡{p.precio}</span>
+                    <span>{p.nombre} – ${p.precio}</span>
                   </li>
                 ))}
               </ul>

@@ -349,17 +349,34 @@ export async function getOrdenes() {
 
 // Cambiar estado de una orden (pendiente -> enviado)
 export async function updateOrdenEstado(id, nuevoEstado) {
+   // 1️⃣ Obtener la orden actual
+  const ordenResp = await fetch(`${API_URLO}/${id}`);
+  if (!ordenResp.ok) throw new Error("Orden no encontrada");
+  const orden = await ordenResp.json();
+
+  // 2️⃣ Crear nuevo historial agregando el cambio
+  const nuevoHistorial = [
+    ...(orden.historial || []), // historial anterior (si no existe, array vacío)
+    { estado: nuevoEstado, fecha: new Date().toISOString() } // nuevo registro
+  ];
+
+  // 3️⃣ PATCH: actualiza el estado actual y el historial completo
   const res = await fetch(`${API_URLO}/${id}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ estado: nuevoEstado }),
+    body: JSON.stringify({
+      estado: nuevoEstado,      // mantiene el estado actual
+      historial: nuevoHistorial // historial con todos los cambios
+    }),
   });
+
   if (!res.ok) throw new Error("Error al actualizar el estado");
   return res.json();
 }
 
+// Crear una nueva orden
 export async function guardarOrden(orden) {
-  const resp = await fetch("http://localhost:3000/Ordenes", {
+  const resp = await fetch(API_URLO, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(orden)

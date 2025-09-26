@@ -1,0 +1,40 @@
+.pedidos-usuario {
+  padding: 2rem;
+  background: #f9f9fb;
+  min-height: 100vh;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.pedidos-usuario h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.tabla-pedidos {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla-pedidos th,
+.tabla-pedidos td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.tabla-pedidos th {
+  background: #C5CAE9; /* lavanda pastel */
+  color: #333;
+  font-weight: 600;
+}
+
+.tabla-pedidos tr:nth-child(even) {
+  background: #f4f4f8;
+}
+
+.tabla-pedidos tr:hover {
+  background: #eaeaf4;
+}

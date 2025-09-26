@@ -98,7 +98,7 @@ function Inventario() {
                 <td>
                   {editando === p.id ?
                     <input name="precio" type="number" value={editData.precio} onChange={handleEditChange}/> :
-                    `₡${p.precio}`
+                    `$${p.precio}`
                   }
                 </td>
 

@@ -75,7 +75,7 @@ function ProductosAdmin() {
         </label>
 
         <label>
-          Precio (₡):
+          Precio ($):
           <input
             type="number"
             name="precio"

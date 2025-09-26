@@ -1,0 +1,48 @@
+.mis-notificaciones {
+  padding: 2rem;
+  background: #f9f9fb;
+  min-height: 100vh;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.mis-notificaciones h2 {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.lista-notificaciones {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notif {
+  background: #fff;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notif-mensaje {
+  font-weight: 500;
+}
+
+.notif-fecha {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* Colores suaves según estado */
+.notif-pendiente {
+  border-left: 6px solid #FFF9C4; /* amarillo pastel */
+}
+.notif-enviado {
+  border-left: 6px solid #C8E6C9; /* verde menta */
+}
+.notif-cancelado {
+  border-left: 6px solid #F8BBD0; /* rosa pastel */
+}
