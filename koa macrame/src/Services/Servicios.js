@@ -426,6 +426,14 @@ export async function createAdmin({ name, email, password }) {
   return await res.json();
 }
 
+export const updateUser = (id, data) =>
+  fetch(`http://localhost:3000/Usuarios/${id}`, {
+    method: 'PATCH', // o PUT si actualizas todo el objeto
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).then(res => res.json());
+
+
 // ✅ Actualizar datos de un admin
 export async function updateAdmin(id, data) {
   const res = await fetch(`${API_URLU}/${id}`, {

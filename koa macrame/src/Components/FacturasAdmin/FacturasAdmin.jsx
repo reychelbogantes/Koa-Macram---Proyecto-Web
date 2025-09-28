@@ -8,10 +8,15 @@ function FacturasAdmin() {
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
 
+  // ✅ Estados para filtros
+  const [busqueda, setBusqueda] = useState("");
+  const [fechaInicio, setFechaInicio] = useState("");
+  const [fechaFin, setFechaFin] = useState("");
+
   useEffect(() => {
     const cargarFacturas = async () => {
       try {
-        const data = await getFacturas(); // ✅ ahora usamos el servicio
+        const data = await getFacturas();
         setFacturas(data);
       } catch (err) {
         setError(err.message);
@@ -25,60 +30,107 @@ function FacturasAdmin() {
   if (cargando) return <p>Cargando facturas...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  return (
+  // ✅ Filtrado combinado
+  const facturasFiltradas = facturas.filter((f) => {
+    const texto = busqueda.toLowerCase();
+    const fechaFactura = new Date(f.fecha);
+    const desde = fechaInicio ? new Date(fechaInicio) : null;
+    const hasta = fechaFin ? new Date(fechaFin) : null;
 
+    if (hasta) hasta.setHours(23,59,59,999); // incluye todo el día final
+
+    const coincideTexto =
+      f.id.toString().toLowerCase().includes(texto) ||
+      f.usuario.nombre.toLowerCase().includes(texto) ||
+      f.usuario.email.toLowerCase().includes(texto);
+
+    const coincideFecha =
+      (!desde || fechaFactura >= desde) &&
+      (!hasta || fechaFactura <= hasta);
+
+    return coincideTexto && coincideFecha;
+  });
+
+  return (
     <div>
-    
-    <div className="facturas-admin">
-      <h1>Listado de Facturas</h1>
-      {facturas.length === 0 ? (
-        <p>No hay facturas registradas.</p>
-      ) : (
-        <table className="tabla-facturas">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Fecha</th>
-              <th>Usuario</th>
-              <th>Email</th>
-              <th>Tipo Envío</th>
-              <th>Subtotal</th>
-              <th>Costo Envío</th>
-              <th>Total</th>
-              <th>ID Transacción</th>
-              <th>Productos</th>
-            </tr>
-          </thead>
-          <tbody>
-            {facturas.map((f) => (
-              <tr key={f.id}>
-                <td>{f.id}</td>
-                <td>{new Date(f.fecha).toLocaleString()}</td>
-                <td>{f.usuario.nombre}</td>
-                <td>{f.usuario.email}</td>
-                <td>{f.tipoEnvio}</td>
-                <td>${f.subtotal.toLocaleString()}</td>
-                <td>${f.costoEnvio.toLocaleString()}</td>
-                <td><strong>${f.total.toLocaleString()}</strong></td>
-                <td>{f.idTransaccion}</td>
-                <td>
-                  <details>
-                    <summary>Ver productos</summary>
-                    <ul>
-                      {f.productos.map((p) => (
-                        <li key={p.id}>
-                          {p.nombre} – Cant: {p.cantidad} – Precio: ${p.precio}
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-                </td>
+      <div className="facturas-admin">
+        <h1>Listado de Facturas</h1>
+
+        {/* 🔎 Barra de búsqueda y filtro por fecha */}
+        <div className="filtros-superiores">
+          <input
+            type="text"
+            placeholder="Buscar por ID, nombre o email..."
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+          />
+
+          <label>
+            Desde:
+            <input
+              type="date"
+              value={fechaInicio}
+              onChange={(e) => setFechaInicio(e.target.value)}
+            />
+          </label>
+          <label>
+            Hasta:
+            <input
+              type="date"
+              value={fechaFin}
+              onChange={(e) => setFechaFin(e.target.value)}
+            />
+          </label>
+        </div>
+
+        {facturasFiltradas.length === 0 ? (
+          <p>No hay facturas que coincidan con los filtros.</p>
+        ) : (
+          <table className="tabla-facturas">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Tipo Envío</th>
+                <th>Subtotal</th>
+                <th>Costo Envío</th>
+                <th>Total</th>
+                <th>ID Transacción</th>
+                <th>Productos</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
+            </thead>
+            <tbody>
+              {facturasFiltradas.map((f) => (
+                <tr key={f.id}>
+                  <td>{f.id}</td>
+                  <td>{new Date(f.fecha).toLocaleString()}</td>
+                  <td>{f.usuario.nombre}</td>
+                  <td>{f.usuario.email}</td>
+                  <td>{f.tipoEnvio}</td>
+                  <td>${f.subtotal.toLocaleString()}</td>
+                  <td>${f.costoEnvio.toLocaleString()}</td>
+                  <td><strong>${f.total.toLocaleString()}</strong></td>
+                  <td>{f.idTransaccion}</td>
+                  <td>
+                    <details>
+                      <summary>Ver productos</summary>
+                      <ul>
+                        {f.productos.map((p) => (
+                          <li key={p.id}>
+                            {p.nombre} – Cant: {p.cantidad} – Precio: ${p.precio}
+                          </li>
+                        ))}
+                      </ul>
+                    </details>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
     </div>
   );
 }
