@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './ProductosAdmin.css';
-import { postProducto, } from '../../Services/Servicios';
+import { postProducto } from '../../Services/Servicios';
+import ModalAlert from '../../Components/ModalAlert/ModalAlert'; // ⚠️ Ajusta la ruta si es distinta
 
 function ProductosAdmin() {
   const [producto, setProducto] = useState({
@@ -10,6 +11,10 @@ function ProductosAdmin() {
     foto: ''
   });
   const [preview, setPreview] = useState(null);
+
+  // ✅ Estados para el modal de alerta
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalMsg, setModalMsg] = useState('');
 
   // Actualiza texto y precio
   const handleChange = (e) => {
@@ -35,80 +40,88 @@ function ProductosAdmin() {
     e.preventDefault();
     try {
       await postProducto(producto);
-      alert('✅ Producto guardado en db.json');
+      setModalMsg('✅ Producto guardado correctamente');
+      setModalOpen(true);
       // Limpia el formulario
       setProducto({ nombre: '', descripcion: '', precio: '', foto: '' });
       setPreview(null);
     } catch (error) {
       console.error(error);
-      alert('❌ Error al guardar el producto');
+      setModalMsg('❌ Error al guardar el producto');
+      setModalOpen(true);
     }
   };
 
   return (
     <div>
-       
-    <div className="productos-admin">
-      <h2>Ingresar nuevo producto</h2>
+      <div className="productos-admin">
+        <h2>Ingresar nuevo producto</h2>
 
-      <form className="form-producto" onSubmit={handleSubmit}>
-        <label>
-          Nombre del producto:
-          <input
-            type="text"
-            name="nombre"
-            value={producto.nombre}
-            onChange={handleChange}
-            required
-          />
-        </label>
+        <form className="form-producto" onSubmit={handleSubmit}>
+          <label>
+            Nombre del producto:
+            <input
+              type="text"
+              name="nombre"
+              value={producto.nombre}
+              onChange={handleChange}
+              required
+            />
+          </label>
 
-        <label>
-          Descripción:
-          <textarea
-            name="descripcion"
-            value={producto.descripcion}
-            onChange={handleChange}
-            rows="4"
-            required
-          />
-        </label>
+          <label>
+            Descripción:
+            <textarea
+              name="descripcion"
+              value={producto.descripcion}
+              onChange={handleChange}
+              rows="4"
+              required
+            />
+          </label>
 
-        <label>
-          Precio ($):
-          <input
-            type="number"
-            name="precio"
-            value={producto.precio}
-            onChange={handleChange}
-            step="0.01"
-            required
-          />
-        </label>
+          <label>
+            Precio ($):
+            <input
+              type="number"
+              name="precio"
+              value={producto.precio}
+              onChange={handleChange}
+              step="0.01"
+              required
+            />
+          </label>
 
-        <label className="foto-label">
-          Foto del producto:
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFoto}
-            required
-          />
-        </label>
+          <label className="foto-label">
+            Foto del producto:
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFoto}
+              required
+            />
+          </label>
 
-        {preview && (
-          <div className="preview-container">
-            <img src={preview} alt="Vista previa del producto" />
-          </div>
-        )}
+          {preview && (
+            <div className="preview-container">
+              <img src={preview} alt="Vista previa del producto" />
+            </div>
+          )}
 
-        <button type="submit" className="btn-guardar">
-          Guardar producto
-        </button>
-      </form>
+          <button type="submit" className="btn-guardar">
+            Guardar producto
+          </button>
+        </form>
+      </div>
+
+      {/* ✅ Modal de alerta que reemplaza los alert() */}
+      <ModalAlert
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Aviso"
+        message={modalMsg}
+      />
     </div>
-    </div>
- 
   );
 }
 

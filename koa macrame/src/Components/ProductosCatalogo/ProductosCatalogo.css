@@ -62,6 +62,8 @@ body {
 }
 
 .btn-vermas {
+  text-decoration: none;     /* ✅ quita el subrayado */
+  color: inherit;            /* opcional: usa el color del padre */
   background: #839252;
   color: #fff;
   border: none;
@@ -73,6 +75,8 @@ body {
 }
 
 .btn-vermas:hover {
+  text-decoration: none;     /* ✅ quita el subrayado */
+  color: inherit;            /* opcional: usa el color del padre */
   background: #64703e;
 }
 
@@ -131,3 +135,29 @@ body {
   }
 }
 
+/* 🔍 Contenedor de la barra de búsqueda */
+.busqueda-container {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.input-busqueda {
+  width: 60%;
+  max-width: 400px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-busqueda:focus {
+  outline: none;
+  border-color: #3ab397; /* color de tu paleta */
+  box-shadow: 0 0 5px rgba(58, 179, 151, 0.5);
+}
+
+.btn-heart:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;          /* opcional: efecto visual de bloqueo */
+}

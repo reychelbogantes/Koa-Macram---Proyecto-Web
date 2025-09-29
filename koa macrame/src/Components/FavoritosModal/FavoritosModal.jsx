@@ -17,12 +17,12 @@ function FavoritosModal({ isOpen, onClose, usuario }) {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose}>×</button>
+    <div className="modal-overlayF" onClick={onClose}>
+      <div className="modal-contentF" onClick={e => e.stopPropagation()}>
+        <button className="modal-closeF" onClick={onClose}>×</button>
 
         {!usuario ? (
-          <div className="modal-msg">
+          <div className="modal-msgF">
             <h2>Favoritos</h2>
             <p>
               Para ver y guardar favoritos debes

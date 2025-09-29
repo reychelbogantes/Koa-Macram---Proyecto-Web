@@ -2,19 +2,28 @@ import React, { useEffect, useState } from "react";
 import { getOrdenes, updateOrdenEstado } from "../../Services/Servicios";
 import "./OrdenesPendientes.css";
 import MenuIzquierdo from "../MenuIzquierdo/MenuIzquierdo";
+import ModalAlert from "../../Components/ModalAlert/ModalAlert"; // ⚠️ Ajusta la ruta
 
 function OrdenesPendientes() {
   const [ordenes, setOrdenes] = useState([]);
   const [cargando, setCargando] = useState(true);
 
+  // ✅ Estados para modales
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalMsg, setModalMsg] = useState("");
+
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
+
   useEffect(() => {
     const cargar = async () => {
       try {
         const data = await getOrdenes();
-        // ✅ Solo mostrar las que estén en estado "pendiente"
         setOrdenes(data.filter((o) => o.estado === "pendiente"));
       } catch (err) {
         console.error("Error al cargar órdenes:", err);
+        setModalMsg("Error al cargar pedidos pendientes ❌");
+        setModalOpen(true);
       } finally {
         setCargando(false);
       }
@@ -25,26 +34,36 @@ function OrdenesPendientes() {
   const marcarEnviado = async (id) => {
     try {
       await updateOrdenEstado(id, "enviado");
-      // Quita de la lista de pendientes
       setOrdenes((prev) => prev.filter((o) => o.id !== id));
+      setModalMsg("El pedido ha sido marcado como enviado ✅");
+      setModalOpen(true);
     } catch (err) {
       console.error("Error al marcar como enviado:", err);
+      setModalMsg("Hubo un problema al marcar como enviado ❌");
+      setModalOpen(true);
     }
   };
 
-  const cancelarPedido = async (id) => {
-    const confirmar = window.confirm(
-      "¿Seguro que quieres cancelar este pedido? Podrás verlo en la sección de pedidos cancelados."
-    );
-    if (!confirmar) return;
+  // ✅ Abre el modal de confirmación para cancelar
+  const abrirConfirmacion = (id) => {
+    setPedidoSeleccionado(id);
+    setConfirmOpen(true);
+  };
 
+  const cancelarPedido = async () => {
+    if (!pedidoSeleccionado) return;
     try {
-      await updateOrdenEstado(id, "cancelado");
-      // Quita de la lista de pendientes
-      setOrdenes((prev) => prev.filter((o) => o.id !== id));
+      await updateOrdenEstado(pedidoSeleccionado, "cancelado");
+      setOrdenes((prev) => prev.filter((o) => o.id !== pedidoSeleccionado));
+      setModalMsg("El pedido ha sido cancelado y ahora aparece en 'cancelados' ✅");
+      setModalOpen(true);
     } catch (err) {
       console.error("Error al cancelar pedido:", err);
-      alert("Hubo un problema al cancelar el pedido.");
+      setModalMsg("Hubo un problema al cancelar el pedido ❌");
+      setModalOpen(true);
+    } finally {
+      setConfirmOpen(false);
+      setPedidoSeleccionado(null);
     }
   };
 
@@ -52,9 +71,7 @@ function OrdenesPendientes() {
 
   return (
     <div>
-     
-
-      <div className="ordenes-pendientes" >
+      <div className="ordenes-pendientes">
         <h1>Pedidos Pendientes</h1>
 
         {ordenes.length === 0 ? (
@@ -84,10 +101,16 @@ function OrdenesPendientes() {
                 </ul>
 
                 <div className="acciones-pedido">
-                  <button className="btn-M-enviar" onClick={() => marcarEnviado(o.id)}>
+                  <button
+                    className="btn-M-enviar"
+                    onClick={() => marcarEnviado(o.id)}
+                  >
                     Marcar como Enviado
                   </button>
-                  <button className="btn-cancelar" onClick={() => cancelarPedido(o.id)}>
+                  <button
+                    className="btn-cancelar"
+                    onClick={() => abrirConfirmacion(o.id)}
+                  >
                     Cancelar pedido
                   </button>
                 </div>
@@ -96,8 +119,36 @@ function OrdenesPendientes() {
           </div>
         )}
       </div>
+
+      {/* ✅ Modal de alerta de mensajes */}
+      <ModalAlert
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Aviso"
+        message={modalMsg}
+      />
+
+      {/* ✅ Modal de confirmación para cancelar pedido */}
+      {confirmOpen && (
+        <div className="modal-overlayC" onClick={() => setConfirmOpen(false)}>
+          <div className="modal-alertC" onClick={(e) => e.stopPropagation()}>
+            <h2>Confirmar cancelación</h2>
+            <p>
+              ¿Seguro que quieres cancelar este pedido? 
+              Pasará a la sección de <strong>pedidos cancelados</strong>.
+            </p>
+            <button className="modal-buttonC" onClick={cancelarPedido}>
+              Sí, cancelar
+            </button>
+            <button className="modal-buttonC" onClick={() => setConfirmOpen(false)}>
+              No, volver
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 export default OrdenesPendientes;
+

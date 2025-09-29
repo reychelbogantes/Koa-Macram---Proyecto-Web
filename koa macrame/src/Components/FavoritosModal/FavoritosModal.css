@@ -1,5 +1,5 @@
 /* Cubre toda la pantalla pero solo oscurece el resto */
-.modal-overlay {
+.modal-overlayF {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
@@ -9,7 +9,7 @@
 }
 
 /* Panel lateral */
-.modal-content {
+.modal-contentF {
   width: 20%;                  /* ✅ ancho del panel lateral */
   height: 100vh;               /* ✅ alto de toda la pantalla */
   background: #fff;
@@ -21,7 +21,7 @@
 }
 
 /* Botón de cierre (X) */
-.modal-close {
+.modal-closeF {
   position: absolute;
   top: 10px;
   right: 15px;
@@ -32,7 +32,7 @@
   color: #333;
 }
 
-.modal-msg {
+.modal-msgF {
   text-align: center;
 }
 

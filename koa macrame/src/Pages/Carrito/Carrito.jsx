@@ -7,13 +7,16 @@ import ResumenPedido from '../../Components/ComponentsCarrito/ResumenPedido';
 import MetodosPago from'../../Components/ComponentsCarrito/MetodosPago';
 import Navbar from '../../Components/NavBar/Navbar'
 import Footer from '../../Components/Footer/Footer'
+import ModalAlert from '../../Components/ModalAlert/ModalAlert';
 
 import UbicacionesUsuario from '../../Components/ComponentsCarrito/UbicacionesUsuario';
 
-
-import { getCarritoPorUsuario, getProductos, updateCarrito, updateProducto, guardarDireccionUsuario } from '../../Services/Servicios';
-
-
+import {
+  getCarritoPorUsuario,
+  getProductos,
+  updateCarrito,
+  updateProducto
+} from '../../Services/Servicios';
 
 function Carrito() {
   const [direccionSeleccionada, setDireccionSeleccionada] = useState(null);
@@ -21,28 +24,48 @@ function Carrito() {
   const [seleccionados, setSeleccionados] = useState([]);
   const [usuario, setUsuario] = useState(null);
   const [carritoId, setCarritoId] = useState(null);
+
+  // ✅ Estados para el modal de alerta
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalMsg, setModalMsg] = useState('');
+
   const productosSeleccionados = productosCarrito.filter(p => seleccionados.includes(p.id));
 
   useEffect(() => {
     const userData = localStorage.getItem("usuarioLogueado");
-    if (userData) {
-      const u = JSON.parse(userData);
-      setUsuario(u);
-
-      getCarritoPorUsuario(u.id).then(async c => {
-        if (c) {
-          setCarritoId(c.id);
-          const allProducts = await getProductos();
-          const lista = c.productos.map(item => {
-            const prod = allProducts.find(p => p.id === item.productoId);
-            return prod ? { ...prod, cantidad: item.cantidad } : null;
-          }).filter(Boolean);
-
-          setProductosCarrito(lista);
-          setSeleccionados([]);
-        }
-      });
+    if (!userData) {
+      setModalMsg('Debes iniciar sesión para ver tu carrito.');
+      setModalOpen(true);
+      return;
     }
+
+    const u = JSON.parse(userData);
+    setUsuario(u);
+
+    // ✅ Cargar el carrito real
+    getCarritoPorUsuario(u.id).then(async c => {
+      if (!c || !c.productos || c.productos.length === 0) {
+        setModalMsg('Tu carrito está vacío.');
+        setModalOpen(true);
+        return;
+      }
+
+      const allProducts = await getProductos();
+      const lista = c.productos
+        .map(item => {
+          const prod = allProducts.find(p => p.id === item.productoId);
+          return prod ? { ...prod, cantidad: item.cantidad } : null;
+        })
+        .filter(Boolean);
+
+      setCarritoId(c.id);
+      setProductosCarrito(lista);
+      setSeleccionados([]);
+    }).catch(err => {
+      console.error("Error al cargar carrito", err);
+      setModalMsg('Hubo un problema cargando el carrito.');
+      setModalOpen(true);
+    });
   }, []);
 
   // --- Seleccionar / deseleccionar todos
@@ -61,11 +84,11 @@ function Carrito() {
       prev.map(p => p.id === idProducto ? { ...p, cantidad: nuevaCantidad } : p)
     );
 
-    // Actualiza en db.json
     if (carritoId) {
       const nuevosProductos = productosCarrito.map(p =>
-        p.id === idProducto ? { productoId: p.id, cantidad: nuevaCantidad } :
-                              { productoId: p.id, cantidad: p.cantidad }
+        p.id === idProducto
+          ? { productoId: p.id, cantidad: nuevaCantidad }
+          : { productoId: p.id, cantidad: p.cantidad }
       );
       await updateCarrito(carritoId, nuevosProductos);
     }
@@ -83,10 +106,11 @@ function Carrito() {
     }
   };
 
-  // --- Pasar a favoritos
+  // --- Pasar a favoritos (reemplazo de alert() por ModalAlert)
   const handleFavorito = async (producto) => {
     if (!usuario) {
-      alert('Debes iniciar sesión para guardar favoritos');
+      setModalMsg('Debes iniciar sesión para guardar favoritos');
+      setModalOpen(true);
       return;
     }
     const userId = usuario.id;
@@ -94,75 +118,66 @@ function Carrito() {
     const nuevoArray = actual.includes(userId)
       ? actual.filter(u => u !== userId)
       : [...actual, userId];
-    await updateProducto(producto.id, { favoritoDe: nuevoArray });
-    alert("Producto guardado en favoritos");
-  };
 
-  if (!usuario) return <p>Debes iniciar sesión para ver tu carrito.</p>;
-  if (!productosCarrito.length) return <p>Tu carrito está vacío.</p>;
-   
-  const handleEnvio = async (datos) => {
     try {
-      const userData = localStorage.getItem("usuarioLogueado");
-      if (!userData) {
-        alert("Debes iniciar sesión para guardar la dirección.");
-        return;
-      }
-      const usuario = JSON.parse(userData);
-
-      // Llamamos al servicio pasando el id del usuario y los datos del formulario
-      await guardarDireccionUsuario(usuario.id, datos);
-      alert("✅ Dirección guardada correctamente en la base de datos");
+      await updateProducto(producto.id, { favoritoDe: nuevoArray });
+      setModalMsg(
+        actual.includes(userId)
+          ? 'Producto eliminado de favoritos ✅'
+          : 'Producto guardado en favoritos ✅'
+      );
+      setModalOpen(true);
     } catch (error) {
-      alert("❌ Ocurrió un error al guardar la dirección");
-      console.error(error);
+      console.error("Error al actualizar favoritos", error);
+      setModalMsg('❌ Hubo un problema al guardar en favoritos');
+      setModalOpen(true);
     }
   };
 
-
   return (
     <div>
-    <Navbar/>
-    <br />
-    <br />
-    <br />
-    <br />
+      <Navbar/>
+      <br /><br /><br /><br />
 
-    <div className="carrito-container">
-      <div className="carrito-left">
-        <FiltroSeleccion
-          cantidad={productosCarrito.length}
-          seleccionados={seleccionados.length}
-          onToggle={handleSelectAll}
-        />
-        <ListaProductos
-          productos={productosCarrito}
-          seleccionados={seleccionados}
-          onToggleOne={handleSelectOne}
-          onCantidadChange={handleCantidadChange}
-          onEliminar={handleEliminar}
-          onFavorito={handleFavorito}
-        />
-      
-        <UbicacionesUsuario onSeleccion={setDireccionSeleccionada}/>
+      <div className="carrito-container">
+        <div className="carrito-left">
+          <FiltroSeleccion
+            cantidad={productosCarrito.length}
+            seleccionados={seleccionados.length}
+            onToggle={handleSelectAll}
+          />
+          <ListaProductos
+            productos={productosCarrito}
+            seleccionados={seleccionados}
+            onToggleOne={handleSelectOne}
+            onCantidadChange={handleCantidadChange}
+            onEliminar={handleEliminar}
+            onFavorito={handleFavorito}
+          />
+          <UbicacionesUsuario onSeleccion={setDireccionSeleccionada}/>
+        </div>
+
+        <div className="carrito-right">
+          <ResumenPedido
+            productos={productosSeleccionados}
+            tipoEnvio={direccionSeleccionada?.metodoEnvio}
+            setCarrito={setProductosCarrito}
+            seleccionados={seleccionados}
+          />
+          <MetodosPago />
+        </div>
       </div>
+      <Footer />
 
-      <div className="carrito-right">
-        <ResumenPedido
-         productos={productosSeleccionados}
-         tipoEnvio={direccionSeleccionada?.metodoEnvio}
-         setCarrito={setProductosCarrito}
-         seleccionados={seleccionados} 
-         />
-        <MetodosPago />
-      </div>
-    </div>
-    <Footer />
-
-
+      {/* ✅ Modal de alerta que reemplaza todos los alert() */}
+      <ModalAlert
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Aviso"
+        message={modalMsg}
+      />
     </div>
   );
 }
 
 export default Carrito;
-

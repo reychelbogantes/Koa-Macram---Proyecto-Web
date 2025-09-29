@@ -152,6 +152,15 @@
   text-align:center;
   width:300px;
 }
+.modal-input{
+  border: none;
+  background: #c0c0c76e;
+  margin-right: 6px;
+  margin-top: 4px;
+  padding: 6px 12px;
+  border-radius: 8px;
+
+}
 
 .btn-modal-L{
   margin-right: 6px;
@@ -179,4 +188,21 @@
 .Logo{
     width: 20%;
     height: auto;
+}
+
+.btn-cerrar{
+  margin-right: 6px;
+  margin-top: 4px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #99a66eff;
+  color: #fdfcff;
+  transition: background 0.3s, transform 0.1s;
+  font-size: 0.9rem;
+}
+.btn-cerrar:hover {
+  background: rgb(90, 98, 62);
+  transform: scale(1.03);
 }

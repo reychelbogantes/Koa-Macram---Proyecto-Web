@@ -9,7 +9,8 @@ import * as jwt_decode from "jwt-decode";
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState(''); 
-  const [mensaje, setMensaje] = useState('');
+  const [mensajeLogin, setMensajeLogin] = useState('');
+  const [mensajeModal, setMensajeModal] = useState('');
   const [logueado, setLogueado] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
@@ -31,7 +32,7 @@ function Login() {
     if (logueado) {
       setLogueado(false);
       localStorage.removeItem("usuarioLogueado");
-      setMensaje("Sesión cerrada ✅");
+      setMensajeLogin("Sesión cerrada ✅");
     } else {
       try {
         const usuarios = await GetUsers();
@@ -40,7 +41,7 @@ function Login() {
        (u.name === username || u.email === username) && u.password === password);
 
         if (usuarioValido) {
-          setMensaje("Ingreso exitoso ✅");
+          setMensajeLogin("Ingreso exitoso ✅");
           setLogueado(true);
           localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioValido));
           
@@ -51,10 +52,10 @@ function Login() {
             setTimeout(() => navigate("/homepage"), 1000);
           }
         } else {
-          setMensaje("Usuario o contraseña incorrectos ❌");
+          setMensajeLogin("Usuario o contraseña incorrectos ❌");
         }
       } catch (error) {
-        setMensaje("Error al ingresar ❌");
+        setMensajeLogin("Error al ingresar ❌");
         console.error(error);
       }
     }
@@ -66,7 +67,7 @@ function Login() {
     setUserCheck('');
     setNewPassword('');
     setVerifiedUser(null);
-    setMensaje('');
+    setMensajeModal('');
   };
 
   // Verificar usuario/email para cambio de contraseña
@@ -78,12 +79,12 @@ function Login() {
       );
       if (usuarioValido) {
         setVerifiedUser(usuarioValido);
-        setMensaje("Usuario verificado ✅");
+        setMensajeModal("Usuario verificado ✅");
       } else {
-        setMensaje("Usuario o correo no encontrado ❌");
+        setMensajeModal("Correo Electrónico no encontrado ❌");
       }
     } catch (error) {
-      setMensaje("Error al verificar usuario ❌");
+     setMensajeModal("Error al verificar usuario ❌");
       console.error(error);
     }
   };
@@ -91,16 +92,16 @@ function Login() {
   // Cambiar contraseña
   const handleCambiarPassword = async () => {
     if (!newPassword || newPassword.length < 8) {
-      setMensaje("La contraseña debe tener mínimo 8 caracteres ❌");
+      setMensajeModal("La contraseña debe tener mínimo 8 caracteres ❌");
       return;
     }
 
     try {
       await cambiarPassword(verifiedUser.id, newPassword);
-      setMensaje("Contraseña cambiada ✅");
+      setMensajeModal("Contraseña cambiada ✅");
       setShowModal(false);
     } catch (error) {
-      setMensaje("Error al cambiar contraseña ❌");
+      setMensajeModal("Error al cambiar contraseña ❌");
       console.error(error);
     }
   };
@@ -124,7 +125,7 @@ function Login() {
       );
 
       if (usuarioExistente) {
-        setMensaje("Ingreso con Google exitoso ✅");
+        setMensajeLogin("Ingreso con Google exitoso ✅");
         localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioExistente));
 
         // ✅ Redirección según rol
@@ -135,7 +136,7 @@ function Login() {
         }
       } else {
         const savedUser = await postGoogleUser(user);
-        setMensaje("Ingreso con Google exitoso ✅");
+        setMensajeLogin("Ingreso con Google exitoso ✅");
         localStorage.setItem("usuarioLogueado", JSON.stringify(savedUser));
 
         // ✅ Redirección según rol
@@ -147,13 +148,13 @@ function Login() {
       }
     } catch (error) {
       console.error("Error al procesar login con Google:", error);
-      setMensaje("Error al iniciar sesión con Google ❌");
+      setMensajeLogin("Error al iniciar sesión con Google ❌");
     }
   };
 
   const handleError = () => {
     console.error("Error en el inicio de sesión con Google");
-    setMensaje("Error al iniciar sesión con Google ❌");
+    setMensajeLogin("Error al iniciar sesión con Google ❌");
   };
 
   return (
@@ -189,10 +190,10 @@ function Login() {
           ¿Olvidaste tu contraseña?
         </button>
 
-        {mensaje && (
-          <p className={`mensaje ${mensaje.includes('✅') ? 'exito' : ''}`}>
-            {mensaje}
-          </p>
+        {mensajeLogin && (
+         <p className={`mensaje ${mensajeLogin.includes('✅') ? 'exito' : ''}`}>
+         {mensajeLogin}
+         </p>
         )}
 
         <button className="Iniciar-sesion" onClick={CargarIngreso} type="submit">
@@ -223,30 +224,42 @@ function Login() {
           <div className="modal-content-L">
             {!verifiedUser ? (
               <>
-                <h3>Verificar usuario o correo</h3>
+                <h3>Verifica Correo Electrónico</h3>
                 <input
+                  className="modal-input"
                   type="text"
-                  placeholder="Usuario o correo"
+                  placeholder="Correo Electrónico"
                   value={userCheck}
                   onChange={e => setUserCheck(e.target.value)}
                 />
-                {mensaje && <p className="mensaje">{mensaje}</p>}
+
+                {mensajeModal && (
+                 <p className={`mensaje ${mensajeModal.includes('✅') ? 'exito' : ''}`}>
+                  {mensajeModal}
+                 </p>
+                  )} 
                 <button className="btn-modal-L" onClick={handleVerificarUsuario}>Verificar</button>
               </>
             ) : (
               <>
                 <h3>Cambiar contraseña</h3>
+                <p className="usuario-verificado">Usuario verificado: <strong>{verifiedUser.name}</strong></p>
                 <input
+                  className="modal-input"
                   type="password"
                   placeholder="Nueva contraseña"
                   value={newPassword}
                   onChange={e => setNewPassword(e.target.value)}
                 />
-                {mensaje && <p className="mensaje">{mensaje}</p>}
-                <button onClick={handleCambiarPassword}>Guardar</button>
+                {mensajeModal && (
+                 <p className={`mensaje ${mensajeModal.includes('✅') ? 'exito' : ''}`}>
+                   {mensajeModal}
+                 </p>
+                )}
+                <button className="btn-modal-L"  onClick={handleCambiarPassword}>Guardar</button>
               </>
             )}
-            <button onClick={() => setShowModal(false)}>Cerrar</button>
+            <button className="btn-cerrar" onClick={() => setShowModal(false)}>Cerrar</button>
           </div>
         </div>
       )}

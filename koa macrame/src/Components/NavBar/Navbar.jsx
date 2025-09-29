@@ -79,7 +79,6 @@ function Navbar() {
         isOpen={perfilAbierto}
         onClose={() => setPerfilAbierto(false)}
         usuario={usuario}
-        onPerdidos={() => alert("Acción Perdidos")}
       />
         
         
