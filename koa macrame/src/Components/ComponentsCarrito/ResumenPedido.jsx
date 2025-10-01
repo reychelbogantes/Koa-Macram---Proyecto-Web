@@ -4,11 +4,19 @@ import {
   guardarFactura,
   guardarOrden,
   vaciarCarrito,
-  getDireccionSeleccionada
+  getDireccionSeleccionada,
+  getCarritoPorUsuario,   // ✅ para recargar el carrito actualizado
+  getProductos           // ✅ para reconstruir los datos completos
 } from "../../Services/Servicios";
-import ModalAlert from "../../Components/ModalAlert/ModalAlert"; // ⚠️ Ajusta la ruta si es distinta
+import ModalAlert from "../../Components/ModalAlert/ModalAlert";
 
-function ResumenPedido({ productos = [], tipoEnvio, setCarrito, seleccionados = [] }) {
+function ResumenPedido({
+  productos = [],
+  tipoEnvio,
+  setCarrito,
+  seleccionados = [],
+  carritoId
+}) {
   // 1️⃣ Subtotal
   const subtotal = productos.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
 
@@ -31,7 +39,10 @@ function ResumenPedido({ productos = [], tipoEnvio, setCarrito, seleccionados = 
   // ✅ Estados para el modal
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState("");
-console.log('modalMsg =>', modalMsg);
+
+  console.log("carritoId =>", carritoId);
+  console.log("seleccionados =>", seleccionados);
+
   return (
     <div className="resumen-pedido">
       <h3>Resumen Del Pedido</h3>
@@ -125,8 +136,26 @@ console.log('modalMsg =>', modalMsg);
               await guardarFactura(nuevaFactura);
               await guardarOrden(nuevaOrden);
 
-              await vaciarCarrito(seleccionados);
-              setCarrito((prev) => prev.filter((p) => !seleccionados.includes(p.id)));
+              // ✅ Vacía o descuenta las cantidades en el backend
+              await vaciarCarrito(
+                carritoId,
+                productos.map(p => ({ productoId: p.id, cantidad: p.cantidad }))
+              );
+
+              // ✅ Vuelve a cargar el carrito desde el backend para que el front muestre la cantidad real
+              const c = await getCarritoPorUsuario(userData.id);
+              if (c && c.productos && c.productos.length > 0) {
+                const allProducts = await getProductos();
+                const lista = c.productos
+                  .map(item => {
+                    const prod = allProducts.find(p => p.id === item.productoId);
+                    return prod ? { ...prod, cantidad: item.cantidad } : null;
+                  })
+                  .filter(Boolean);
+                setCarrito(lista);
+              } else {
+                setCarrito([]);
+              }
 
               console.log("Factura y Orden guardadas correctamente con dirección seleccionada.");
             } catch (error) {

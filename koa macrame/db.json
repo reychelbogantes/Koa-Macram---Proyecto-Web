@@ -294,7 +294,7 @@
       "userId": "7890",
       "productos": [
         {
-          "productoId": "70fa",
+          "productoId": "4bb8",
           "cantidad": 1
         }
       ]
@@ -662,6 +662,106 @@
       "total": 427,
       "idTransaccion": "1KE840617F467420V",
       "estado": "pendiente"
+    },
+    {
+      "id": "92a5",
+      "fecha": "2025-09-29T16:58:19.930Z",
+      "usuario": {
+        "nombre": "Reychel Fallas",
+        "email": "rfallasbfwd@gmail.com",
+        "direccion": "Puntarenas, El Roble",
+        "telefono": "1111111111",
+        "observaciones": "Hola"
+      },
+      "productos": [
+        {
+          "id": "70fa",
+          "nombre": "Atrapasuños \"Flor\"",
+          "cantidad": 1,
+          "precio": "420"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 420,
+      "costoEnvio": 7,
+      "total": 427,
+      "idTransaccion": "7P905618HM279333W",
+      "estado": "pendiente"
+    },
+    {
+      "id": "2f2a",
+      "fecha": "2025-09-29T17:37:22.735Z",
+      "usuario": {
+        "nombre": "Reychel Fallas",
+        "email": "rfallasbfwd@gmail.com",
+        "direccion": "Puntarenas, El Roble",
+        "telefono": "1111111111",
+        "observaciones": "Hola"
+      },
+      "productos": [
+        {
+          "id": "70fa",
+          "nombre": "Atrapasuños \"Flor\"",
+          "cantidad": 1,
+          "precio": "420"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 420,
+      "costoEnvio": 7,
+      "total": 427,
+      "idTransaccion": "7D975917MB420284X",
+      "estado": "pendiente"
+    },
+    {
+      "id": "8d29",
+      "fecha": "2025-09-29T17:52:29.997Z",
+      "usuario": {
+        "nombre": "Reychel Fallas",
+        "email": "rfallasbfwd@gmail.com",
+        "direccion": "Puntarenas, El Roble",
+        "telefono": "1111111111",
+        "observaciones": "Hola"
+      },
+      "productos": [
+        {
+          "id": "4bb8",
+          "nombre": "Tapiz Lirio",
+          "cantidad": 1,
+          "precio": "1260"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 1260,
+      "costoEnvio": 7,
+      "total": 1267,
+      "idTransaccion": "38129863VH576234Y",
+      "estado": "pendiente"
+    },
+    {
+      "id": "1745",
+      "fecha": "2025-09-29T18:57:51.714Z",
+      "usuario": {
+        "nombre": "Reychel Fallas",
+        "email": "rfallasbfwd@gmail.com",
+        "direccion": "Puntarenas, El Roble",
+        "telefono": "1111111111",
+        "observaciones": "Hola"
+      },
+      "productos": [
+        {
+          "id": "70fa",
+          "nombre": "Atrapasuños \"Flor\"",
+          "cantidad": 1,
+          "precio": "420"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 420,
+      "costoEnvio": 7,
+      "total": 427,
+      "idTransaccion": "0XB16453DX470361N",
+      "estado": "pendiente"
     }
   ],
   "Facturacion": [
@@ -949,6 +1049,174 @@
       "costoEnvio": 7,
       "total": 427,
       "idTransaccion": "1KE840617F467420V"
+    },
+    {
+      "id": "0222",
+      "fecha": "2025-09-29T16:58:19.930Z",
+      "usuario": {
+        "nombre": "Reychel Fallas",
+        "email": "rfallasbfwd@gmail.com"
+      },
+      "productos": [
+        {
+          "id": "70fa",
+          "nombre": "Atrapasuños \"Flor\"",
+          "cantidad": 1,
+          "precio": "420"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 420,
+      "costoEnvio": 7,
+      "total": 427,
+      "idTransaccion": "7P905618HM279333W"
+    },
+    {
+      "id": "f941",
+      "fecha": "2025-09-29T17:14:53.641Z",
+      "usuario": {
+        "nombre": "Reychel Fallas",
+        "email": "rfallasbfwd@gmail.com"
+      },
+      "productos": [
+        {
+          "id": "70fa",
+          "nombre": "Atrapasuños \"Flor\"",
+          "cantidad": 1,
+          "precio": "420"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 420,
+      "costoEnvio": 7,
+      "total": 427,
+      "idTransaccion": "4XE60965GL967920Y"
+    },
+    {
+      "id": "039e",
+      "fecha": "2025-09-29T17:17:20.129Z",
+      "usuario": {
+        "nombre": "Reychel Fallas",
+        "email": "rfallasbfwd@gmail.com"
+      },
+      "productos": [
+        {
+          "id": "70fa",
+          "nombre": "Atrapasuños \"Flor\"",
+          "cantidad": 1,
+          "precio": "420"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 420,
+      "costoEnvio": 7,
+      "total": 427,
+      "idTransaccion": "18009865WE9853938"
+    },
+    {
+      "id": "ba9e",
+      "fecha": "2025-09-29T17:37:22.735Z",
+      "usuario": {
+        "nombre": "Reychel Fallas",
+        "email": "rfallasbfwd@gmail.com"
+      },
+      "productos": [
+        {
+          "id": "70fa",
+          "nombre": "Atrapasuños \"Flor\"",
+          "cantidad": 1,
+          "precio": "420"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 420,
+      "costoEnvio": 7,
+      "total": 427,
+      "idTransaccion": "7D975917MB420284X"
+    },
+    {
+      "id": "bd02",
+      "fecha": "2025-09-29T17:38:37.683Z",
+      "usuario": {
+        "nombre": "Reychel Fallas",
+        "email": "rfallasbfwd@gmail.com"
+      },
+      "productos": [
+        {
+          "id": "4bb8",
+          "nombre": "Tapiz Lirio",
+          "cantidad": 1,
+          "precio": "1260"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 1260,
+      "costoEnvio": 7,
+      "total": 1267,
+      "idTransaccion": "3FA76537NN480233B"
+    },
+    {
+      "id": "d939",
+      "fecha": "2025-09-29T17:52:29.997Z",
+      "usuario": {
+        "nombre": "Reychel Fallas",
+        "email": "rfallasbfwd@gmail.com"
+      },
+      "productos": [
+        {
+          "id": "4bb8",
+          "nombre": "Tapiz Lirio",
+          "cantidad": 1,
+          "precio": "1260"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 1260,
+      "costoEnvio": 7,
+      "total": 1267,
+      "idTransaccion": "38129863VH576234Y"
+    },
+    {
+      "id": "e84d",
+      "fecha": "2025-09-29T18:56:55.745Z",
+      "usuario": {
+        "nombre": "Reychel Fallas",
+        "email": "rfallasbfwd@gmail.com"
+      },
+      "productos": [
+        {
+          "id": "70fa",
+          "nombre": "Atrapasuños \"Flor\"",
+          "cantidad": 1,
+          "precio": "420"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 420,
+      "costoEnvio": 7,
+      "total": 427,
+      "idTransaccion": "7B823069AK902070N"
+    },
+    {
+      "id": "93d6",
+      "fecha": "2025-09-29T18:57:51.714Z",
+      "usuario": {
+        "nombre": "Reychel Fallas",
+        "email": "rfallasbfwd@gmail.com"
+      },
+      "productos": [
+        {
+          "id": "70fa",
+          "nombre": "Atrapasuños \"Flor\"",
+          "cantidad": 1,
+          "precio": "420"
+        }
+      ],
+      "tipoEnvio": "Correo de Costa Rica",
+      "subtotal": 420,
+      "costoEnvio": 7,
+      "total": 427,
+      "idTransaccion": "0XB16453DX470361N"
     }
   ],
   "Contactos": [

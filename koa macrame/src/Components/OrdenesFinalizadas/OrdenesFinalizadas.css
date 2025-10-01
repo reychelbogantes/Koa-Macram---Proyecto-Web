@@ -2,3 +2,134 @@
   border-left: 6px solid #9695c7dd; /* Verde agua para indicar finalizado */
   background: #f8fff9;
 }
+
+.ordenes-finalizadas {
+  padding: 2rem;
+  background: #f7f7f7;
+  min-height: 100vh;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.ordenes-finalizadas h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* ---------- Filtros ---------- */
+.filtros-superiores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.filtros-superiores input[type="text"],
+.filtros-superiores input[type="date"] {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.filtros-superiores label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #444;
+}
+
+/* ---------- Lista de órdenes ---------- */
+.lista-ordenes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ---------- Card de orden ---------- */
+.orden-card {
+  border-left: 6px solid #9695c7dd; /* morado suave */
+  background: #f8fff9;
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.orden-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.orden-card h3 {
+  margin: 0 0 0.8rem;
+  color: #3a3a58;
+}
+
+.orden-card h4 {
+  margin-top: 1rem;
+  color: #444;
+}
+
+.orden-card p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.orden-card ul {
+  list-style: none;
+  padding-left: 1rem;
+  margin: 0.5rem 0 0;
+}
+
+.orden-card li {
+  font-size: 0.9rem;
+  margin: 0.2rem 0;
+  color: #555;
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 768px) {
+  .ordenes-finalizadas {
+    padding: 1rem;
+  }
+
+  .filtros-superiores {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtros-superiores input,
+  .filtros-superiores label {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .orden-card {
+    padding: 1rem;
+    border-left-width: 4px;
+  }
+
+  .orden-card h3 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .orden-card p {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .orden-card ul {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .orden-card li {
+    font-size: 0.85rem;
+  }
+}

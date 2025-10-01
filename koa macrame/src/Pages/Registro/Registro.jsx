@@ -4,6 +4,7 @@ import { postUsers, GetUsers, postGoogleUser } from '../../Services/Servicios';
 import './Registro.css'
 import { GoogleLogin } from '@react-oauth/google';
 import * as jwt_decode from "jwt-decode";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 
@@ -20,6 +21,7 @@ function Registro() {
   const [password, setPassword] = React.useState(""); 
   const [mensaje, setMensaje] = React.useState("");
   const [tipoMensaje, setTipoMensaje] = React.useState(""); // "success" | "error"
+  const [showPassword, setShowPassword] = React.useState(false);  
 
   const navigate = useNavigate();  
     
@@ -166,12 +168,22 @@ function Registro() {
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
+          {/* 🔹 Input contraseña con botón */}
+            <div className="password-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Contraseña"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+              />
+              <button
+                type="button"
+                className="toggle-password"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
 
           <button className="btnRegistrarse" onClick={PostarRegistra}>Crear una cuenta</button>
 

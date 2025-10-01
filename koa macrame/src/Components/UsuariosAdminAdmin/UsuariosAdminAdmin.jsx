@@ -40,7 +40,7 @@ function UsuariosAdminAdmin() {
       <h2>👥 Administrar Usuarios Administrativos</h2>
 
       {/* Crear nuevo admin */}
-      <form className="form-crear-admin"  onSubmit={crearAdmin} style={{
+      <div className="form-crear-admin"  onSubmit={crearAdmin} style={{
         marginBottom: "2rem", background: "#f4f4f8",
         padding: "1rem", borderRadius: "8px"
       }}>
@@ -52,7 +52,7 @@ function UsuariosAdminAdmin() {
         <input type="password" placeholder="Contraseña" value={nuevoAdmin.password}
           onChange={e => setNuevoAdmin({ ...nuevoAdmin, password: e.target.value })} required />
         <button type="submit">➕ Crear Admin</button>
-      </form>
+      </div>
 
       {/* Lista de administradores */}
       <table className="tabla-usuarios-admin" style={{ width: "100%", borderCollapse: "collapse" }}>
@@ -65,31 +65,33 @@ function UsuariosAdminAdmin() {
           </tr>
         </thead>
         <tbody>
-          {usuariosAdmin.map(u => (
-            <tr key={u.id} style={{ borderBottom: "1px solid #ddd" }}>
-              <td>
-                {editando === u.id ? (
-                  <input value={formEdit.name}
-                    onChange={e => setFormEdit({ ...formEdit, name: e.target.value })} />
-                ) : u.name}
-              </td>
-              <td>
-                {editando === u.id ? (
-                  <input value={formEdit.email}
-                    onChange={e => setFormEdit({ ...formEdit, email: e.target.value })} />
-                ) : u.email}
-              </td>
-              <td>{new Date(u.fechaRegistro).toLocaleDateString()}</td>
-              <td>
-                {editando === u.id ? (
-                  <button onClick={() => guardarEdicion(u.id)}>💾 Guardar</button>
-                ) : (
-                  <button onClick={() => empezarEdicion(u)}>✏️ Editar</button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
+  {usuariosAdmin.map(u => (
+    <tr key={u.id}>
+      <td data-label="Nombre">
+        {editando === u.id ? (
+          <input value={formEdit.name}
+            onChange={e => setFormEdit({ ...formEdit, name: e.target.value })} />
+        ) : u.name}
+      </td>
+      <td data-label="Correo">
+        {editando === u.id ? (
+          <input value={formEdit.email}
+            onChange={e => setFormEdit({ ...formEdit, email: e.target.value })} />
+        ) : u.email}
+      </td>
+      <td data-label="Fecha Registro">
+        {new Date(u.fechaRegistro).toLocaleDateString()}
+      </td>
+      <td data-label="Acciones">
+        {editando === u.id ? (
+          <button onClick={() => guardarEdicion(u.id)}>💾 Guardar</button>
+        ) : (
+          <button onClick={() => empezarEdicion(u)}>✏️ Editar</button>
+        )}
+      </td>
+    </tr>
+  ))}
+</tbody>
       </table>
     </div>
   );

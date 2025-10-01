@@ -5,6 +5,15 @@ import { postContacto } from '../../Services/Servicios';
 import './Contactanos.css';
 
 function Contactanos() {
+   // Favicon y título dinámicos
+  useEffect(() => {
+    const link = document.querySelector("link[rel~='icon']");
+    if (link) link.href = "/logo.png";
+    document.title = "Contactnos | Koa Macramé";
+  }, []);
+
+
+
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [mensaje, setMensaje] = useState('');

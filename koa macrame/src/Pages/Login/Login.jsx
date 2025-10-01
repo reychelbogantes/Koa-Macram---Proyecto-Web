@@ -5,6 +5,7 @@ import './Login.css';
 
 import { GoogleLogin } from "@react-oauth/google";
 import * as jwt_decode from "jwt-decode";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -17,6 +18,7 @@ function Login() {
   const [userCheck, setUserCheck] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [verifiedUser, setVerifiedUser] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -176,14 +178,24 @@ function Login() {
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
-          <input
-            type="password"
-            id="password"
-            placeholder="🔒 Contraseña"
-            required
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
+          {/* 🔹 Campo contraseña con icono de ojo */}
+          <div className="password-container-L">
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              placeholder="🔒 Contraseña"
+              required
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              className="toggle-password-L"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
         </div>
 
         <button className="link-button" onClick={handleOlvide}>

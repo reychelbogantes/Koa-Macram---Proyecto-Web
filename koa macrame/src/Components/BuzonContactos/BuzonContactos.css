@@ -1,17 +1,18 @@
 .buzon-contactos {
   padding: 2rem;
-  background: #f9f9fb;
+  /* background: #f9f9fb; */
   min-height: 100vh;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
 .buzon-contactos h2 {
   margin-bottom: 1.5rem;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: #333;
+  text-align: center;
 }
 
-/* 🔎 Contenedor de filtros */
+/* 🔎 Filtros */
 .filtros {
   display: flex;
   flex-wrap: wrap;
@@ -29,16 +30,17 @@
 
 .filtros button {
   padding: 0.5rem 1rem;
-  background: #C5CAE9; /* lavanda pastel */
+  background: #C5CAE9;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-size: 0.95rem;
 }
 .filtros button:hover {
-  background: #B3E5FC; /* celeste pastel */
+  background: #B3E5FC;
 }
 
+/* ---------- Tabla modo escritorio ---------- */
 .tabla-contactos {
   width: 100%;
   border-collapse: collapse;
@@ -47,6 +49,7 @@
   border-radius: 8px;
   overflow: hidden;
 }
+
 
 .tabla-contactos th,
 .tabla-contactos td {
@@ -66,4 +69,50 @@
 
 .tabla-contactos tr:hover {
   background: #eaeaf4;
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 480px) {
+  /* Quitamos sombra a la tabla en móvil */
+  .tabla-contactos {
+    box-shadow: none;   /* ✅ ya no se ve doble sombra */
+    border-radius: 0;   /* opcional: eliminamos borde redondeado de la tabla */
+  }
+
+  .tabla-contactos thead {
+    display: none;
+  }
+
+  .tabla-contactos,
+  .tabla-contactos tbody,
+  .tabla-contactos tr,
+  .tabla-contactos td {
+    display: block;
+    width: 100%;
+  }
+
+  .tabla-contactos tr {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05); /* ✅ sombra solo en cada card */
+  }
+
+  .tabla-contactos td {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.95rem;
+  }
+
+  .tabla-contactos td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+    text-align: center;
+  }
 }

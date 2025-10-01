@@ -1,18 +1,36 @@
+/* --- MENÚ IZQUIERDO --- */
 .menu-izquierdo {
   width: 240px;
   height: 100vh;
-  background: #b1aff86e;          /* color principal */
+  background: #bdbced;     /* color principal */
   color: #382c46;
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Header arriba, footer abajo */
-  padding: 0px;
+  padding: 0;
   box-shadow: 2px 0 8px rgba(0,0,0,0.1);
-  position: fixed;               /* fijo en la izquierda */
+  position: fixed;
   top: 0;
   left: 0;
+
+  /* 🔹 Scroll interno si el contenido se desborda */
+  overflow-y: auto;
+  overflow-x: hidden; /* nunca se sale horizontalmente */
 }
 
+/* Scrollbar personalizada */
+.menu-izquierdo::-webkit-scrollbar {
+  width: 6px;
+}
+.menu-izquierdo::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+.menu-izquierdo::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* --- HEADER --- */
 .menu-header {
   text-decoration: none;
   font-size: 1.8rem;
@@ -21,6 +39,7 @@
   font-weight: bold;
 }
 
+/* --- LINKS --- */
 .menu-links {
   display: flex;
   flex-direction: column;
@@ -40,6 +59,7 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
+/* --- FOOTER --- */
 .menu-footer {
   text-align: center;
   margin-top: auto;
@@ -55,15 +75,17 @@
   cursor: pointer;
   transition: background 0.3s;
 }
+
 .logout-btn a {
-  text-decoration: none;   /* quita la línea */
-  color: inherit;          /* hereda el color del botón */
+  text-decoration: none;
+  color: inherit; /* hereda el color del botón */
 }
+
 .logout-btn:hover {
   background: #566034;
 }
 
-/* contenedor del submenú */
+/* --- SUBMENÚS --- */
 .submenu {
   display: flex;
   flex-direction: column;
@@ -84,7 +106,6 @@
   background: rgba(255,255,255,0.2);
 }
 
-/* items internos del submenú */
 .submenu-items {
   display: flex;
   flex-direction: column;
@@ -104,4 +125,78 @@
 
 .submenu-items a:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- BOTÓN HAMBURGUESA --- */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  background: #839252;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  border-radius: 7px;
+  padding: 8px 12px;
+  cursor: pointer;
+  z-index: 1001; /* arriba del overlay */
+}
+
+/* --- OVERLAY OSCURO --- */
+.overlay {
+  display: none;
+}
+
+/* --- RESPONSIVO --- */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block; /* botón hamburguesa visible en móvil */
+  }
+
+  .menu-izquierdo {
+    left: -100%; /* oculto */
+    transition: left 0.3s ease;
+    width: 80%;
+    max-width: 300px;
+    z-index: 1000;
+    border-radius: 7px;
+  }
+
+  .menu-izquierdo.open {
+    left: 0; /* se muestra al abrir */
+  }
+
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+  }
+
+  /* 🔹 Ajustes de fuentes y padding en móvil */
+  .menu-header {
+    font-size: 2rem;
+    padding-top: 1.5rem;
+  }
+
+  .menu-links a,
+  .submenu-toggle {
+    font-size: 1.2rem;
+    padding: 12px 18px;
+  }
+
+  .submenu-items a {
+    font-size: 1.1rem;
+    padding: 10px 18px;
+  }
+
+  .logout-btn {
+    font-size: 1.1rem;
+    padding: 12px 20px;
+  }
 }

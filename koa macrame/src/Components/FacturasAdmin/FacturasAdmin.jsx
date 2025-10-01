@@ -102,32 +102,33 @@ function FacturasAdmin() {
               </tr>
             </thead>
             <tbody>
-              {facturasFiltradas.map((f) => (
-                <tr key={f.id}>
-                  <td>{f.id}</td>
-                  <td>{new Date(f.fecha).toLocaleString()}</td>
-                  <td>{f.usuario.nombre}</td>
-                  <td>{f.usuario.email}</td>
-                  <td>{f.tipoEnvio}</td>
-                  <td>${f.subtotal.toLocaleString()}</td>
-                  <td>${f.costoEnvio.toLocaleString()}</td>
-                  <td><strong>${f.total.toLocaleString()}</strong></td>
-                  <td>{f.idTransaccion}</td>
-                  <td>
-                    <details>
-                      <summary>Ver productos</summary>
-                      <ul>
-                        {f.productos.map((p) => (
-                          <li key={p.id}>
-                            {p.nombre} – Cant: {p.cantidad} – Precio: ${p.precio}
-                          </li>
-                        ))}
-                      </ul>
-                    </details>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+  {facturasFiltradas.map((f) => (
+    <tr key={f.id}>
+      <td data-label="ID">{f.id}</td>
+      <td data-label="Fecha">{new Date(f.fecha).toLocaleString()}</td>
+      <td data-label="Usuario">{f.usuario.nombre}</td>
+      <td data-label="Email">{f.usuario.email}</td>
+      <td data-label="Tipo Envío">{f.tipoEnvio}</td>
+      <td data-label="Subtotal">${f.subtotal.toLocaleString()}</td>
+      <td data-label="Costo Envío">${f.costoEnvio.toLocaleString()}</td>
+      <td data-label="Total"><strong>${f.total.toLocaleString()}</strong></td>
+      <td data-label="Transacción">{f.idTransaccion}</td>
+      <td data-label="Productos">
+        <details>
+          <summary>Ver productos</summary>
+          <ul>
+            {f.productos.map((p) => (
+              <li key={p.id}>
+                {p.nombre} – Cant: {p.cantidad} – Precio: ${p.precio}
+              </li>
+            ))}
+          </ul>
+        </details>
+      </td>
+    </tr>
+  ))}
+</tbody>
+
           </table>
         )}
       </div>

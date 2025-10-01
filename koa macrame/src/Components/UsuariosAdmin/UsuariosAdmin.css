@@ -73,3 +73,78 @@
  width: 15%;
 
 }
+/* Estilos actuales… */
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 1024px) {
+  .barra-busqueda input {
+    width: 100%; /* el buscador ocupa todo en pantallas medianas */
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hacemos la tabla scrolleable */
+  .tabla-usuarios {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+  }
+
+  .tabla-usuarios table {
+    min-width: 600px; /* ancho mínimo para activar scroll */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Quitamos el estilo de tabla y mostramos como cards */
+  .tabla-usuarios thead {
+    display: none;
+  }
+
+  .tabla-usuarios,
+  .tabla-usuarios tbody,
+  .tabla-usuarios tr,
+  .tabla-usuarios td {
+    display: block;
+    width: 100%;
+  }
+
+  .tabla-usuarios tr {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+
+  .tabla-usuarios td {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.95rem;
+  }
+
+  .tabla-usuarios td::before {
+    content: attr(data-label); /* etiqueta para identificar el campo */
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 4px;
+    display: block;
+    text-align: center;
+  }
+
+  .Acciones-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn-editar-user {
+    width: 100%;
+    margin-top: 6px;
+  }
+}

@@ -71,13 +71,14 @@ function BuzonContactos() {
           <tbody>
             {contactosFiltrados.map(c => (
               <tr key={c.id}>
-                <td>{c.nombre}</td>
-                <td>{c.email}</td>
-                <td>{c.mensaje}</td>
-                <td>{new Date(c.fecha).toLocaleString()}</td>
+                <td data-label="Nombre">{c.nombre}</td>
+                <td data-label="Email">{c.email}</td>
+                <td data-label="Mensaje">{c.mensaje}</td>
+                <td data-label="Fecha">{new Date(c.fecha).toLocaleString()}</td>
               </tr>
             ))}
           </tbody>
+
         </table>
       )}
     </div>

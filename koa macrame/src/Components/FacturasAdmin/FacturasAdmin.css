@@ -1,6 +1,6 @@
 .facturas-admin {
   padding: 2rem;
-  background: #f7f7f7;
+
   min-height: 100vh;
 }
 
@@ -10,11 +10,12 @@
   color: #333;
 }
 
+/* ---------- Tabla ---------- */
 .tabla-facturas {
   width: 100%;
   border-collapse: collapse;
-  background: white;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  /* background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); */
   border-radius: 8px;
   overflow: hidden;
 }
@@ -28,7 +29,7 @@
 }
 
 .tabla-facturas th {
-  background: #b2aff8bd; /* color corporativo */
+  background: #b2aff8bd;
   color: white;
   text-transform: uppercase;
   font-weight: 600;
@@ -42,6 +43,7 @@
   background: #ede1f3;
 }
 
+/* ---------- Detalles ---------- */
 details summary {
   cursor: pointer;
   color: #6f916b;
@@ -57,6 +59,8 @@ details ul {
 details li {
   padding: 4px 0;
 }
+
+/* ---------- Filtros ---------- */
 .filtros-superiores {
   margin: 1rem 0;
   display: flex;
@@ -86,4 +90,64 @@ details li {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 0.95rem;
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 1024px) {
+  /* Filtros se ajustan */
+  .filtros-superiores {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filtros-superiores input[type="text"],
+  .filtros-superiores input[type="date"] {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Tabla scroll horizontal */
+  .tabla-facturas {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+  }
+
+  .tabla-facturas table {
+    min-width: 900px; /* ancho mínimo para scroll */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Opcional: vista tipo card en móviles pequeños */
+  .tabla-facturas thead {
+    display: none;
+  }
+
+  .tabla-facturas tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background: #fff;
+  }
+
+  .tabla-facturas td {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 8px;
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+
+  .tabla-facturas td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #333;
+    margin-right: 8px;
+  }
 }

@@ -1,39 +1,79 @@
-/* Login.css */
-
+/* === Estilos Base (Mobile-First) === */
 .login-layout {
   display: flex;
-  height: 100vh; /* toda la altura de la ventana */
+  flex-direction: column; /* Apila los elementos verticalmente en móviles */
+  height: 100vh;
   width: 100%;
   font-family: 'Poppins', sans-serif;
 }
 
-/* Columna izquierda: formulario */
+/* Columna del formulario */
 .form-container {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fff; 
+  background-color: #fff;
   padding: 2rem;
+  order: 2; /* El formulario aparecerá después de la imagen en el DOM, pero lo ponemos primero en móviles */
 }
 
 .form-container h2 {
-  font-size: 2rem;
+  font-size: 1.8rem; /* Tamaño de fuente ajustado para móviles */
   margin-bottom: 1rem;
   font-weight: bold;
   color: #000;
 }
 
-.form-container input {
+.Logo {
+  width: 100px; /* Tamaño del logo ajustado */
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.inputs-row {
   width: 100%;
-  max-width: 300px;
-  padding: 12px;
+  max-width: 320px;
+}
+
+.form-container input,
+.password-container-L input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
   margin: 10px 0;
   border-radius: 10px;
   border: 1px solid #ddd;
   outline: none;
   font-size: 14px;
+}
+
+.form-container input:focus,
+.password-container-L input:focus {
+  border-color: #9b9b9b;
+}
+
+/* Contenedor de input + icono de ojo */
+.password-container-L {
+  position: relative;
+  width: 100%;
+}
+
+.password-container-L input {
+  padding-right: 40px; /* espacio para el botón de ojo */
+}
+
+.toggle-password-L {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  font-size: 1.2rem;
 }
 
 .Iniciar-sesion {
@@ -43,11 +83,11 @@
   border-radius: 10px;
   padding: 12px;
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
   font-size: 16px;
   cursor: pointer;
   margin-top: 15px;
-  transition: 0.3s;
+  transition: background-color 0.3s;
 }
 
 .Iniciar-sesion:hover {
@@ -59,6 +99,7 @@
   font-size: 14px;
   text-align: center;
   color: red;
+  max-width: 320px;
 }
 
 .mensaje.exito {
@@ -68,14 +109,15 @@
 .link-button {
   background: none;
   border: none;
-  color: #b3b0da;
+  color: #a792f5;
   cursor: pointer;
   text-decoration: underline;
   font-size: 14px;
+  margin: 10px 0;
 }
 
 .form-container p {
-  margin-top: 10px;
+  margin-top: 15px;
   font-size: 14px;
   text-align: center;
 }
@@ -86,123 +128,115 @@
   text-decoration: none;
 }
 
-/* Columna derecha: imagen */
+.google-login {
+  margin-top: 15px;
+}
+
+/* Columna de la imagen (oculta en móviles) */
 .image-container {
-  flex: 1;
-  background-color: #f5f5f5;
+  display: none; /* Oculta la imagen por defecto en la vista móvil */
+}
+
+/* === Modal (Funciona para todos los tamaños) === */
+.modal-L {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  z-index: 1000;
+  padding: 1rem;
 }
 
-.image-container img {
+.modal-content-L {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 350px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-/* Botón */
-.modal button {
-    width: 100%;
-    padding: 12px;
-    background-color: #b3b0da;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.modal button:hover {
-    background-color: #b3b0da;
-    transform: translateY(-2px);
-}
-
-.modal button:active {
-    transform: translateY(0);
-}
-
-/* Para móviles */
-@media (max-width: 400px) {
-    .container {
-        width: 90%;
-        padding: 30px 20px;
-    }
-}
-
-.modal-L {
-  position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.5);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-}
-
-.modal-content-L{
-  background:white;
-  padding:20px;
-  border-radius:8px;
-  text-align:center;
-  width:300px;
-}
-.modal-input{
-  border: none;
-  background: #c0c0c76e;
-  margin-right: 6px;
-  margin-top: 4px;
-  padding: 6px 12px;
+.modal-input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  background: #f0f0f5;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px 12px;
   border-radius: 8px;
-
 }
 
-.btn-modal-L{
-  margin-right: 6px;
-  margin-top: 4px;
-  padding: 6px 12px;
+.btn-modal-L, .btn-cerrar {
+  margin: 5px;
+  padding: 10px 20px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  background: #b1aff86e;
-  color: #382c46;
-  transition: background 0.3s, transform 0.1s;
   font-size: 0.9rem;
+  transition: background 0.3s, transform 0.1s;
+}
+
+.btn-modal-L {
+  background: #b1aff8;
+  color: #382c46;
 }
 
 .btn-modal-L:hover {
-  background: #b2aff8;
+  background: #9d9bf5;
   transform: scale(1.03);
 }
-.inputs-row {
-  gap: 12px; 
-  width: 100%;
-  max-width: 320px;
+
+.btn-cerrar {
+  background: #e0e0e0;
+  color: #333;
 }
 
-.Logo{
-    width: 20%;
-    height: auto;
-}
-
-.btn-cerrar{
-  margin-right: 6px;
-  margin-top: 4px;
-  padding: 6px 12px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background: #99a66eff;
-  color: #fdfcff;
-  transition: background 0.3s, transform 0.1s;
-  font-size: 0.9rem;
-}
 .btn-cerrar:hover {
-  background: rgb(90, 98, 62);
+  background: #ccc;
   transform: scale(1.03);
+}
+
+/* === Media Query para Tablets (768px y más) === */
+@media (min-width: 768px) {
+  .login-layout {
+    flex-direction: row; /* Vuelve al diseño de lado a lado */
+  }
+
+  .form-container {
+    order: 1; /* El formulario va a la izquierda */
+  }
+  
+  .image-container {
+    display: flex; /* Muestra la imagen */
+    flex: 1;
+    background-color: #f5f5f5;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    order: 2; /* La imagen va a la derecha */
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* === Media Query para Desktops (1024px y más) === */
+@media (min-width: 1024px) {
+  .form-container {
+    padding: 3rem; /* Más espaciado en pantallas grandes */
+  }
+
+  .form-container h2 {
+    font-size: 2.2rem;
+  }
 }

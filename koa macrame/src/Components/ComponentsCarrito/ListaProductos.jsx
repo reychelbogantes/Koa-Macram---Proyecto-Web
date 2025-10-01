@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaHeart, FaTrash } from 'react-icons/fa';
+import ModalAlert from '../../Components/ModalAlert/ModalAlert'; // ⚠️ Ajusta la ruta si es distinta
 
 function ListaProductos({
   productos,
@@ -9,6 +10,18 @@ function ListaProductos({
   onEliminar,
   onFavorito
 }) {
+  // ✅ Estados para mostrar el modal de confirmación
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalMsg, setModalMsg] = useState('');
+
+  const handleEliminar = (id, nombre) => {
+    // Llamamos la función recibida desde el padre para eliminar
+    onEliminar(id);
+    // Mostramos el modal con el mensaje de éxito
+    setModalMsg(`✅ El producto "${nombre}" fue eliminado del carrito con éxito.`);
+    setModalOpen(true);
+  };
+
   return (
     <div className="lista-productos">
       {productos.map(p => (
@@ -24,38 +37,40 @@ function ListaProductos({
             <h4>{p.nombre}</h4>
             <p className="precio">${p.precio}</p>
           </div>
-          
-<div className="acciones">
-  <label>Cantidad:</label>
 
-  <div className="cantidad-wrapper">
-    <button
-      type="button"
-      className="btn-cantidad"
-      onClick={() => onCantidadChange(p.id, Math.max(1, p.cantidad - 1))}
-    >
-      -
-    </button>
+          <div className="acciones">
+            <label>Cantidad:</label>
 
-    <input
-      type="number"
-      min="1"
-      value={p.cantidad}
-      onChange={(e) =>
-        onCantidadChange(p.id, Math.max(1, parseInt(e.target.value) || 1))
-      }
-    />
+            <div className="cantidad-wrapper">
+              <button
+                type="button"
+                className="btn-cantidad"
+                onClick={() => onCantidadChange(p.id, Math.max(1, p.cantidad - 1))}
+              >
+                -
+              </button>
 
-    <button
-      type="button"
-      className="btn-cantidad"
-      onClick={() => onCantidadChange(p.id, p.cantidad + 1)}
-    >
-      +
-    </button>
-  </div>
-</div>
+              <input
+                type="number"
+                min="1"
+                value={p.cantidad}
+                onChange={(e) =>
+                  onCantidadChange(
+                    p.id,
+                    Math.max(1, parseInt(e.target.value) || 1)
+                  )
+                }
+              />
 
+              <button
+                type="button"
+                className="btn-cantidad"
+                onClick={() => onCantidadChange(p.id, p.cantidad + 1)}
+              >
+                +
+              </button>
+            </div>
+          </div>
 
           <div className="botones-extra">
             <button
@@ -68,7 +83,7 @@ function ListaProductos({
 
             <button
               className="btn-eliminar"
-              onClick={() => onEliminar(p.id)}
+              onClick={() => handleEliminar(p.id, p.nombre)}
               title="Eliminar del carrito"
             >
               <FaTrash />
@@ -76,9 +91,16 @@ function ListaProductos({
           </div>
         </div>
       ))}
+
+      {/* ✅ Modal que muestra el mensaje de éxito al eliminar */}
+      <ModalAlert
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Aviso"
+        message={modalMsg}
+      />
     </div>
   );
 }
 
 export default ListaProductos;
-

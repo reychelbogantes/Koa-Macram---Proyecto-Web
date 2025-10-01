@@ -77,40 +77,41 @@ function UsuariosAdmin() {
             </tr>
           </thead>
           <tbody>
-            {usuariosFiltrados.map((u) => (
-              <tr key={u.id}>
-                <td>
-                  {editando === u.id ? (
-                    <input
-                      name="name"
-                      value={editData.name}
-                      onChange={handleEditChange}
-                    />
-                  ) : (
-                    u.name
-                  )}
-                </td>
-                <td>
-                  {editando === u.id ? (
-                    <input
-                      name="email"
-                      value={editData.email}
-                      onChange={handleEditChange}
-                    />
-                  ) : (
-                    u.email
-                  )}
-                </td>
-                <td className='Acciones-btn'>
-                  {editando === u.id ? (
-                    <button className='btn-editar-user' onClick={() => saveEdit(u.id)}>💾 Guardar</button>
-                  ) : (
-                    <button className='btn-editar-user' onClick={() => startEdit(u)}>✏️ Editar</button>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
+          {usuariosFiltrados.map((u) => (
+            <tr key={u.id}>
+              <td data-label="Nombre">
+                {editando === u.id ? (
+                  <input
+                    name="name"
+                    value={editData.name}
+                    onChange={handleEditChange}
+                  />
+                ) : (
+                  u.name
+                )}
+              </td>
+              <td data-label="Email">
+                {editando === u.id ? (
+                  <input
+                    name="email"
+                    value={editData.email}
+                    onChange={handleEditChange}
+                  />
+                ) : (
+                  u.email
+                )}
+              </td>
+              <td data-label="Acciones" className='Acciones-btn'>
+                {editando === u.id ? (
+                  <button className='btn-editar-user' onClick={() => saveEdit(u.id)}>💾 Guardar</button>
+                ) : (
+                  <button className='btn-editar-user' onClick={() => startEdit(u)}>✏️ Editar</button>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+
         </table>
       </div>
     </div>

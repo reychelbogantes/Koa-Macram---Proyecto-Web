@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import Navbar from '../../Components/NavBar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import './LegalPages.css';
 
 function TerminosCondiciones() {
+    // Favicon y título dinámicos
+  useEffect(() => {
+    const link = document.querySelector("link[rel~='icon']");
+    if (link) link.href = "/logo.png";
+    document.title = "Términos y Condiciones | Koa Macramé";
+  }, []);
+
   return (
     <div className="legal-page">
       <Navbar/>

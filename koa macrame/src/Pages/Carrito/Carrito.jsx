@@ -4,9 +4,9 @@ import './Carrito.css';
 import FiltroSeleccion from '../../Components/ComponentsCarrito/FiltroSeleccion';
 import ListaProductos from '../../Components/ComponentsCarrito/ListaProductos';
 import ResumenPedido from '../../Components/ComponentsCarrito/ResumenPedido';
-import MetodosPago from'../../Components/ComponentsCarrito/MetodosPago';
-import Navbar from '../../Components/NavBar/Navbar'
-import Footer from '../../Components/Footer/Footer'
+import MetodosPago from '../../Components/ComponentsCarrito/MetodosPago';
+import Navbar from '../../Components/NavBar/Navbar';
+import Footer from '../../Components/Footer/Footer';
 import ModalAlert from '../../Components/ModalAlert/ModalAlert';
 
 import UbicacionesUsuario from '../../Components/ComponentsCarrito/UbicacionesUsuario';
@@ -19,18 +19,26 @@ import {
 } from '../../Services/Servicios';
 
 function Carrito() {
+  // --- Favicon y título dinámicos
+  useEffect(() => {
+    const link = document.querySelector("link[rel~='icon']");
+    if (link) link.href = "/logo.png";
+    document.title = "Mi carrito | Koa Macramé";
+  }, []);
+
   const [direccionSeleccionada, setDireccionSeleccionada] = useState(null);
   const [productosCarrito, setProductosCarrito] = useState([]);
   const [seleccionados, setSeleccionados] = useState([]);
   const [usuario, setUsuario] = useState(null);
-  const [carritoId, setCarritoId] = useState(null);
+  const [carritoId, setCarritoId] = useState(null);   // ✅ id REAL del carrito
 
-  // ✅ Estados para el modal de alerta
+  // Modal de alerta
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState('');
 
   const productosSeleccionados = productosCarrito.filter(p => seleccionados.includes(p.id));
 
+  // --- Cargar usuario y carrito
   useEffect(() => {
     const userData = localStorage.getItem("usuarioLogueado");
     if (!userData) {
@@ -42,30 +50,31 @@ function Carrito() {
     const u = JSON.parse(userData);
     setUsuario(u);
 
-    // ✅ Cargar el carrito real
-    getCarritoPorUsuario(u.id).then(async c => {
-      if (!c || !c.productos || c.productos.length === 0) {
-        setModalMsg('Tu carrito está vacío.');
+    getCarritoPorUsuario(u.id)
+      .then(async c => {
+        if (!c || !c.productos || c.productos.length === 0) {
+          setModalMsg('Tu carrito está vacío.');
+          setModalOpen(true);
+          return;
+        }
+
+        const allProducts = await getProductos();
+        const lista = c.productos
+          .map(item => {
+            const prod = allProducts.find(p => p.id === item.productoId);
+            return prod ? { ...prod, cantidad: item.cantidad } : null;
+          })
+          .filter(Boolean);
+
+        setCarritoId(c.id);           // ✅ guardamos el id del carrito
+        setProductosCarrito(lista);
+        setSeleccionados([]);
+      })
+      .catch(err => {
+        console.error("Error al cargar carrito", err);
+        setModalMsg('Hubo un problema cargando el carrito.');
         setModalOpen(true);
-        return;
-      }
-
-      const allProducts = await getProductos();
-      const lista = c.productos
-        .map(item => {
-          const prod = allProducts.find(p => p.id === item.productoId);
-          return prod ? { ...prod, cantidad: item.cantidad } : null;
-        })
-        .filter(Boolean);
-
-      setCarritoId(c.id);
-      setProductosCarrito(lista);
-      setSeleccionados([]);
-    }).catch(err => {
-      console.error("Error al cargar carrito", err);
-      setModalMsg('Hubo un problema cargando el carrito.');
-      setModalOpen(true);
-    });
+      });
   }, []);
 
   // --- Seleccionar / deseleccionar todos
@@ -106,7 +115,7 @@ function Carrito() {
     }
   };
 
-  // --- Pasar a favoritos (reemplazo de alert() por ModalAlert)
+  // --- Pasar a favoritos
   const handleFavorito = async (producto) => {
     if (!usuario) {
       setModalMsg('Debes iniciar sesión para guardar favoritos');
@@ -163,13 +172,14 @@ function Carrito() {
             tipoEnvio={direccionSeleccionada?.metodoEnvio}
             setCarrito={setProductosCarrito}
             seleccionados={seleccionados}
+            carritoId={carritoId}   // ✅ pasamos el id del carrito
           />
           <MetodosPago />
         </div>
       </div>
       <Footer />
 
-      {/* ✅ Modal de alerta que reemplaza todos los alert() */}
+      {/* Modal de alerta */}
       <ModalAlert
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}

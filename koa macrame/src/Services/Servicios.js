@@ -208,17 +208,28 @@ export async function updateCarrito(idCarrito, productos) {
   return await res.json();
 }
 
-export async function vaciarCarrito(idsProductos) {
-  const resp = await fetch("http://localhost:3000/Carritos");
-  const items = await resp.json();
-   // Filtrar los items cuyo productoId coincida con los ids seleccionados
-  const borrar = items.filter(item => idsProductos.includes(item.productoId));
-  await Promise.all(
-    borrar.map(item =>
-      fetch(`http://localhost:3000/Carritos/${item.id}`, { method: "DELETE" })
-    )
-  );
+export async function vaciarCarrito(idCarrito, productosComprados) {
+  const resp = await fetch(`http://localhost:3000/Carritos/${idCarrito}`);
+  if (!resp.ok) throw new Error("Carrito no encontrado");
+  const carrito = await resp.json();
+
+  const productosActualizados = (carrito.productos || []).map(item => {
+    const comprado = productosComprados.find(p => p.productoId === item.productoId);
+    if (comprado) {
+      const nuevaCantidad = item.cantidad - comprado.cantidad;
+      // si llega a 0, lo eliminamos
+      return nuevaCantidad > 0 ? { ...item, cantidad: nuevaCantidad } : null;
+    }
+    return item;
+  }).filter(Boolean);
+
+  await fetch(`http://localhost:3000/Carritos/${idCarrito}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ productos: productosActualizados })
+  });
 }
+
 
 export async function guardarDireccionUsuario(idUsuario, nuevaDireccion) {
   try {

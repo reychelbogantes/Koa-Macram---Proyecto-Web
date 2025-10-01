@@ -125,3 +125,84 @@
   border-radius: 5px;
   font-size: 1rem;
 }
+
+.Titulo {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.filtros-superiores {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filtros-superiores input,
+.filtros-superiores select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+/* Tabla responsiva */
+.tabla-inventario {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+  display: block; /* ✅ convierte la tabla en bloque scrolleable */
+}
+
+.tabla-inventario th,
+.tabla-inventario td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Fila desactivada */
+.desactivado {
+  background: #f8d7da;
+}
+
+/* ✅ Ajustes responsivos */
+@media (max-width: 768px) {
+  .filtros-superiores {
+    flex-direction: column;
+  }
+
+  .tabla-inventario th,
+  .tabla-inventario td {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .thumb {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* En celulares pequeños, simplificamos aún más */
+@media (max-width: 480px) {
+  .tabla-inventario {
+    font-size: 12px;
+  }
+
+  .acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .filtros-superiores input,
+  .filtros-superiores select {
+    width: 100%;
+  }
+}

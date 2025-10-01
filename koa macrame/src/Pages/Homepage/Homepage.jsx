@@ -17,6 +17,14 @@ import 'swiper/css/pagination'
 import './Homepage.css'
 
 function Homepage() {
+
+   // Favicon y título dinámicos
+  useEffect(() => {
+    const link = document.querySelector("link[rel~='icon']");
+    if (link) link.href = "/logo.png";
+    document.title = "Koa Macramé";
+  }, []);
+
   const [destacados, setDestacados] = useState([]);
 
   useEffect(() => {

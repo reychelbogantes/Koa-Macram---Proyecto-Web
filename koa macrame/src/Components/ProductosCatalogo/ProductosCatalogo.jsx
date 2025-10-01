@@ -73,6 +73,7 @@ function ProductosCatalogo() {
   );
 
   return (
+    <div className='bodyPC'>
     <div className="catalogo-container">
       <h1>Catálogo de Productos</h1>
 
@@ -133,6 +134,7 @@ function ProductosCatalogo() {
         title="Aviso"
         message={modalMsg}
       />
+    </div>
     </div>
   );
 }
