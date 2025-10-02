@@ -4,6 +4,7 @@ import {
   updateProducto,
   deleteProducto
 } from '../../Services/Servicios';
+import ModalAlert from "../../Components/ModalAlert/ModalAlert"; 
 import MenuIzquierdo from '../MenuIzquierdo/MenuIzquierdo';
 import './Inventario.css';
 
@@ -14,7 +15,10 @@ function Inventario() {
 
   // ✅ estados de filtro
   const [busqueda, setBusqueda] = useState('');
-  const [filtroEstado, setFiltroEstado] = useState('todos'); // todos | activos | desactivados | destacados
+  const [filtroEstado, setFiltroEstado] = useState('todos');
+
+  // 📌 Estado para el modal de alertas
+  const [alertConfig, setAlertConfig] = useState({ isOpen: false, title: "", message: "", onConfirm: null, showConfirm: false });
 
   const fetchData = () => {
     getProductos().then(setProductos).catch(console.error);
@@ -36,29 +40,66 @@ function Inventario() {
   };
 
   const saveEdit = async (id) => {
+    if (!editData.nombre.trim() || !editData.descripcion.trim() || !editData.precio.toString().trim()) {
+      setAlertConfig({
+        isOpen: true,
+        title: "Error de Validación",
+        message: "⚠️ Los campos no pueden estar vacíos o solo espacios."
+      });
+      return;
+    }
+
     await updateProducto(id, editData);
     setEditando(null);
     fetchData();
+
+    setAlertConfig({
+      isOpen: true,
+      title: "Éxito",
+      message: "✅ Producto actualizado correctamente."
+    });
   };
 
   // ---- Desactivar/Activar
   const toggleActivo = async (p) => {
     await updateProducto(p.id, { activo: !p.activo });
     fetchData();
+    setAlertConfig({
+      isOpen: true,
+      title: "Estado actualizado",
+      message: `✅ El producto fue ${p.activo ? "desactivado" : "activado"} correctamente.`
+    });
   };
 
   // ---- Destacar
   const toggleDestacado = async (p) => {
     await updateProducto(p.id, { destacado: !p.destacado });
     fetchData();
+    setAlertConfig({
+      isOpen: true,
+      title: "Destacado actualizado",
+      message: p.destacado ? "⭐ Se quitó de destacados." : "⭐ Producto marcado como destacado."
+    });
   };
 
-  // ---- Eliminar
+  // ---- Eliminar con confirmación en modal
   const remove = async (id) => {
-    if (window.confirm("¿Eliminar este producto?")) {
-      await deleteProducto(id);
-      fetchData();
-    }
+    setAlertConfig({
+      isOpen: true,
+      title: "Confirmar eliminación",
+      message: "¿Seguro que quieres eliminar este producto?",
+      showConfirm: true,
+      onConfirm: async () => {
+        await deleteProducto(id);
+        fetchData();
+        setAlertConfig({
+          isOpen: true,
+          title: "Eliminado",
+          message: "🗑️ Producto eliminado correctamente.",
+          showConfirm: false
+        });
+      }
+    });
   };
 
   // ✅ filtrado en tiempo real: texto + estado
@@ -160,6 +201,24 @@ function Inventario() {
           ))}
         </tbody>
       </table>
+
+      {/* Modal de alertas */}
+      <ModalAlert
+        isOpen={alertConfig.isOpen}
+        onClose={() => setAlertConfig({ ...alertConfig, isOpen: false, showConfirm: false })}
+        title={alertConfig.title}
+        message={alertConfig.message}
+      />
+      {/* Botón de confirmación extra si lo necesita */}
+      {alertConfig.isOpen && alertConfig.showConfirm && (
+        <div className="modal-confirm-buttons">
+          <button onClick={() => {
+            alertConfig.onConfirm?.();
+            setAlertConfig({ ...alertConfig, isOpen: false, showConfirm: false });
+          }}>Sí</button>
+          <button onClick={() => setAlertConfig({ ...alertConfig, isOpen: false, showConfirm: false })}>No</button>
+        </div>
+      )}
     </div>
   );
 }

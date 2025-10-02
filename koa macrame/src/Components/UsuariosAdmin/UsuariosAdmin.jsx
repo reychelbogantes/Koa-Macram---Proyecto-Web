@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { GetUsers, updateUser } from '../../Services/Servicios'; // ✅ asegúrate de tener updateUser en tu servicio
+import { GetUsers, updateUser } from '../../Services/Servicios';
+import ModalAlert from "../../Components/ModalAlert/ModalAlert"; 
 import './UsuariosAdmin.css';
 
 function UsuariosAdmin() {
@@ -9,8 +10,11 @@ function UsuariosAdmin() {
   const [busqueda, setBusqueda] = useState("");
 
   // ✏️ estados para edición
-  const [editando, setEditando] = useState(null); // id del usuario que se edita
+  const [editando, setEditando] = useState(null);
   const [editData, setEditData] = useState({ name: "", email: "" });
+
+  // 📌 Estado para manejar el modal de alertas
+  const [alertConfig, setAlertConfig] = useState({ isOpen: false, title: "", message: "" });
 
   useEffect(() => {
     GetUsers()
@@ -35,15 +39,37 @@ function UsuariosAdmin() {
 
   // 👉 guardar cambios en servidor y refrescar
   const saveEdit = async (id) => {
+    const nombreValido = editData.name.trim() !== "";
+    const emailValido = editData.email.trim() !== "";
+
+    if (!nombreValido || !emailValido) {
+      setAlertConfig({
+        isOpen: true,
+        title: "Error de Validación",
+        message: "⚠️ Los campos no pueden estar vacíos o solo con espacios."
+      });
+      return;
+    }
+
     try {
-      await updateUser(id, editData);   // ✅ tu servicio debe aceptar (id, { name, email })
-      // actualizamos la lista local para no recargar
+      await updateUser(id, editData);
       setUsuarios(prev =>
         prev.map(u => u.id === id ? { ...u, ...editData } : u)
       );
       setEditando(null);
+
+      setAlertConfig({
+        isOpen: true,
+        title: "Éxito",
+        message: "✅ Usuario actualizado correctamente."
+      });
     } catch (err) {
       console.error("Error al actualizar usuario:", err);
+      setAlertConfig({
+        isOpen: true,
+        title: "Error",
+        message: "❌ Hubo un problema al actualizar el usuario."
+      });
     }
   };
 
@@ -58,7 +84,6 @@ function UsuariosAdmin() {
       <div className='Usuarios-A'>
         <h1 className='Titulo'>Usuarios registrados</h1>
 
-
         {/* ✅ Barra de búsqueda */}
         <div className="barra-busqueda">
           <input
@@ -67,9 +92,9 @@ function UsuariosAdmin() {
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
           />
-        <h3 className="Titulo1">
-          <span className="contador-badge">{usuarios.length}</span>
-        </h3>
+          <h3 className="Titulo1">
+            <span className="contador-badge">{usuarios.length}</span>
+          </h3>
         </div>
 
         <table className="tabla-usuarios">
@@ -81,43 +106,50 @@ function UsuariosAdmin() {
             </tr>
           </thead>
           <tbody>
-          {usuariosFiltrados.map((u) => (
-            <tr key={u.id}>
-              <td data-label="Nombre">
-                {editando === u.id ? (
-                  <input
-                    name="name"
-                    value={editData.name}
-                    onChange={handleEditChange}
-                  />
-                ) : (
-                  u.name
-                )}
-              </td>
-              <td data-label="Email">
-                {editando === u.id ? (
-                  <input
-                    name="email"
-                    value={editData.email}
-                    onChange={handleEditChange}
-                  />
-                ) : (
-                  u.email
-                )}
-              </td>
-              <td data-label="Acciones" className='Acciones-btn'>
-                {editando === u.id ? (
-                  <button className='btn-editar-user' onClick={() => saveEdit(u.id)}>💾 Guardar</button>
-                ) : (
-                  <button className='btn-editar-user' onClick={() => startEdit(u)}>✏️ Editar</button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-
+            {usuariosFiltrados.map((u) => (
+              <tr key={u.id}>
+                <td data-label="Nombre">
+                  {editando === u.id ? (
+                    <input
+                      name="name"
+                      value={editData.name}
+                      onChange={handleEditChange}
+                    />
+                  ) : (
+                    u.name
+                  )}
+                </td>
+                <td data-label="Email">
+                  {editando === u.id ? (
+                    <input
+                      name="email"
+                      value={editData.email}
+                      onChange={handleEditChange}
+                    />
+                  ) : (
+                    u.email
+                  )}
+                </td>
+                <td data-label="Acciones" className='Acciones-btn'>
+                  {editando === u.id ? (
+                    <button className='btn-editar-user' onClick={() => saveEdit(u.id)}>💾 Guardar</button>
+                  ) : (
+                    <button className='btn-editar-user' onClick={() => startEdit(u)}>✏️ Editar</button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
+
+      {/* ✅ Modal de alertas */}
+      <ModalAlert
+        isOpen={alertConfig.isOpen}
+        onClose={() => setAlertConfig({ ...alertConfig, isOpen: false })}
+        title={alertConfig.title}
+        message={alertConfig.message}
+      />
     </div>
   );
 }

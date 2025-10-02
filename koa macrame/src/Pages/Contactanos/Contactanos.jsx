@@ -9,37 +9,42 @@ function Contactanos() {
   useEffect(() => {
     const link = document.querySelector("link[rel~='icon']");
     if (link) link.href = "/logo.png";
-    document.title = "Contactnos | Koa Macramé";
+    document.title = "Contactanos | Koa Macramé";
   }, []);
 
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [mensaje, setMensaje] = useState('');
-  const [estado, setEstado] = useState(null); // success | error | invalid
+  const [estado, setEstado] = useState(null); // success | error | invalid | empty
 
   const validarEmail = (correo) => {
-    // Expresión regular simple: debe tener algo@algo
-    return /\S+@\S+\.\S+/.test(correo);
+    return /\S+@\S+\.\S+/.test(correo);// Expresión regular simple para validar email
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ Validación manual del correo
+    // ✅ Validar que nombre y mensaje no estén vacíos
+    if (nombre.trim() === "" || mensaje.trim() === "") {
+      setEstado("empty");
+      return;
+    }
+
+    // ✅ Validar el correo
     if (!validarEmail(email)) {
-      setEstado('invalid');
+      setEstado("invalid");
       return;
     }
 
     try {
       await postContacto({ nombre, email, mensaje });
-      setEstado('success');
+      setEstado("success");
       setNombre('');
       setEmail('');
       setMensaje('');
     } catch (error) {
       console.error(error);
-      setEstado('error');
+      setEstado("error");
     }
   };
 
@@ -57,9 +62,8 @@ function Contactanos() {
     <div>
       <div className="contacto-page">
         <Navbar />
-        <br />
-        <br />
-        <br />
+        <br /><br /><br />
+
         <section className="info-negocio">
           <h1>Acerca de Nosotros</h1>
           <p>
@@ -83,32 +87,37 @@ function Contactanos() {
           </ul>
         </section>
 
+        {/* Formulario */}
         <section className="formulario-contacto">
           <h1>Contáctanos</h1>
-          <div onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Nombre"
               value={nombre}
               onChange={e => setNombre(e.target.value)}
               required
-            /> <br /><br />
+            /> 
+            <br /><br />
             <input
               type="email"
               placeholder="Correo electrónico"
               value={email}
               onChange={e => setEmail(e.target.value)}
               required
-            /> <br /><br />
+            /> 
+            <br /><br />
             <textarea
               placeholder="Escribe tu mensaje"
               value={mensaje}
               onChange={e => setMensaje(e.target.value)}
               required
-            /> <br />
-            <button type="submit" onClick={handleSubmit}>Enviar</button>
-          </div>
+            /> 
+            <br />
+            <button type="submit">Enviar</button>
+          </form>
 
+          {/* ✅ Mensajes de validación */}
           {estado === 'success' && (
             <p className="exito1">¡Gracias por tu mensaje! Nos pondremos en contacto pronto.</p>
           )}
@@ -116,10 +125,14 @@ function Contactanos() {
             <p className="error1">Ocurrió un error al enviar. Inténtalo de nuevo.</p>
           )}
           {estado === 'invalid' && (
-            <p className="error1">Por favor ingresa un correo</p>
+            <p className="error1">Por favor ingresa un correo válido.</p>
+          )}
+          {estado === 'empty' && (
+            <p className="error1">⚠️ Debes ingresar tu nombre y un mensaje.</p>
           )}
         </section>
 
+        {/* Datos de contacto */}
         <section className="datos-contacto">
           <h1>Información de Contacto</h1>
           <p><strong>Dirección:</strong> San José, Costa Rica</p>
@@ -132,6 +145,7 @@ function Contactanos() {
           </p>
         </section>
 
+        {/* Mapa */}
         <section className="datos-contacto">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7860.233550428351!2d-84.1250248106968!3d9.924231667830284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0fdbc8749ad2f%3A0x96e351d4901c08d!2sCondominio%20Venehorizonte!5e0!3m2!1ses-419!2scr!4v1759122812992!5m2!1ses-419!2scr"

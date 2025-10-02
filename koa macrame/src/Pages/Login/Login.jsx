@@ -40,12 +40,12 @@ function Login() {
         const usuarios = await GetUsers();
         const usuarioValido = usuarios.find(
            u =>
-       (u.name === username || u.email === username) && u.password === password);
+       (u.name === username || u.email === username) && u.password === password);// Permitir login con usuario o email
 
         if (usuarioValido) {
           setMensajeLogin("Ingreso exitoso ✅");
           setLogueado(true);
-          localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioValido));
+          localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioValido));// Guardar usuario en localStorage
           
           // ✅ Redirección según rol
           if (usuarioValido.rol === "admin") {
@@ -111,24 +111,24 @@ function Login() {
   // Login con Google con verificación de rol
   const handleSuccess = async (credentialResponse) => {
     try {
-      const decoded = jwt_decode.default(credentialResponse.credential);
+      const decoded = jwt_decode.default(credentialResponse.credential);// Decodificar el token JWT
 
       const user = {
-        googleId: decoded.sub,
-        name: decoded.name,
-        email: decoded.email,
-        picture: decoded.picture,
+        googleId: decoded.sub,// ID único de Google
+        name: decoded.name,// Nombre completo
+        email: decoded.email,// Email
+        picture: decoded.picture,// Foto de perfil
         rol: "user" // ✅ Asignar rol por defecto, cámbialo si quieres otros roles
       };
 
       const usuarios = await GetUsers();
       const usuarioExistente = usuarios.find(
-        u => u.googleId === user.googleId || u.email === user.email
+        u => u.googleId === user.googleId || u.email === user.email// Permitir login con GoogleId o email
       );
 
       if (usuarioExistente) {
         setMensajeLogin("Ingreso con Google exitoso ✅");
-        localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioExistente));
+        localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioExistente));// Guardar usuario en localStorage
 
         // ✅ Redirección según rol
         if (usuarioExistente.rol === "admin") {
@@ -178,7 +178,7 @@ function Login() {
             value={username}
             onChange={e => setUsername(e.target.value)}
           />
-          {/* 🔹 Campo contraseña con icono de ojo */}
+          {/* Campo contraseña con icono de ojo */}
           <div className="password-container-L">
             <input
               type={showPassword ? "text" : "password"}

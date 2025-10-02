@@ -50,8 +50,8 @@ function Registro() {
 
       // 4️⃣ Verificar si el usuario ya existe
       const usuarios = await GetUsers();
-      const usernameExiste = usuarios.some((u) => u.name === name);
-      const emailExiste = usuarios.some((u) => u.email === email);
+      const usernameExiste = usuarios.some((u) => u.name === name);// Verificar nombre de usuario
+      const emailExiste = usuarios.some((u) => u.email === email);// Verificar email también
 
       if (usernameExiste) {
         setTipoMensaje("error");
@@ -85,7 +85,7 @@ function Registro() {
 
   const handleSuccess = async (credentialResponse) => {
   try {
-    const decoded = jwt_decode.default(credentialResponse.credential);
+    const decoded = jwt_decode.default(credentialResponse.credential);// Decodificar el token JWT
     console.log("Usuario de Google:", decoded);
 
     // Construir objeto usuario
@@ -107,13 +107,13 @@ function Registro() {
     if (usuarioExistente) {
       console.log("Usuario ya registrado:", usuarioExistente);
       setMensaje("Ingreso con Google exitoso ✅");
-      localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioExistente));
+      localStorage.setItem("usuarioLogueado", JSON.stringify(usuarioExistente));// Guardar usuario en localStorage
     } else {
       // 3️⃣ Guardar en db.json si no existe
       const savedUser = await postGoogleUser(user);
       console.log("Usuario guardado en db.json:", savedUser);
       setMensaje("Ingreso con Google exitoso ✅");
-      localStorage.setItem("usuarioLogueado", JSON.stringify(savedUser));
+      localStorage.setItem("usuarioLogueado", JSON.stringify(savedUser));// Guardar usuario en localStorage
     }
 
     setTimeout(() => navigate("/homepage"), 1000);
@@ -168,7 +168,7 @@ function Registro() {
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
-          {/* 🔹 Input contraseña con botón */}
+          {/* Input contraseña con botón */}
             <div className="password-container">
               <input
                 type={showPassword ? "text" : "password"}

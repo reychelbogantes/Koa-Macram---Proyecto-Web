@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaHeart, FaTrash } from 'react-icons/fa';
-import ModalAlert from '../../Components/ModalAlert/ModalAlert'; // ⚠️ Ajusta la ruta si es distinta
+import ModalAlert from '../../Components/ModalAlert/ModalAlert'; 
 
 function ListaProductos({
   productos,
