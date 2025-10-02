@@ -36,6 +36,12 @@
 .barra-busqueda {
   margin: 1rem 0;
   text-align: left; /* o left si prefieres */
+  padding: 0 5px;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .barra-busqueda input {
@@ -147,4 +153,17 @@
     width: 100%;
     margin-top: 6px;
   }
+}
+
+
+.contador-badge {
+  background: #7c7aab; 
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 5px 12px;
+  border-radius: 50px;   /* forma de pastilla */
+  display: inline-block;
+  min-width: 30px;
+  text-align: center;
 }

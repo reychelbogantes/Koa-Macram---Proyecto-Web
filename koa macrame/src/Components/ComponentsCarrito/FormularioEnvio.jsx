@@ -89,7 +89,7 @@ function FormularioEnvio({ onSubmit, datosIniciales}) {
           placeholder="Notas adicionales para el repartidor"
         />
 
-        <button type="submit" className="btn-enviar">Confirmar Envío</button>
+        <button type="submit" className="btn-enviar" onClick={handleSubmit}>Confirmar Envío</button>
       </div>
 
       {/* ✅ Modal de alerta */}

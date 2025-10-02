@@ -58,7 +58,7 @@ function Routing() {
         <Route path="/mis-notificaciones" element={<MisNotificaciones usuario={usuarioLogueado} />}/>
 
         {/* Rutas anidadas del panel de administración */}
-        <Route path="/admin/*" element={
+        <Route path="/admin" element={
             <RutaPrivada>
               <Admin />
             </RutaPrivada>

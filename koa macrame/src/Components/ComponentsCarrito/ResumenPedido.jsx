@@ -95,6 +95,10 @@ function ResumenPedido({
             // ✅ Reemplazo de alert por modal
             setModalMsg(`Pago completado por ${details.payer.name.given_name}`);
             setModalOpen(true);
+            // 🔄 Recargar automáticamente la página después de 2 segundos
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
 
             try {
               const userData = JSON.parse(localStorage.getItem("usuarioLogueado"));

@@ -20,35 +20,42 @@ function PerfilModal({ isOpen, onClose, usuario }) {
       if (misOrdenes.length === 0) return;
 
       // ✅ Busca la fecha más reciente de cualquier cambio en el historial
-    const todasFechasHistorial = misOrdenes.flatMap(o =>
-       (o.historial || []).map(h => new Date(h.fecha).getTime())
-     );
-    if (todasFechasHistorial.length === 0) return;
+      const todasFechasHistorial = misOrdenes.flatMap(o =>
+        (o.historial || []).map(h => new Date(h.fecha).getTime())
+      );
+      if (todasFechasHistorial.length === 0) return;
 
-    const ultimaFecha = new Date(Math.max(...todasFechasHistorial));
+      const ultimaFecha = new Date(Math.max(...todasFechasHistorial));
 
-    // ✅ Fecha guardada de la última vez que el usuario abrió las notificaciones
-     const ultimaVista = localStorage.getItem("ultimaVistaNotificaciones");
-     const ultimaVistaDate = ultimaVista ? new Date(ultimaVista) : null;
+      // ✅ Fecha guardada de la última vez que el usuario abrió las notificaciones
+      const ultimaVista = localStorage.getItem("ultimaVistaNotificaciones");
+      const ultimaVistaDate = ultimaVista ? new Date(ultimaVista) : null;
 
-    // ✅ Si no hay registro de última vista o la última notificación es posterior
-     if (!ultimaVistaDate || ultimaFecha > ultimaVistaDate) {
-       setHayNotificacionNueva(true);
+      // ✅ Si no hay registro de última vista o la última notificación es posterior
+      if (!ultimaVistaDate || ultimaFecha > ultimaVistaDate) {
+        setHayNotificacionNueva(true);
+      }
     }
-   }
 
-   verificarNotificaciones();
-   // Opcional: refrescar cada 10s para detectar nuevas notificaciones en tiempo real
-   const intervalo = setInterval(verificarNotificaciones, 10000);
-   return () => clearInterval(intervalo);
+    verificarNotificaciones();
+    // Opcional: refrescar cada 10s para detectar nuevas notificaciones en tiempo real
+    const intervalo = setInterval(verificarNotificaciones, 10000);
+    return () => clearInterval(intervalo);
   }, [usuario]);
 
   const irANotificaciones = () => {
-    // ✅ Guardamos la fecha actual como última vez que se vio la página
     localStorage.setItem("ultimaVistaNotificaciones", new Date().toISOString());
-    setHayNotificacionNueva(false); // Oculta el punto rojo
+    setHayNotificacionNueva(false);
     onClose();
     navigate("/mis-notificaciones");
+  };
+
+  const cerrarSesion = () => {
+    // ✅ Limpia el localStorage
+    localStorage.removeItem("usuarioLogueado");
+    localStorage.removeItem("ultimaVistaNotificaciones");
+    onClose();
+    navigate("/login");
   };
 
   return (
@@ -83,6 +90,14 @@ function PerfilModal({ isOpen, onClose, usuario }) {
                   }}
                 >
                   🛍️ Mis pedidos
+                </button>
+
+                {/* ✅ Nuevo botón cerrar sesión */}
+                <button
+                  className="perfil-btn cerrar-sesion-btn"
+                  onClick={cerrarSesion}
+                >
+                  🚪 Cerrar sesión
                 </button>
               </div>
             </>

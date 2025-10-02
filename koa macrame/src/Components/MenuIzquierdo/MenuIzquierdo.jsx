@@ -43,8 +43,8 @@ function MenuIzquierdo() {
             </button>
             {openUsuarios && (
               <div className="submenu-items">
-                <Link to="usuarios-admin" onClick={handleCloseMenu}>👤 Usuarios Admin</Link>
-                <Link to="usuarios" onClick={handleCloseMenu}>👥 Usuarios Clientes</Link>
+                <Link to="/admin/usuarios-admin" onClick={handleCloseMenu}>👤 Usuarios Admin</Link>
+                <Link to="/admin/usuarios" onClick={handleCloseMenu}>👥 Usuarios Clientes</Link>
               </div>
             )}
           </div>
@@ -60,9 +60,9 @@ function MenuIzquierdo() {
             </button>
             {openPedidos && (
               <div className="submenu-items">
-                <Link to="ordenes-pendientes" onClick={handleCloseMenu}>‼️ Nuevos Pedidos</Link>
-                <Link to="ordenes-finalizadas" onClick={handleCloseMenu}>✔️ Pedidos finalizados</Link>
-                <Link to="ordenes-canceladas" onClick={handleCloseMenu}>❌ Pedidos Cancelados</Link>
+                <Link to="/admin/ordenes-pendientes" onClick={handleCloseMenu}>‼️ Nuevos Pedidos</Link>
+                <Link to="/admin/ordenes-finalizadas" onClick={handleCloseMenu}>✔️ Pedidos finalizados</Link>
+                <Link to="/admin/ordenes-canceladas" onClick={handleCloseMenu}>❌ Pedidos Cancelados</Link>
               </div>
             )}
           </div>
@@ -80,8 +80,8 @@ function MenuIzquierdo() {
             </button>
             {openProductos && (
               <div className="submenu-items">
-                <Link to="productos" onClick={handleCloseMenu}>➕ Ingresar nuevo</Link>
-                <Link to="inventario" onClick={handleCloseMenu}>📦 Inventario</Link>
+                <Link to="/admin/productos" onClick={handleCloseMenu}>➕ Ingresar nuevo</Link>
+                <Link to="/admin/inventario" onClick={handleCloseMenu}>📦 Inventario</Link>
               </div>
             )}
           </div>

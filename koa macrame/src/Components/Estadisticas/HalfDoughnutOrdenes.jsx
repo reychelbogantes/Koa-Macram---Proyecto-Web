@@ -3,7 +3,7 @@ import ReactECharts from "echarts-for-react";
 import { getOrdenes } from "../../Services/Servicios";
 
 export default function HalfDoughnutOrdenes() {
-  const [option, setOption] = useState({});
+  const [option, setOption] = useState(null);
 
   useEffect(() => {
     async function cargarDatos() {
@@ -11,55 +11,68 @@ export default function HalfDoughnutOrdenes() {
         const ordenes = await getOrdenes();
         const resumen = contarOrdenesPorEstadoMes(ordenes);
 
+        const total = resumen.pendiente + resumen.enviada + resumen.cancelada;
+
+        if (total === 0) {
+          // ⚠️ Si no hay datos, mostramos mensaje
+          setOption({
+            title: {
+              text: "Sin datos este mes",
+              left: "center",
+              top: "center",
+              textStyle: { fontSize: 16, color: "#999" }
+            }
+          });
+          return;
+        }
+
         setOption({
-            series: [
+          series: [
             {
-              name: 'Órdenes del mes',
-              type: 'pie',
-              radius: ['40%', '70%'],
-              center: ['50%', '70%'],
-              startAngle: 180,
-              endAngle: 360,
+              name: "Órdenes del mes",
+              type: "pie",
+              radius: ["40%", "70%"],
+              center: ["50%", "70%"],
+              startAngle: 180, // inicia desde abajo
               data: [
-                { value: resumen.pendiente, name: 'Pendientes' },
-                { value: resumen.enviada,   name: 'Enviadas' },
-                { value: resumen.cancelada, name: 'Canceladas' }
+                { value: resumen.pendiente, name: "Pendientes" },
+                { value: resumen.enviada, name: "Enviadas" },
+                { value: resumen.cancelada, name: "Canceladas" }
               ],
               itemStyle: {
                 borderRadius: 8,
-                borderColor: '#fff',
+                borderColor: "#fff",
                 borderWidth: 2
               },
               label: {
                 show: true,
-                position: 'outside'
+                position: "outside"
               }
             }
           ],
           tooltip: {
-            trigger: 'item',
-            formatter: '{b}: {c} ({d}%)'
+            trigger: "item",
+            formatter: "{b}: {c} ({d}%)"
           },
           legend: {
-            top: '5%',
-            left: 'center'
-          }, toolbox: {
+            top: "5%",
+            left: "center"
+          },
+          toolbox: {
             show: true,
             feature: {
-              mark: { show: true },
               saveAsImage: { show: true }
             }
           },
           color: [
-    "#F8BBD0", // Rosa pastel
-    "#C5CAE9", // Lavanda
-    "#C8E6C9", // Verde menta
-    "#B3E5FC", // Celeste
-    "#FFF9C4", // Amarillo suave
-    "#FFE0B2", // Durazno pastel
-    "#E1BEE7"  // Lila suave
-  ],
-
+            "#F8BBD0", // Rosa pastel
+            "#C5CAE9", // Lavanda
+            "#C8E6C9", // Verde menta
+            "#B3E5FC", // Celeste
+            "#FFF9C4", // Amarillo suave
+            "#FFE0B2", // Durazno pastel
+            "#E1BEE7"  // Lila suave
+          ]
         });
       } catch (err) {
         console.error("Error cargando las órdenes:", err);
@@ -70,7 +83,11 @@ export default function HalfDoughnutOrdenes() {
 
   return (
     <div style={{ width: "100%", height: 400 }}>
-      <ReactECharts option={option} style={{ height: '100%', width: '100%' }} />
+      {option ? (
+        <ReactECharts option={option} style={{ height: "100%", width: "100%" }} />
+      ) : (
+        <p>Cargando gráfico...</p>
+      )}
     </div>
   );
 }
@@ -87,7 +104,7 @@ function contarOrdenesPorEstadoMes(ordenes) {
   const resumen = { pendiente: 0, enviada: 0, cancelada: 0 };
 
   ordenes.forEach(o => {
-    const fecha = new Date(o.fecha);      // Ajusta si tu campo de fecha se llama distinto
+    const fecha = new Date(o.fecha);
     if (fecha.getMonth() === mesActual && fecha.getFullYear() === anioActual) {
       const estado = (o.estado || "").toLowerCase();
       if (estado.includes("pend")) resumen.pendiente++;
@@ -98,3 +115,4 @@ function contarOrdenesPorEstadoMes(ordenes) {
 
   return resumen;
 }
+

@@ -58,6 +58,7 @@ function UsuariosAdmin() {
       <div className='Usuarios-A'>
         <h1 className='Titulo'>Usuarios registrados</h1>
 
+
         {/* ✅ Barra de búsqueda */}
         <div className="barra-busqueda">
           <input
@@ -66,6 +67,9 @@ function UsuariosAdmin() {
             value={busqueda}
             onChange={(e) => setBusqueda(e.target.value)}
           />
+        <h3 className="Titulo1">
+          <span className="contador-badge">{usuarios.length}</span>
+        </h3>
         </div>
 
         <table className="tabla-usuarios">
