@@ -28,6 +28,7 @@
 .detalle-descripcion {
   margin: 20px 0 0;   /* arriba solo 20px, abajo 0 */
   font-size: 1.1rem;
+  text-align: center;
 }
 
 .detalle-acciones {
@@ -188,8 +189,4 @@
     width: 80px;
   }
 
-}
-
-.detalle-info p {
-    text-align: center;
 }
