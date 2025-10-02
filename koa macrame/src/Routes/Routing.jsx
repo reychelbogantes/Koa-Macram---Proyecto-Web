@@ -31,6 +31,8 @@ import PedidosUsuario from '../Components/PedidosUsuario/PedidosUsuario'
 import MisNotificaciones from '../Components/MisNotificaciones/MisNotificaciones'
 
 
+import RutaPrivada from "./RutaPrivada/RutaPrivada";
+
 
 function Routing() {
 
@@ -41,7 +43,7 @@ function Routing() {
     <Router>    
       <Routes>    
         {/* Rutas públicas */}
-        <Route path='/' element={<Login/>}/>
+        <Route path='/' element={<Homepage/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/homepage' element={<Homepage/>}/>
         <Route path='/registro' element={<Registro/>}/>
@@ -56,7 +58,13 @@ function Routing() {
         <Route path="/mis-notificaciones" element={<MisNotificaciones usuario={usuarioLogueado} />}/>
 
         {/* Rutas anidadas del panel de administración */}
-        <Route path='/admin' element={<Admin/>}>
+        <Route path="/admin/*" element={
+            <RutaPrivada>
+              <Admin />
+            </RutaPrivada>
+          }
+        >
+      {/* <Route path='/admin' element={<Admin/>}> */}
           {/* 👇 Todo esto aparecerá dentro del <Outlet /> de Admin */}
 
           <Route index element={<Estadisticas/>}/>

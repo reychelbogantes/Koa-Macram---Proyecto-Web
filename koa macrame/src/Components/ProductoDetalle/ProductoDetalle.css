@@ -1,3 +1,4 @@
+/* ====== ESTILOS BASE (ya tienes estos) ====== */
 .detalle-container {
   display: flex;
   gap: 40px;
@@ -5,6 +6,7 @@
   max-width: 1200px;
   margin: auto;
 }
+
 
 .detalle-imagen img {
   width: 100%;
@@ -24,20 +26,22 @@
 }
 
 .detalle-descripcion {
-  margin: 20px 0;
+  margin: 20px 0 0;   /* arriba solo 20px, abajo 0 */
   font-size: 1.1rem;
 }
 
-
-/* Contenedor de los dos botones */
 .detalle-acciones {
   display: flex;
-  align-items: center;     /* centra verticalmente */
-  gap: 20px;               /* espacio entre los botones */
+  align-items: center;
+  gap: 20px;
   margin-top: 30px;
+  flex-wrap: wrap;         /* 🔑 permite que se acomoden en varias líneas */
+  max-width: 100%;         /* 🔑 nunca más ancho que el div padre */
+  box-sizing: border-box;  /* 🔑 respeta padding/border dentro del ancho */
 }
 
-/* Botón de volver */
+
+/* Botón volver */
 .btn-volver {
   background: #9695c7dd;
   color: #fff;
@@ -52,7 +56,7 @@
   background: #5c5c7ddd;
 }
 
-/* Botón de favorito (corazón) */
+/* Botón de corazón */
 .btn-heart-detallado {
   background: transparent;
   border: none;
@@ -67,26 +71,53 @@
 }
 
 .btn-heart-detallado.activo {
-  color: #e63946;  /* rojo si es favorito */
+  color: #e63946;
 }
 
+/* Input cantidad */
 .agregar-carrito {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-left: 20px;
+  gap: 8px;
+  /* margin-top: 15px; */
 }
 
 .agregar-carrito input {
   width: 60px;
-  padding: 6px;
   text-align: center;
+  padding: 6px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 1rem;
+  -moz-appearance: textfield; /* Quita flechas Firefox */
+   }
+
+.agregar-carrito input::-webkit-outer-spin-button,
+.agregar-carrito input::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* Quita flechas Chrome/Safari */
+  margin: 0;
+}
+
+.btn-cantidad {
+  background: #9695c7dd;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-cantidad:hover {
+  background: #5c5c7ddd;
+  transform: scale(1.1);
 }
 
 
-/* Botón de carrito */
+
+
+/* Botón carrito */
 .btn-agregar1 {
   background: transparent;
   border: none;
@@ -101,3 +132,60 @@
   color: #5c5c7ddd;
 }
 
+
+/* ====== RESPONSIVIDAD ====== */
+
+/* Tablets (pantallas medianas) */
+@media (max-width: 992px) {
+  .detalle-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .detalle-imagen img {
+    max-width: 400px;
+  }
+
+  .detalle-info {
+    text-align: center;
+  }
+
+  .detalle-acciones {
+    justify-content: center;
+  }
+}
+
+/* Celulares (pantallas pequeñas) */
+@media (max-width: 600px) {
+  .detalle-acciones {
+    flex-direction: column;   /* 🔑 los pone en columna */
+    align-items: center;     /* 🔑 que cada botón/input ocupe el 100% */
+    gap: 15px;
+  }
+
+   /* Hacemos fila solo entre corazon y carrito */
+  .grupo-botones {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .btn-volver {
+    width: 100%;
+    max-width: 70%;
+    text-align: center;
+  }
+
+  
+    .agregar-carritor {
+    justify-content: center;
+  }
+
+  .agregar-carrito input {
+    width: 80px;
+  }
+
+}

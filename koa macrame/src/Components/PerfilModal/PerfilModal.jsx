@@ -79,7 +79,7 @@ function PerfilModal({ isOpen, onClose, usuario }) {
                   className="perfil-btn"
                   onClick={() => {
                     onClose();
-                    navigate("/mis-pedidos");
+                    navigate("/mispedidos");
                   }}
                 >
                   🛍️ Mis pedidos

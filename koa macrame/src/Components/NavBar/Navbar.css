@@ -1,24 +1,20 @@
 .navbar {
-  /* --- tamaño y posición --- */
   position: absolute;
   top: 0;
   left: 0;
-  width: 99vw;        /* 100% del ancho de la ventana */
-  max-width: 99vw;    /* evita que crezca más de la ventana */
-  height: 12vh;      /* 20 % de la altura de la ventana */
+  width: 100%;     
+  height: 12vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 2rem;
+  padding: 0.8rem 1.5rem;
   z-index: 100;
-  box-sizing: border-box; /* incluye el padding dentro del ancho */
-
-  /* --- degradado vertical --- */
-  background: linear-gradient(to bottom, #566034 0%, /* más concentrado arriba */ #566034b3 50%, /* se suaviza en el medio */ #5660346b 100% /* casi transparente abajo */);
+  box-sizing: border-box;
+  background: linear-gradient(to bottom, #566034 0%, #566034b3 50%, #5660346b 100%);
 }
 
 .navbar-logo img {
-  width: 45px; /* ajusta el tamaño de tu logo */
+  width: 45px;
   height: auto;
 }
 
@@ -31,7 +27,7 @@
 
 .navbar-links li a {
   text-decoration: none;
-  color: #f5ebd7; /* tono beige similar a la imagen */
+  color: #f5ebd7;
   font-size: 1.1rem;
   font-weight: 500;
   transition: color 0.3s ease;
@@ -48,7 +44,8 @@
 }
 
 .navbar-icons a,
-.navbar-icons .menu-btn {
+.navbar-icons .menu-btn,
+.btn-heart-nav {
   color: #f5ebd7;
   font-size: 1.4rem;
   cursor: pointer;
@@ -58,25 +55,54 @@
 }
 
 .navbar-icons a:hover,
-.navbar-icons .menu-btn :hover {
+.btn-heart-nav:hover {
   color: #fff;
+}
+
+/* --- Estilos del botón hamburguesa --- */
+.menu-toggle-I {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #f5ebd7;
+  cursor: pointer;
 }
 
 /* --- Responsive --- */
 @media (max-width: 768px) {
-  .navbar-links {
-    display: none; /* puedes luego implementar un menú hamburguesa */
+  .navbar {
+    height: auto;
+    flex-wrap: wrap;
   }
-}
 
-.btn-heart-nav{
-  color: #f5ebd7;
-  font-size: 1.4rem;
-  cursor: pointer;
-  background: none;
-  border: none;
-  transition: color 0.3s ease;
-}
-.btn-heart-nav:hover {
-  color: #fff;
+  /* ocultamos links normales */
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #56603400;
+    margin-top: 0.5rem;
+    padding: 1rem 0;
+    border-radius: 8px;
+  }
+
+  .navbar-links li {
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+
+  .navbar-links li a {
+    font-size: 1.2rem;
+  }
+
+  /* mostrar menú al activarlo */
+  .navbar-links.open {
+    display: flex;
+  }
+
+  /* botón hamburguesa visible en móviles */
+  .menu-toggle-I {
+    display: block;
+  }
 }

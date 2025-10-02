@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getOrdenes } from "../../Services/Servicios";
+import { Link } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa"; // ✅ icono
 import "./MisNotificaciones.css";
 
 function MisNotificaciones({ usuario }) {
@@ -58,6 +60,9 @@ function MisNotificaciones({ usuario }) {
 
   return (
     <div className="mis-notificaciones">
+      <Link to="/homepage" className="btn-regresar">
+        <FaArrowLeft /> Volver al inicio
+      </Link>
       <h2>🔔 Mis Notificaciones</h2>
       {notificaciones.length === 0 ? (
         <p>No tienes notificaciones en este momento.</p>

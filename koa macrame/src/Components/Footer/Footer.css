@@ -1,5 +1,5 @@
 .footer {
-  background: #6b6b8b; /* Ajusta el tono violeta/gris según tu diseño */
+  background: #6b6b8b;
   color: #e0e0e0;
   padding: 40px 20px 20px;
   font-family: "Helvetica Neue", Arial, sans-serif;
@@ -7,10 +7,12 @@
 
 .footer-columns {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  grid-template-columns: 1fr minmax(75px, 1fr) 1fr 1fr; /* segunda columna mínima 165px */
+  grid-template-rows: 1fr;
   gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .footer-col h3 {
@@ -55,4 +57,56 @@
   color: #d0d0d0;
   border-top: 1px solid rgba(255,255,255,0.1);
   padding-top: 20px;
+}
+
+/* 📱 Responsivo: ajustamos solo tamaños */
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 15px 15px;
+  }
+
+  .footer-col h3 {
+    font-size: 1rem;
+  }
+
+  .footer-col a,
+  .footer-col p {
+    font-size: 0.60rem;
+  }
+
+  .social-icons a {
+    font-size: 1.2rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 20px 10px 10px;
+  }
+  
+  .footer-columns {
+    gap: 20px; /* menos espacio pero sigue en 4 columnas */
+    box-sizing: border-box;
+  }
+
+  .footer-col h3 {
+    font-size: 0.9rem;
+  }
+
+  .footer-col a,
+  .footer-col p {
+    font-size: 0.37rem;
+  }
+
+  .social-icons a {
+    font-size: 1rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.7rem;
+  }
 }

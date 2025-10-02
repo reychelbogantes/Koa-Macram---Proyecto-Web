@@ -6,10 +6,35 @@
 }
 
 .pedidos-usuario h2 {
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0;
   color: #333;
+  font-size: 1.5rem;
 }
 
+/* 🔙 Botón de regresar */
+.btn-regresar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #c5cae9;
+  color: #333;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-regresar:hover {
+  background: #9fa8da;
+}
+
+/* Contenedor para scroll horizontal en móviles */
+.tabla-wrapper {
+  overflow-x: auto;
+}
+
+/* Tabla */
 .tabla-pedidos {
   width: 100%;
   border-collapse: collapse;
@@ -17,16 +42,18 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border-radius: 8px;
   overflow: hidden;
+  min-width: 600px; /* fuerza scroll en pantallas pequeñas */
 }
 
 .tabla-pedidos th,
 .tabla-pedidos td {
   padding: 12px 15px;
   text-align: left;
+  white-space: nowrap;
 }
 
 .tabla-pedidos th {
-  background: #C5CAE9; /* lavanda pastel */
+  background: #C5CAE9;
   color: #333;
   font-weight: 600;
 }
@@ -37,4 +64,37 @@
 
 .tabla-pedidos tr:hover {
   background: #eaeaf4;
+}
+
+/* 📱 Responsividad */
+@media (max-width: 768px) {
+  .pedidos-usuario {
+    padding: 1rem;
+  }
+
+  .pedidos-usuario h2 {
+    font-size: 1.2rem;
+  }
+
+  .btn-regresar {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  .tabla-pedidos th, .tabla-pedidos td {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pedidos-usuario h2 {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .btn-regresar {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
 }

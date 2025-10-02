@@ -8,18 +8,6 @@
   z-index: 9999;
 }
 
-/* Panel lateral */
-.modal-contentF {
-  width: 20%;                  /* ✅ ancho del panel lateral */
-  height: 100vh;               /* ✅ alto de toda la pantalla */
-  background: #fff;
-  box-shadow: -4px 0 10px rgba(0,0,0,0.2);
-  padding: 20px;
-  position: relative;
-  overflow-y: auto;            /* scroll interno si hay muchos favoritos */
-  font-family: "Segoe UI", Roboto, sans-serif;
-}
-
 /* Botón de cierre (X) */
 .modal-closeF {
   position: absolute;
@@ -64,4 +52,67 @@
   color: #333;
   font-weight: 500;
   line-height: 1.4;
+}
+
+/* --- Estilos base (pantallas grandes) --- */
+.modal-contentF {
+  width: 20%;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -4px 0 10px rgba(0,0,0,0.2);
+  padding: 20px;
+  position: relative;
+  overflow-y: auto;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  transition: width 0.3s ease; /* animación suave al cambiar */
+}
+
+/* --- Responsive para tablets (hasta 1024px) --- */
+@media (max-width: 1024px) {
+  .modal-contentF {
+    width: 35%;   /* panel más ancho */
+  }
+}
+
+/* --- Responsive para celulares (hasta 768px) --- */
+@media (max-width: 768px) {
+  .modal-contentF {
+    width: 70%;   /* 🔥 ocupa 70% del ancho */
+  }
+
+  .lista-favoritos img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .lista-favoritos span {
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Responsive para celulares pequeños (hasta 480px) --- */
+@media (max-width: 480px) {
+  .modal-contentF {
+    width: 100%;   /* 🔥 ocupa toda la pantalla */
+    border-radius: 0; /* sin bordes, estilo pantalla completa */
+  }
+
+  .lista-favoritos {
+    margin-top: 40px;
+  }
+
+  .lista-favoritos li {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .lista-favoritos img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .lista-favoritos span {
+    font-size: 0.85rem;
+  }
 }

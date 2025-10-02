@@ -37,7 +37,7 @@ function FormularioEnvio({ onSubmit, datosIniciales}) {
 
   return (
     <>
-      <form className="form-envio" onSubmit={handleSubmit}>
+      <div className="form-envio" onSubmit={handleSubmit}>
         <h2>Formulario de Envío</h2>
 
         {error && <p className="error">{error}</p>}
@@ -90,7 +90,7 @@ function FormularioEnvio({ onSubmit, datosIniciales}) {
         />
 
         <button type="submit" className="btn-enviar">Confirmar Envío</button>
-      </form>
+      </div>
 
       {/* ✅ Modal de alerta */}
       <ModalAlert

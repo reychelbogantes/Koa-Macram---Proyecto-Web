@@ -26,6 +26,7 @@ function ListaProductos({
     <div className="lista-productos">
       {productos.map(p => (
         <div key={p.id} className="producto-item">
+          
           <input
             type="checkbox"
             checked={seleccionados.includes(p.id)}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../Components/NavBar/Navbar';
 import Footer from '../../Components/Footer/Footer';
 import { postContacto } from '../../Services/Servicios';
@@ -65,7 +65,7 @@ function Contactanos() {
 
       <section className="formulario-contacto">
         <h1>Contáctanos</h1>
-        <form onSubmit={handleSubmit}>
+        <div onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Nombre"
@@ -87,7 +87,7 @@ function Contactanos() {
             required
           />
           <button type="submit">Enviar</button>
-        </form>
+        </div>
 
         {estado === 'success' && <p className="exito">¡Gracias por tu mensaje! Nos pondremos en contacto pronto.</p>}
         {estado === 'error' && <p className="error">Ocurrió un error al enviar. Inténtalo de nuevo.</p>}
@@ -103,6 +103,9 @@ function Contactanos() {
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"> Facebook</a>,
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"> Instagram</a>
         </p>
+        
+      </section>
+      <section className="datos-contacto">
         <iframe
          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7860.233550428351!2d-84.1250248106968!3d9.924231667830284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0fdbc8749ad2f%3A0x96e351d4901c08d!2sCondominio%20Venehorizonte!5e0!3m2!1ses-419!2scr!4v1759122812992!5m2!1ses-419!2scr"
          width="350"
@@ -112,6 +115,7 @@ function Contactanos() {
          loading="lazy"
          referrerPolicy="no-referrer-when-downgrade"
          />
+
       </section>
 
      

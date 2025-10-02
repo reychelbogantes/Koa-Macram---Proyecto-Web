@@ -1,6 +1,5 @@
 /* ===== Fondo general ===== */
 .bodyPC {
-  background-color: #9695c76e;
   font-family: "Segoe UI", Roboto, sans-serif;
 }
 
@@ -63,7 +62,7 @@
 
 .btn-vermas {
   text-decoration: none;     /* ✅ quita el subrayado */
-  color: inherit;            /* opcional: usa el color del padre */
+  color: inherit;            /* usa el color del padre */
   background: #839252;
   color: #fff;
   border: none;
@@ -76,7 +75,7 @@
 
 .btn-vermas:hover {
   text-decoration: none;     /* ✅ quita el subrayado */
-  color: inherit;            /* opcional: usa el color del padre */
+  color: inherit;            /*usa el color del padre */
   background: #64703e;
 }
 
@@ -153,11 +152,52 @@
 
 .input-busqueda:focus {
   outline: none;
-  border-color: #3ab397; /* color de tu paleta */
-  box-shadow: 0 0 5px rgba(58, 179, 151, 0.5);
+  border-color: #9695c7; 
+  box-shadow: 0 0 5px #9695c76e;
 }
 
 .btn-heart:disabled {
   cursor: not-allowed;
-  opacity: 0.5;          /* opcional: efecto visual de bloqueo */
+  opacity: 0.5;          /* efecto visual de bloqueo */
+}
+
+@media (max-width: 480px) {
+  .catalogo-container {
+    margin: 40px auto;
+    padding: 0 5px;
+  }
+
+  /* 📌 Ahora 3 productos por fila */
+  .catalogo-grid {
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 10px;
+  }
+
+  .producto-card {
+    border-radius: 6px;
+  }
+
+  .producto-card img {
+    height: 120px; /* más compactas para que quepan bien */
+  }
+
+  .producto-card h3 {
+    font-size: 0.9rem;
+  }
+
+  .precio {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+  }
+
+  .btn-vermas {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .input-busqueda {
+    width: 95%;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
 }

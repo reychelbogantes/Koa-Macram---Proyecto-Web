@@ -120,11 +120,12 @@ function ProductoDetalle() {
         <div className="detalle-info">
           <h1>{producto.nombre}</h1>
           <p className="detalle-precio">${producto.precio}</p>
-          <p className="detalle-descripcion">{producto.descripcion}</p>
+         {/*  <p className="detalle-descripcion">{producto.descripcion}</p> */}
 
           <div className="detalle-acciones">
             <Link to="/catalogo" className="btn-volver">Volver al catálogo</Link>
-
+           {/* 🔑 Agrupamos corazón + carrito */}
+            <div className="grupo-botones">
             <button
               className={`btn-heart-detallado ${esFavorito ? 'activo' : ''}`}
               onClick={() => toggleFavorito(producto)}
@@ -136,18 +137,36 @@ function ProductoDetalle() {
             <button className="btn-agregar1" onClick={agregarAlCarrito}>
               <FaShoppingCart />
             </button>
+            </div>
 
             <div className="agregar-carrito">
+                <button
+                type="button"
+                className="btn-cantidad"
+                onClick={() => setCantidad(Math.max(1, cantidad - 1))}
+              >
+                –
+              </button>
+
               <input
                 type="number"
                 min="1"
                 value={cantidad}
-                onChange={e => setCantidad(parseInt(e.target.value))}
+                onChange={(e) => setCantidad(parseInt(e.target.value) || 1)}
               />
+
+              <button
+                type="button"
+                className="btn-cantidad"
+                onClick={() => setCantidad(cantidad + 1)}
+              >
+                +
+              </button>
             </div>
-          </div>
-        </div>
-      </div>
+            <p className="detalle-descripcion">{producto.descripcion}</p>
+       </div>
+    </div>
+  </div>
       <Footer/>
 
       {/* ✅ Modal de alerta que reemplaza todos los alert() */}

@@ -2,39 +2,30 @@
   background: #9695c76e;
   font-family: "Segoe UI", Roboto, sans-serif;
   color: #333;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 2fr 1fr;  /* 🔥 dos columnas */
+  gap: 20px;
+  padding: 40px;
 }
 
+/* Secciones generales */
 .info-negocio,
 .formulario-contacto,
 .datos-contacto {
-  max-width: 900px;
-  margin: 60px auto;
-  padding: 40px 60px;
-  background: #9695c700;
+  background: #fff0;
   border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0);
-  margin-bottom: 40px;
+  padding: 30px;
+  
 }
 
-h1, h2 {
-  color: #3c4324;
+.info-negocio {
   margin-bottom: 20px;
-}
-
-.info-negocio p,
-.datos-contacto p,
-.formulario-contacto p,
-.info-negocio li {
-  font-size: 1.1rem;
-  line-height: 1.6;
 }
 
 .formulario-contacto form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 .formulario-contacto input,
@@ -43,6 +34,8 @@ h1, h2 {
   border: 1px solid #cccccc92;
   border-radius: 10px;
   font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .formulario-contacto textarea {
@@ -54,7 +47,7 @@ h1, h2 {
   background: #839252;
   color: #fff;
   border: none;
-  padding: 12px 20px;
+  padding: 12px;
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
@@ -69,7 +62,56 @@ h1, h2 {
   color: green;
   margin-top: 10px;
 }
+
 .error {
   color: red;
   margin-top: 10px;
+}
+
+.datos-contacto iframe {
+  width: 100%;
+  height: 250px;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+/* 📱 RESPONSIVO */
+@media (max-width: 1024px) {
+  .contacto-page {
+    grid-template-columns: 1fr;   /* 🔥 se apila en columna */
+    padding: 20px;
+  }
+
+  .info-negocio,
+  .formulario-contacto,
+  .datos-contacto {
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  .contacto-page {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .formulario-contacto input,
+  .formulario-contacto textarea,
+  .formulario-contacto button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .datos-contacto iframe {
+    height: 200px;
+  }
 }

@@ -57,7 +57,7 @@ function ProductosAdmin() {
       <div className="productos-admin">
         <h2>Ingresar nuevo producto</h2>
 
-        <form className="form-producto" onSubmit={handleSubmit}>
+        <div className="form-producto" onSubmit={handleSubmit}>
           <label>
             Nombre del producto:
             <input
@@ -111,7 +111,7 @@ function ProductosAdmin() {
           <button type="submit" className="btn-guardar">
             Guardar producto
           </button>
-        </form>
+        </div>
       </div>
 
       {/* ✅ Modal de alerta que reemplaza los alert() */}
