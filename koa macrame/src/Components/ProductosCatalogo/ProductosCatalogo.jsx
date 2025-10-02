@@ -3,21 +3,34 @@ import { getProductos, updateProducto } from '../../Services/Servicios';
 import { FaHeart } from 'react-icons/fa';
 import './ProductosCatalogo.css';
 import { Link } from 'react-router-dom';
-import ModalAlert from '../../Components/ModalAlert/ModalAlert'; // ⚠️ Ajusta la ruta si es distinta
+import ModalAlert from '../../Components/ModalAlert/ModalAlert'; // ✅ Importar componente ModalAlert
 
 function ProductosCatalogo() {
   const [productos, setProductos] = useState([]);
   const [usuario, setUsuario] = useState(null);
   const [busqueda, setBusqueda] = useState("");
-  
+
   // ✅ Estados para el modal de alerta
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMsg, setModalMsg] = useState('');
 
   useEffect(() => {
     cargarProductos();
-    const userData = localStorage.getItem("usuarioLogueado");
-    if (userData) setUsuario(JSON.parse(userData));
+
+    // 🔄 Cargar usuario al montar
+    const cargarUsuario = () => {
+      const userData = localStorage.getItem("usuarioLogueado");
+      setUsuario(userData ? JSON.parse(userData) : null);
+    };
+
+    cargarUsuario();
+
+    // 🔄 Escuchar cambios en localStorage (ej: login/logout en otra pestaña o componente)
+    window.addEventListener("storage", cargarUsuario);
+
+    return () => {
+      window.removeEventListener("storage", cargarUsuario);
+    };
   }, []);
 
   const cargarProductos = () => {
@@ -34,13 +47,18 @@ function ProductosCatalogo() {
   };
 
   const toggleFavorito = async (producto) => {
-    if (!usuario) {
+    // 🔄 Revalidar usuario en cada intento de favorito
+    const userData = localStorage.getItem("usuarioLogueado");
+    const usuarioActual = userData ? JSON.parse(userData) : null;
+    setUsuario(usuarioActual);
+
+    if (!usuarioActual) {
       setModalMsg('Debes iniciar sesión para guardar favoritos');
       setModalOpen(true);
       return;
     }
 
-    const userId = usuario.id;
+    const userId = usuarioActual.id;
     const actual = producto.favoritoDe || [];
     let nuevoArray;
 
@@ -74,70 +92,69 @@ function ProductosCatalogo() {
 
   return (
     <div className='bodyPC'>
-    <div className="catalogo-container">
-      <h1>Catálogo de Productos</h1>
+      <div className="catalogo-container">
+        <h1>Catálogo de Productos</h1>
 
-      {/* 🔍 Barra de búsqueda */}
-      <div className="busqueda-container">
-        <input
-          type="text"
-          placeholder="Buscar producto..."
-          value={busqueda}
-          onChange={(e) => setBusqueda(e.target.value)}
-          className="input-busqueda"
+        {/* 🔍 Barra de búsqueda */}
+        <div className="busqueda-container">
+          <input
+            type="text"
+            placeholder="Buscar producto..."
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+            className="input-busqueda"
+          />
+        </div>
+
+        <div className="catalogo-grid">
+          {productosFiltrados.map(p => {
+            const esFavorito = usuario
+              ? p.favoritoDe?.includes(usuario.id)
+              : false;
+
+            return (
+              <div className="producto-card" key={p.id}>
+                <div className="imagen-container">
+                  <img src={p.foto} alt={p.nombre} />
+                  <div title={!usuario ? "Debes iniciar sesión para guardar favoritos" : ""}>
+                    <button
+                      className={`btn-heart ${esFavorito ? 'activo' : ''}`}
+                      onClick={() => toggleFavorito(p)}
+                      aria-label="Guardar en favoritos"
+                      disabled={!usuario} // ⬅️ Deshabilita si no hay login
+                    >
+                      <FaHeart />
+                    </button>
+                  </div>
+
+                  {/* ✨ Overlay con el botón Ver más ✨ */}
+                  <div className="overlay">
+                    <Link to={`/producto/${p.id}`} className="btn-vermas">
+                      Ver más
+                    </Link>
+                  </div>
+                </div>
+
+                <h3>{p.nombre}</h3>
+                <p className="precio">${p.precio}</p>
+              </div>
+            );
+          })}
+          {productosFiltrados.length === 0 && (
+            <p>No hay productos que coincidan con la búsqueda.</p>
+          )}
+        </div>
+
+        {/* ✅ Modal de alerta que reemplaza los alert() */}
+        <ModalAlert
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          title="Aviso"
+          message={modalMsg}
         />
       </div>
-
-      <div className="catalogo-grid">
-        {productosFiltrados.map(p => {
-          const esFavorito = usuario
-            ? p.favoritoDe?.includes(usuario.id)
-            : false;
-
-          return (
-            <div className="producto-card" key={p.id}>
-              <div className="imagen-container">
-                <img src={p.foto} alt={p.nombre} />
-                <div title={!usuario ? "Debes iniciar sesión para guardar favoritos" : ""}>
-                  <button
-                    className={`btn-heart ${esFavorito ? 'activo' : ''}`}
-                    onClick={() => toggleFavorito(p)}
-                    aria-label="Guardar en favoritos"
-                    disabled={!usuario}  // ⬅️ deshabilita si no hay login
-                  >
-                    <FaHeart />
-                  </button>
-                </div>
-
-                {/* ✨ Overlay con el botón Ver más ✨ */}
-                <div className="overlay">
-                  <Link to={`/producto/${p.id}`} className="btn-vermas">
-                    Ver más
-                  </Link>
-                </div>
-              </div>
-
-              <h3>{p.nombre}</h3>
-              <p className="precio">${p.precio}</p>
-            </div>
-          );
-        })}
-        {productosFiltrados.length === 0 && (
-          <p>No hay productos que coincidan con la búsqueda.</p>
-        )}
-      </div>
-
-      {/* ✅ Modal de alerta que reemplaza los alert() */}
-      <ModalAlert
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        title="Aviso"
-        message={modalMsg}
-      />
-    </div>
     </div>
   );
 }
 
 export default ProductosCatalogo;
-

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import { getOrdenes } from "../../Services/Servicios";
 
-export default function HalfDoughnutOrdenes() {
+function HalfDoughnutOrdenes() {
   const [option, setOption] = useState(null);
 
   useEffect(() => {
@@ -31,8 +31,8 @@ export default function HalfDoughnutOrdenes() {
             {
               name: "Órdenes del mes",
               type: "pie",
-              radius: ["40%", "70%"],
-              center: ["50%", "70%"],
+              radius: ["35%", "60%"],   // ⬅️ antes 40%-70%
+              center: ["50%", "65%"],   // ⬅️ antes 70%, lo subimos un poco
               startAngle: 180, // inicia desde abajo
               data: [
                 { value: resumen.pendiente, name: "Pendientes" },
@@ -41,7 +41,7 @@ export default function HalfDoughnutOrdenes() {
               ],
               itemStyle: {
                 borderRadius: 8,
-                borderColor: "#fff",
+                borderColor: "#ffffff0f",
                 borderWidth: 2
               },
               label: {
@@ -80,7 +80,30 @@ export default function HalfDoughnutOrdenes() {
     }
     cargarDatos();
   }, []);
+      /* ---------------------------------------------------
+        Helper: cuenta cuántas órdenes del MES ACTUAL hay
+        en cada estado (pendiente, enviada, cancelada)
+      --------------------------------------------------- */
+      function contarOrdenesPorEstadoMes(ordenes) {
+        const ahora = new Date();// fecha actual
+        const mesActual = ahora.getMonth();// 0-11
+        const anioActual = ahora.getFullYear();// 4 dígitos
 
+        const resumen = { pendiente: 0, enviada: 0, cancelada: 0 };
+
+        ordenes.forEach(o => {
+          const fecha = new Date(o.fecha);
+          if (fecha.getMonth() === mesActual && fecha.getFullYear() === anioActual) {// solo del mes actual
+            // Normalizamos el estado para evitar problemas con mayúsculas/minúsculas
+            const estado = (o.estado || "").toLowerCase();
+            if (estado.includes("pend")) resumen.pendiente++;// incluye "pendiente" o "pend"
+            else if (estado.includes("env")) resumen.enviada++;// incluye "enviada" o "env"
+            else if (estado.includes("cancel")) resumen.cancelada++;// incluye "cancelada" o "cancel"
+          }
+        });
+
+        return resumen;
+      }
   return (
     <div style={{ width: "100%", height: 400 }}>
       {option ? (
@@ -92,27 +115,4 @@ export default function HalfDoughnutOrdenes() {
   );
 }
 
-/* ---------------------------------------------------
-   Helper: cuenta cuántas órdenes del MES ACTUAL hay
-   en cada estado (pendiente, enviada, cancelada)
---------------------------------------------------- */
-function contarOrdenesPorEstadoMes(ordenes) {
-  const ahora = new Date();
-  const mesActual = ahora.getMonth();
-  const anioActual = ahora.getFullYear();
-
-  const resumen = { pendiente: 0, enviada: 0, cancelada: 0 };
-
-  ordenes.forEach(o => {
-    const fecha = new Date(o.fecha);
-    if (fecha.getMonth() === mesActual && fecha.getFullYear() === anioActual) {
-      const estado = (o.estado || "").toLowerCase();
-      if (estado.includes("pend")) resumen.pendiente++;
-      else if (estado.includes("env")) resumen.enviada++;
-      else if (estado.includes("cancel")) resumen.cancelada++;
-    }
-  });
-
-  return resumen;
-}
-
+export default HalfDoughnutOrdenes;

@@ -163,8 +163,10 @@ function ProductoDetalle() {
                 +
               </button>
             </div>
-            <p className="detalle-descripcion">{producto.descripcion}</p>
+            
        </div>
+       <br />
+       <p className="detalle-descripcion">{producto.descripcion}</p>
     </div>
   </div>
       <Footer/>

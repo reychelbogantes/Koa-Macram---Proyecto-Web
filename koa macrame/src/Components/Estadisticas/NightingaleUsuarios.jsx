@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import { GetUsers } from "../../Services/Servicios";
 
-export default function NightingaleUsuarios() {
+function NightingaleUsuarios() {
   const [option, setOption] = useState({});
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function NightingaleUsuarios() {
 
         // ✅ asigna un valor mínimo de 0.2 a los días con promedio 0
         const datosConMinimo = datosSemana.map(d => ({
-          value: d.promedio > 0 ? d.promedio : 0.5,
+          value: d.promedio > 0 ? d.promedio : 0.5,// para que sea visible en la gráfica
           name: d.dia,
           real: d.promedio
         }));
@@ -46,14 +46,14 @@ export default function NightingaleUsuarios() {
             }
           },
             color: [
-    "#F8BBD0", // Rosa pastel
-    "#C5CAE9", // Lavanda
-    "#B3E5FC", // Celeste
-    "#C8E6C9", // Verde menta
-    "#FFF9C4", // Amarillo suave
-    "#FFE0B2", // Durazno pastel
-    "#E1BEE7"  // Lila suave
-  ],
+              "#F8BBD0", // Rosa pastel
+              "#C5CAE9", // Lavanda
+              "#B3E5FC", // Celeste
+              "#C8E6C9", // Verde menta
+              "#FFF9C4", // Amarillo suave
+              "#FFE0B2", // Durazno pastel
+              "#E1BEE7"  // Lila suave
+            ],
           series: [
             {
               name: 'Promedio de registros',
@@ -80,6 +80,42 @@ export default function NightingaleUsuarios() {
     }
     cargarDatos();
   }, []);
+  
+      /* ---------------------------------------------------
+        Helper: promedio de usuarios registrados
+        por día de la semana (en toda la base de datos)
+      --------------------------------------------------- */
+      function promedioUsuariosPorDiaSemana(usuarios) {
+        const dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
+        const contador = {};
+        const semanas = {};
+
+        usuarios.forEach(u => {
+          const fecha = new Date(u.fechaRegistro || u.createdAt || u.fecha || Date.now());// fecha de registro
+          const dia = dias[fecha.getDay()];// nombre del día
+          contador[dia] = (contador[dia] || 0) + 1;// cuenta usuarios por día
+
+          // clave única por semana del año
+          const claveSemana = `${fecha.getFullYear()}-${getWeekNumber(fecha)}`;
+          semanas[claveSemana] = true;
+        });
+
+        const totalSemanas = Object.keys(semanas).length || 1;
+        const orden = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+
+        return orden.map(dia => ({
+          dia,
+          promedio: +( (contador[dia] || 0) / totalSemanas ).toFixed(2)// dos decimales
+        }));
+      }
+
+      function getWeekNumber(d) {
+        const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));// copia la fecha
+        const dayNum = date.getUTCDay() || 7; // lunes=1, domingo=7
+        date.setUTCDate(date.getUTCDate() + 4 - dayNum);// ajusta al jueves de la semana actual
+        const yearStart = new Date(Date.UTC(date.getUTCFullYear(),0,1));// primer dia del año
+        return Math.ceil((((date - yearStart) / 86400000) + 1)/7);// dias entre fechas / 7
+      }
 
   return (
     <div style={{ width: "100%", height: 400 }}>
@@ -88,37 +124,4 @@ export default function NightingaleUsuarios() {
   );
 }
 
-/* ---------------------------------------------------
-   Helper: promedio de usuarios registrados
-   por día de la semana (en toda la base de datos)
---------------------------------------------------- */
-function promedioUsuariosPorDiaSemana(usuarios) {
-  const dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
-  const contador = {};
-  const semanas = {};
-
-  usuarios.forEach(u => {
-    const fecha = new Date(u.fechaRegistro || u.createdAt || u.fecha || Date.now());
-    const dia = dias[fecha.getDay()];
-    contador[dia] = (contador[dia] || 0) + 1;
-
-    const claveSemana = `${fecha.getFullYear()}-${getWeekNumber(fecha)}`;
-    semanas[claveSemana] = true;
-  });
-
-  const totalSemanas = Object.keys(semanas).length || 1;
-  const orden = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
-
-  return orden.map(dia => ({
-    dia,
-    promedio: +( (contador[dia] || 0) / totalSemanas ).toFixed(2)
-  }));
-}
-
-function getWeekNumber(d) {
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  const dayNum = date.getUTCDay() || 7;
-  date.setUTCDate(date.getUTCDate() + 4 - dayNum);
-  const yearStart = new Date(Date.UTC(date.getUTCFullYear(),0,1));
-  return Math.ceil((((date - yearStart) / 86400000) + 1)/7);
-}
+export default NightingaleUsuarios;

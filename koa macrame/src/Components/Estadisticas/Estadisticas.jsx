@@ -15,10 +15,12 @@ function Estadisticas() {
         <h2>Dias y productos mas vendidos</h2>
         <PolarVentasDia />
       </section>
+      <hr />
       <section>
         <h2>Grafica de Pedidos</h2>
         <HalfDoughnutOrdenes/>
       </section>
+      <hr />
       <section>
         <h2>Promedio de registros de usuarios</h2>
         <NightingaleUsuarios />

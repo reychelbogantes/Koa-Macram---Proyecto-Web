@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './ProductosAdmin.css';
 import { postProducto } from '../../Services/Servicios';
-import ModalAlert from '../../Components/ModalAlert/ModalAlert'; // ⚠️ Ajusta la ruta si es distinta
+import ModalAlert from '../../Components/ModalAlert/ModalAlert';
+import { uploadToCloudinary } from '../CLOUD/SubirCloudinary'; // 👈 importamos tu función
 
 function ProductosAdmin() {
   const [producto, setProducto] = useState({
@@ -11,6 +12,7 @@ function ProductosAdmin() {
     foto: ''
   });
   const [preview, setPreview] = useState(null);
+  const [file, setFile] = useState(null); // archivo que subiremos a Cloudinary
 
   // ✅ Estados para el modal de alerta
   const [modalOpen, setModalOpen] = useState(false);
@@ -22,16 +24,12 @@ function ProductosAdmin() {
     setProducto({ ...producto, [name]: value });
   };
 
-  // Convierte la imagen a Base64 para guardar en db.json
+  // Guardamos el archivo y mostramos preview
   const handleFoto = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProducto({ ...producto, foto: reader.result });
-        setPreview(reader.result);
-      };
-      reader.readAsDataURL(file);
+    const archivo = e.target.files[0];
+    if (archivo) {
+      setFile(archivo);
+      setPreview(URL.createObjectURL(archivo)); // preview temporal
     }
   };
 
@@ -39,12 +37,27 @@ function ProductosAdmin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await postProducto(producto);
+      let imageUrl = '';
+
+      // ✅ Subir la imagen a Cloudinary si hay archivo seleccionado
+      if (file) {
+        const res = await uploadToCloudinary(file);
+        imageUrl = res.secure_url; // URL pública de Cloudinary
+      }
+
+      // Guardamos el producto con la URL en la DB
+      await postProducto({
+        ...producto,
+        foto: imageUrl
+      });
+
       setModalMsg('✅ Producto guardado correctamente');
       setModalOpen(true);
+
       // Limpia el formulario
       setProducto({ nombre: '', descripcion: '', precio: '', foto: '' });
       setPreview(null);
+      setFile(null);
     } catch (error) {
       console.error(error);
       setModalMsg('❌ Error al guardar el producto');
@@ -57,7 +70,7 @@ function ProductosAdmin() {
       <div className="productos-admin">
         <h2>Ingresar nuevo producto</h2>
 
-        <div className="form-producto" onSubmit={handleSubmit}>
+        <form className="form-producto" onSubmit={handleSubmit}>
           <label>
             Nombre del producto:
             <input
@@ -111,7 +124,7 @@ function ProductosAdmin() {
           <button type="submit" className="btn-guardar">
             Guardar producto
           </button>
-        </div>
+        </form>
       </div>
 
       {/* ✅ Modal de alerta que reemplaza los alert() */}

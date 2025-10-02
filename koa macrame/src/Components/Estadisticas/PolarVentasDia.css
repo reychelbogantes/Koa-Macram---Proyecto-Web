@@ -1,0 +1,21 @@
+.polar-ventas-container {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.polar-grafico {
+  height: 400px;
+}
+
+.polar-resumen {
+  color: #333;
+  background: #f4f4f813;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  /* box-shadow: 0 2px 6px rgba(0,0,0,0.1); */
+}
+
+.polar-resumen h3 {
+  margin-top: 0;
+}
