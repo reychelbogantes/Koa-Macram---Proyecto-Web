@@ -75,6 +75,68 @@ koa macrame/
 ```
 
 ---
+## 👥 Usuarios de Prueba
+
+>Para acceder a las diferentes funcionalidades del sistema se pueden usar los siguientes usuarios preconfigurados en `db.json`:
+
+### 🔑 Administradores
+```json
+{
+  "name": "KoaColaborador",
+  "email": "Koa1@admin.com",
+  "password": "123",
+  "rol": "admin"
+},
+{
+  "name": "KoaMacrame",
+  "email": "Koa@admin.com",
+  "password": "123",
+  "rol": "admin"
+}
+
+```
+---
+
+# 🧪 Datos de prueba (para profesores)
+
+> **Advertencia:** Estos usuarios, tarjetas y credenciales son **solo** para pruebas en ambiente local / PayPal Sandbox. No usar en producción.
+
+## 💳 Tarjetas de prueba (uso local / PayPal Sandbox)
+
+>Usar estas tarjetas solo en modo prueba. No son válidas para transacciones reales.
+
+### VISA
+
+-**Número:** *4139 8666 1865 6334*
+
+-**Expiry:** *06/2030*
+
+>**CVC:** cualquier 3 dígitos.
+
+### AMERICAN EXPRESS
+
+-**Número:** *3413 999100 85830*
+
+-**Expiry:** *10/2030*
+
+>**CVC:** cualquier 4 dígitos (AmEx usa 4 dígitos en la parte frontal).
+
+### MASTERCARD
+
+-**Número:** *5113 9267 1303 3602*
+
+-**Expiry:** *10/2030*
+
+>**CVC:** cualquier 3 dígitos.
+
+>**Nota:** los formatos de CVC varían: Visa/MasterCard = 3 dígitos; AmEx = 4 dígitos.
+
+## 🧾 Credenciales PayPal de prueba (sandbox)
+
+-**Correo (sandbox):** *Profesores@personal.example.com*
+-**Contraseña (sandbox):** *W')1JaE"*
+
+---
 
 ## 🔧 Tecnologías y Librerías Utilizadas  
 
