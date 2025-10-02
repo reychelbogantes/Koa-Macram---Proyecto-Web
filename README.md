@@ -125,5 +125,5 @@ koa macrame/
 ## 📝 Licencia  
 
 Este proyecto está bajo la licencia **MIT**.  
-Consulta el archivo [LICENSE](./LICENSE) para más información.  
+Consulta el archivo [LICENSE](./koa%20macrame/LICENSE) para más información.  
 
