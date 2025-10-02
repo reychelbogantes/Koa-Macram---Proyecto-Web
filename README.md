@@ -165,6 +165,8 @@ koa macrame/
 ### 🌐 Backend Fake (API de Desarrollo)  
 - **json-server** → Simulación de un backend REST con `db.json` para productos, usuarios, carritos, órdenes, etc.  
 
+### ☁️ Gestión de Imágenes y Archivos  
+- **cloudinary** → Librería oficial para subir, almacenar y optimizar imágenes en la nube.  
 ---
 
 ## 📌 Endpoints del Backend (JSON Server)

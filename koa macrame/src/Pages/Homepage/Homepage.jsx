@@ -25,12 +25,12 @@ function Homepage() {
     document.title = "Koa Macramé";
   }, []);
 
-  const [destacados, setDestacados] = useState([]);
+  const [destacados, setDestacados] = useState([]);// Estado para productos destacados
 
   useEffect(() => {
     getProductos()
       .then(productos => {
-        const filtrados = productos.filter(p => p.destacado && p.activo);
+        const filtrados = productos.filter(p => p.destacado && p.activo);// Filtrar productos destacados y activos
         setDestacados(filtrados);
       })
       .catch(console.error);
