@@ -1,9 +1,9 @@
 # 🧵 Koa Macramé  
 
-Plataforma de e-commerce para un emprendimiento de **macramé hecho a mano**.  
+Plataforma de **e-commerce** para un emprendimiento de **macramé hecho a mano**.  
 Los usuarios pueden explorar productos, registrarse, gestionar un carrito de compras, pagar con **PayPal**, y los administradores tienen acceso a un **dashboard interno** para manejar inventario, usuarios y facturación.  
 
----                                                                                                                                                                                                                                 
+---
 
 ## 🚀 Características  
 
@@ -30,9 +30,9 @@ Los usuarios pueden explorar productos, registrarse, gestionar un carrito de com
 ✅ Carrito de compras con cantidades dinámicas.  
 ✅ Checkout con **PayPal** integrado.  
 ✅ Dashboard de administración básico funcionando.  
-✅ Módulo de **estadísticas** para admin.   
-✅ **Responsividad** en versión móvil.     
-⚠️ Pendiente: integración de **Apple Pay** como pasarela de pago. 
+✅ Módulo de **estadísticas** para admin.  
+✅ **Responsividad** en versión móvil.  
+⚠️ Pendiente: integración de **Apple Pay** como pasarela de pago.  
 
 ---
 
@@ -61,8 +61,9 @@ src/
  │   └── Servicios.js
  ├── App.jsx
  └── main.jsx
+```
 
------  
+---
 
 ## 🔧 Tecnologías y Librerías Utilizadas  
 
