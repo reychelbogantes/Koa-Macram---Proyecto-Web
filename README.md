@@ -30,9 +30,9 @@ Los usuarios pueden explorar productos, registrarse, gestionar un carrito de com
 ✅ Carrito de compras con cantidades dinámicas.  
 ✅ Checkout con **PayPal** integrado.  
 ✅ Dashboard de administración básico funcionando.  
-⚠️ En desarrollo: módulo de **estadísticas** para admin.  
-⚠️ Pendiente: integración de **Apple Pay** como pasarela de pago.  
-⚠️ Mejoras de **responsividad** en versión móvil.  
+✅ Módulo de **estadísticas** para admin.   
+✅ **Responsividad** en versión móvil. 
+⚠️ Pendiente: integración de **Apple Pay** como pasarela de pago. 
 
 ---
 
@@ -62,8 +62,31 @@ src/
  ├── App.jsx
  └── main.jsx
 
+## 🔧 Tecnologías y Librerías Utilizadas  
 
+### ⚛️ Core del Proyecto  
+- **React 19 + Vite** → Framework principal para construir la interfaz de usuario y Vite como bundler rápido para desarrollo.  
+- **react-router-dom** → Manejo de rutas entre páginas (Login, Registro, Catálogo, Admin, etc.).  
+- **react-router-hash-link** → Navegación con anclas suaves dentro de la misma página (scroll automático a secciones).  
 
-📝 Licencia
+### 🔑 Autenticación y Seguridad  
+- **@react-oauth/google** → Login con Google OAuth 2.0.  
+- **jwt-decode** → Decodificación de tokens JWT (usado para validar datos de usuarios que inician sesión con Google).  
 
-Este proyecto está bajo la licencia MIT.
+### 💳 Pasarelas de Pago  
+- **@paypal/react-paypal-js** → SDK de PayPal para integrar pagos dentro del flujo de compra.  
+- *(En desarrollo: planeada integración con Apple Pay).*  
+
+### 🖼️ UI y Experiencia de Usuario  
+- **react-icons** → Conjunto de íconos listos para usar en botones, navbar, modales, etc.  
+- **swiper** → Carrusel responsivo y moderno para mostrar productos destacados.  
+- **react-slick + slick-carousel** → Otro sistema de carrusel para productos o banners (similar a Swiper).  
+- **react-floating-whatsapp** → Botón flotante para contacto directo vía WhatsApp.  
+
+### 📊 Visualización de Datos  
+- **echarts** + **echarts-for-react** → Librería de gráficos y estadísticas (usada en el Dashboard de administración para mostrar métricas de ventas, productos y usuarios).  
+
+### 🌐 Backend Fake (API de Desarrollo)  
+- **json-server** → Simulación de un backend REST con `db.json` para productos, usuarios, carritos, órdenes, etc.  
+
+---
