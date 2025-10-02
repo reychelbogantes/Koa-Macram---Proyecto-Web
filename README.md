@@ -103,38 +103,38 @@ koa macrame/
 
 ## 💳 Tarjetas de prueba (uso local / PayPal Sandbox)
 
->Usar estas tarjetas solo en modo prueba. No son válidas para transacciones reales.
+- Usar estas tarjetas solo en modo prueba. No son válidas para transacciones reales.
 
 ### VISA
 
--**Número:** *4139 8666 1865 6334*
+- **Número:** *4139 8666 1865 6334*
 
--**Expiry:** *06/2030*
+- **Expiry:** *06/2030*
 
 >**CVC:** cualquier 3 dígitos.
 
 ### AMERICAN EXPRESS
 
--**Número:** *3413 999100 85830*
+- **Número:** *3413 999100 85830*
 
--**Expiry:** *10/2030*
+- **Expiry:** *10/2030*
 
 >**CVC:** cualquier 4 dígitos (AmEx usa 4 dígitos en la parte frontal).
 
 ### MASTERCARD
 
--**Número:** *5113 9267 1303 3602*
+- **Número:** *5113 9267 1303 3602*
 
--**Expiry:** *10/2030*
+- **Expiry:** *10/2030*
 
 >**CVC:** cualquier 3 dígitos.
 
->**Nota:** los formatos de CVC varían: Visa/MasterCard = 3 dígitos; AmEx = 4 dígitos.
+- **Nota:** los formatos de CVC varían: Visa/MasterCard = 3 dígitos; AmEx = 4 dígitos.
 
 ## 🧾 Credenciales PayPal de prueba (sandbox)
 
--**Correo (sandbox):** *Profesores@personal.example.com*
--**Contraseña (sandbox):** *W')1JaE"*
+- **Correo (sandbox):** *Profesores@personal.example.com*
+- **Contraseña (sandbox):** *W')1JaE"*
 
 ---
 
