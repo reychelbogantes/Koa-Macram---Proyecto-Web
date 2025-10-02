@@ -95,3 +95,26 @@ src/
 - **json-server** → Simulación de un backend REST con `db.json` para productos, usuarios, carritos, órdenes, etc.  
 
 ---
+
+##📌 Endpoints del Backend (JSON Server)
+
+-**Usuarios** → gestión de usuarios.
+
+-**Productos** → catálogo de productos.
+
+-**Carrito** → items agregados por usuario.
+
+-**Facturacion** → facturas generadas.
+
+-**Ordenes** → órdenes de compra.
+
+-**Direcciones** → direcciones de envío guardadas.
+
+-**Favoritos** → productos favoritos por usuario.
+
+---
+## 📝 Licencia  
+
+Este proyecto está bajo la licencia **MIT**.  
+Consulta el archivo [LICENSE](./LICENSE) para más información.  
+
