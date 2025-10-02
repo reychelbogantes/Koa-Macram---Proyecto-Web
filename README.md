@@ -61,7 +61,9 @@ src/
  │   └── Servicios.js
  ├── App.jsx
  └── main.jsx
+
 ---
+
 ## 🔧 Tecnologías y Librerías Utilizadas  
 
 ### ⚛️ Core del Proyecto  
