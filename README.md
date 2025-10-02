@@ -3,7 +3,7 @@
 Plataforma de e-commerce para un emprendimiento de **macramé hecho a mano**.  
 Los usuarios pueden explorar productos, registrarse, gestionar un carrito de compras, pagar con **PayPal**, y los administradores tienen acceso a un **dashboard interno** para manejar inventario, usuarios y facturación.  
 
----
+---                                                                                                                                                                                                                                 
 
 ## 🚀 Características  
 
