@@ -41,28 +41,37 @@ Los usuarios pueden explorar productos, registrarse, gestionar un carrito de com
 ## 📂 Estructura del Proyecto  
 
 ```bash
-src/
- ├── Components/
- │   ├── NavBar/
- │   ├── Footer/
- │   ├── Inventario/
- │   ├── ProductosAdmin/
- │   ├── UsuariosAdmin/
- │   ├── FacturasAdmin/
- │   ├── OrdenesPendientes/
- │   ├── OrdenesFinalizadas/
- │   └── ...
- ├── Pages/
- │   ├── Login/
- │   ├── Registro/
- │   ├── Homepage/
- │   ├── Catalogo/
- │   ├── Contactanos/
- │   └── Admin/
- ├── Services/
- │   └── Servicios.js
- ├── App.jsx
- └── main.jsx
+koa macrame/
+ ├── public
+ ├── src/
+ │ ├── Components/
+ │ │   ├── NavBar/
+ │ │   ├──Footer/
+ │ │   ├──Inventario/
+ │ │   ├──ProductosAdmin/
+ │ │   ├──UsuariosAdmin/
+ │ │   ├──FacturasAdmin/
+ │ │   ├──OrdenesPendientes/
+ │ │   ├──OrdenesFinalizadas/
+ │ │   └── ...
+ │ ├──  Pages/
+ │ │   ├──Login/
+ │ │   ├──Registro/
+ │ │   ├──Homepage/
+ │ │   ├──Catalogo/
+ │ │   ├──Carrito/
+ │ │   ├──Contactanos/
+ │ │   ├──Admin/
+ │ │   └──TerminosCondiciones/
+ │ ├──  Routes/
+ │ │   ├──RutasPrivadas/
+ │ │   │   └── RutaPrivadas.jsx
+ │ │   └──Routing.jsx
+ │ ├── Services/
+ │ │    └── Servicios.js
+ │ ├── App.jsx
+ │ └── main.jsx
+ └── db.json
 ```
 
 ---
@@ -96,7 +105,7 @@ src/
 
 ---
 
-##📌 Endpoints del Backend (JSON Server)
+## 📌 Endpoints del Backend (JSON Server)
 
 -**Usuarios** → gestión de usuarios.
 
