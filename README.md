@@ -31,7 +31,7 @@ Los usuarios pueden explorar productos, registrarse, gestionar un carrito de com
 ✅ Checkout con **PayPal** integrado.  
 ✅ Dashboard de administración básico funcionando.  
 ✅ Módulo de **estadísticas** para admin.   
-✅ **Responsividad** en versión móvil. 
+✅ **Responsividad** en versión móvil.     
 ⚠️ Pendiente: integración de **Apple Pay** como pasarela de pago. 
 
 ---
@@ -62,7 +62,7 @@ src/
  ├── App.jsx
  └── main.jsx
 
----
+-----  
 
 ## 🔧 Tecnologías y Librerías Utilizadas  
 
