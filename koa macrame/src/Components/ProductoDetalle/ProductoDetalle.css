@@ -89,7 +89,7 @@
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
-  -moz-appearance: textfield; /* Quita flechas Firefox */
+  appearance: textfield;      /* Compatibilidad estándar */
    }
 
 .agregar-carrito input::-webkit-outer-spin-button,
