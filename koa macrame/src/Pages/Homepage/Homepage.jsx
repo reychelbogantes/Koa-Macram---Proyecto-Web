@@ -70,7 +70,7 @@ function Homepage() {
           {destacados.map(prod => (
             <SwiperSlide key={prod.id}>
               <div className="card-carrusel">
-                <img src={`${import.meta.env.BASE_URL}${prod.foto}`} alt={prod.nombre} />
+                <img src={`${import.meta.env.BASE_URL}${prod.foto.replace(/^\//, '')}`} alt={prod.nombre} />
                 <div className="overlay">
                   <Link to={`/producto/${prod.id}`} className="btn-vermas"> Ver más </Link>
                 </div>
