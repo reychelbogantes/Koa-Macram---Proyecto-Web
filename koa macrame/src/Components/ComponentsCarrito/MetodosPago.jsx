@@ -9,8 +9,8 @@ function MetodosPago() {
 
 
 
-        <img src="/Apple-pay.png" alt="Apple-pay"/>
-        <img src="/Paypal.png" alt="PayPal"/>
+        <img src={`${import.meta.env.BASE_URL}Apple-pay.png`} alt="Apple-pay"/>
+        <img src={`${import.meta.env.BASE_URL}Paypal.png`} alt="PayPal"/>
         {/* agrega más logos según necesites */}
       </div>
     </div>
