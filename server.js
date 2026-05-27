@@ -1,8 +1,13 @@
-import { create, router as _router, defaults } from 'json-server';
+import jsonServer from 'json-server';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
-const server = create();
-const router = _router('db.json');
-const middlewares = defaults();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const server = jsonServer.create();
+const router = jsonServer.router(join(__dirname, 'koa macrame/db.json'));
+const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
 server.use(router);
