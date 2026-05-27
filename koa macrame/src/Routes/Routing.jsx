@@ -80,7 +80,7 @@ function Routing() {
           <Route path='buzon' element={<BuzonContactos/>} />
         </Route>
       </Routes>    
-    </Router>
+    </Router basename="/Koa-Macram---Proyecto-Web">
   )
 }
 
