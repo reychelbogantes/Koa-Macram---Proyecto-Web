@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const server = jsonServer.create();
-const router = jsonServer.router(join(__dirname, 'koa macrame/db.json'));
+const router = jsonServer.router(join(__dirname, 'koa macrame', 'db.json'));
 const middlewares = jsonServer.defaults();
 
 server.use((req, res, next) => {
