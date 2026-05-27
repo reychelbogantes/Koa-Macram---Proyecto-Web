@@ -1,3 +1,5 @@
+const BASE_API = "https://koa-macrame-proyecto-web.onrender.com";
+
 // --- Registro de usuario de Google ---
 async function postGoogleUser(googleUser) {
   try {
@@ -8,7 +10,7 @@ async function postGoogleUser(googleUser) {
       fechaRegistro: new Date().toISOString()     // ✅ Fecha de registro
     };
 
-    const response = await fetch("http://localhost:3000/Usuarios", {
+    const response = await fetch("https://koa-macrame-proyecto-web.onrender.com/Usuarios", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -37,7 +39,7 @@ async function postUsers(name,email,password, rol="user") {
     };
 
 
-        const response = await fetch("http://localhost:3000/Usuarios", {
+        const response = await fetch("https://koa-macrame-proyecto-web.onrender.com/Usuarios", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -59,7 +61,7 @@ async function postUsers(name,email,password, rol="user") {
 async function GetUsers(username,password) {
     try {
 
-        const response = await fetch("http://localhost:3000/Usuarios", {
+        const response = await fetch("https://koa-macrame-proyecto-web.onrender.com/Usuarios", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -81,7 +83,7 @@ async function GetUsers(username,password) {
 // --- PATCH: Cambiar contraseña de usuario ---
 async function cambiarPassword(id, nuevaPassword) {
   try {
-    const response = await fetch(`http://localhost:3000/Usuarios/${id}`, {
+    const response = await fetch(`https://koa-macrame-proyecto-web.onrender.com/Usuarios/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ password: nuevaPassword }),
@@ -95,7 +97,7 @@ async function cambiarPassword(id, nuevaPassword) {
   }
 }
 
-const API_URL = "http://localhost:3000/Productos";
+const API_URL = "https://koa-macrame-proyecto-web.onrender.com/Productos";
 
 export async function getProductos() {
   const res = await fetch(API_URL);
@@ -137,7 +139,7 @@ export async function deleteProducto(id) {
 }
 
 // ---- Servicios de Contacto ----
-const API_CONTACTOS = "http://localhost:3000/Contactos";
+const API_CONTACTOS = "https://koa-macrame-proyecto-web.onrender.com/Contactos";
 
 export async function postContacto(contacto) {
   const nuevo = { ...contacto, fecha: new Date().toISOString() };
@@ -157,7 +159,7 @@ export async function getContactos() {
 }
 
 export async function getFavoritosPorUsuario(userId) {
-  const res = await fetch("http://localhost:3000/Productos");
+  const res = await fetch("https://koa-macrame-proyecto-web.onrender.com/Productos");
   if (!res.ok) throw new Error("Error al obtener productos");
   const productos = await res.json();
 
@@ -166,7 +168,7 @@ export async function getFavoritosPorUsuario(userId) {
   );
 }
 
-const API_CARRITOS = "http://localhost:3000/Carritos";
+const API_CARRITOS = "https://koa-macrame-proyecto-web.onrender.com/Carritos";
 /**
  * Obtiene el carrito del usuario logueado.
  * Si no existe devuelve null.
@@ -209,7 +211,7 @@ export async function updateCarrito(idCarrito, productos) {
 }
 
 export async function vaciarCarrito(idCarrito, productosComprados) {
-  const resp = await fetch(`http://localhost:3000/Carritos/${idCarrito}`);
+  const resp = await fetch(`https://koa-macrame-proyecto-web.onrender.com/Carritos/${idCarrito}`);
   if (!resp.ok) throw new Error("Carrito no encontrado");
   const carrito = await resp.json();
 
@@ -223,7 +225,7 @@ export async function vaciarCarrito(idCarrito, productosComprados) {
     return item;
   }).filter(Boolean);
 
-  await fetch(`http://localhost:3000/Carritos/${idCarrito}`, {
+  await fetch(`https://koa-macrame-proyecto-web.onrender.com/Carritos/${idCarrito}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ productos: productosActualizados })
@@ -234,7 +236,7 @@ export async function vaciarCarrito(idCarrito, productosComprados) {
 export async function guardarDireccionUsuario(idUsuario, nuevaDireccion) {
   try {
     // 1. Obtener datos del usuario actual
-    const resUsuario = await fetch(`http://localhost:3000/Usuarios/${idUsuario}`);
+    const resUsuario = await fetch(`https://koa-macrame-proyecto-web.onrender.com/Usuarios/${idUsuario}`);
     if (!resUsuario.ok) throw new Error("Usuario no encontrado");
     const usuario = await resUsuario.json();
 
@@ -245,7 +247,7 @@ export async function guardarDireccionUsuario(idUsuario, nuevaDireccion) {
     const nuevasDirecciones = [...direcciones, nuevaDireccion];
 
     // 4. PATCH para actualizar solo la llave direccion
-    const res = await fetch(`http://localhost:3000/Usuarios/${idUsuario}`, {
+    const res = await fetch(`https://koa-macrame-proyecto-web.onrender.com/Usuarios/${idUsuario}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ direccion: nuevasDirecciones })
@@ -260,7 +262,7 @@ export async function guardarDireccionUsuario(idUsuario, nuevaDireccion) {
 
 // Obtiene todas las direcciones de un usuario
 export async function obtenerDireccionesUsuario(idUsuario) {
-  const res = await fetch(`http://localhost:3000/Usuarios/${idUsuario}`);
+  const res = await fetch(`https://koa-macrame-proyecto-web.onrender.com/Usuarios/${idUsuario}`);
   if (!res.ok) throw new Error("Usuario no encontrado");
   const usuario = await res.json();
   return usuario.direccion || [];
@@ -268,7 +270,7 @@ export async function obtenerDireccionesUsuario(idUsuario) {
 
 // Guarda el array completo de direcciones (después de agregar/editar/eliminar)
 export async function actualizarDireccionesUsuario(idUsuario, direcciones) {
-  const res = await fetch(`http://localhost:3000/Usuarios/${idUsuario}`, {
+  const res = await fetch(`https://koa-macrame-proyecto-web.onrender.com/Usuarios/${idUsuario}`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ direccion: direcciones })
@@ -283,7 +285,7 @@ export function generarIdDireccion() {
 }
 
 export async function guardarFactura(factura) {
-  const resp = await fetch("http://localhost:3000/Facturacion", {
+  const resp = await fetch("https://koa-macrame-proyecto-web.onrender.com/Facturacion", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -296,7 +298,7 @@ export async function guardarFactura(factura) {
 
 
 // src/Services/ServiciosFacturas.js
-const API_URLF = "http://localhost:3000/Facturacion";
+const API_URLF = "https://koa-macrame-proyecto-web.onrender.com/Facturacion";
 
 /**
  * Obtiene todas las facturas
@@ -349,7 +351,7 @@ export async function deleteFactura(id) {
   return true;
 }
 
-const API_URLO = "http://localhost:3000/Ordenes";
+const API_URLO = "https://koa-macrame-proyecto-web.onrender.com/Ordenes";
 
 // Obtener todas las órdenes
 export async function getOrdenes() {
@@ -397,7 +399,7 @@ export async function guardarOrden(orden) {
 }
 
 export async function getDireccionSeleccionada(userId) {
-  const res = await fetch(`http://localhost:3000/Usuarios/${userId}`);
+  const res = await fetch(`https://koa-macrame-proyecto-web.onrender.com/Usuarios/${userId}`);
   if (!res.ok) throw new Error("Usuario no encontrado");
   const usuario = await res.json();
 
@@ -409,7 +411,7 @@ export async function getDireccionSeleccionada(userId) {
 
 // Servicios para Usuarios Administrativos
 
-const API_URLU = "http://localhost:3000/Usuarios";
+const API_URLU = "https://koa-macrame-proyecto-web.onrender.com/Usuarios";
 
 // ✅ Obtener todos los usuarios con rol admin
 export async function getAdmins() {
@@ -438,7 +440,7 @@ export async function createAdmin({ name, email, password }) {
 }
 
 export const updateUser = (id, data) =>
-  fetch(`http://localhost:3000/Usuarios/${id}`, {
+  fetch(`https://koa-macrame-proyecto-web.onrender.com/Usuarios/${id}`, {
     method: 'PATCH', // o PUT si actualizas todo el objeto
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
