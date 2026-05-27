@@ -40,7 +40,7 @@ function Routing() {
 
 
   return (
-    <Router>    
+    <Router basename="/Koa-Macram---Proyecto-Web">    
       <Routes>    
         {/* Rutas públicas */}
         <Route path='/' element={<Homepage/>}/>
@@ -80,7 +80,7 @@ function Routing() {
           <Route path='buzon' element={<BuzonContactos/>} />
         </Route>
       </Routes>    
-    </Router basename="/Koa-Macram---Proyecto-Web">
+    </Router>
   )
 }
 
