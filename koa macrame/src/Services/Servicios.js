@@ -99,12 +99,14 @@ async function cambiarPassword(id, nuevaPassword) {
 
 const API_URL = "https://koa-macram-proyecto-web.onrender.com/Productos";
 
+// ---- Servicios de Productos ----  
 export async function getProductos() {
   const res = await fetch(API_URL);
   if (!res.ok) throw new Error("Error al obtener productos");
   return await res.json();
 }
 
+// Obtener un producto por ID (para detalle de producto)
 export async function postProducto(producto) {
   const nuevoProducto = {
     ...producto,
@@ -120,6 +122,7 @@ export async function postProducto(producto) {
   return await res.json();
 }
 
+// Actualizar un producto existente (usado en admin)
 export async function updateProducto(id, data) {
   const res = await fetch(`${API_URL}/${id}`, {
     method: "PATCH",
@@ -130,6 +133,7 @@ export async function updateProducto(id, data) {
   return await res.json();
 }
 
+// Eliminar un producto (usado en admin)
 export async function deleteProducto(id) {
   const res = await fetch(`${API_URL}/${id}`, {
     method: "DELETE"
@@ -152,12 +156,14 @@ export async function postContacto(contacto) {
   return await res.json();
 }
 
+// Obtener todos los contactos (para admin)
 export async function getContactos() {
   const res = await fetch(API_CONTACTOS);
   if (!res.ok) throw new Error("Error al obtener contactos");
   return await res.json();
 }
 
+// ---- Servicios de Favoritos y Carrito ----
 export async function getFavoritosPorUsuario(userId) {
   const res = await fetch("https://koa-macram-proyecto-web.onrender.com/Productos");
   if (!res.ok) throw new Error("Error al obtener productos");
