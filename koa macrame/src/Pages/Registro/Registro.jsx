@@ -11,7 +11,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 function Registro() {
    useEffect(() => {
     const link = document.querySelector("link[rel~='icon']");
-    if (link) link.href = "/logo.png";
+    if (link) link.href = `${import.meta.env.BASE_URL}logo.png`;
     document.title = "Registro | Koa Macramé";
   }, []);
 
@@ -135,7 +135,7 @@ function Registro() {
       
       {/* --- Columna izquierda con imagen y logo --- */}
       <div className="left-side">
-        <img className="logo" src="/logo.png" alt="Koa Macramé" />
+        <img className="logo" src={`${import.meta.env.BASE_URL}logo.png`} alt="Koa Macramé" />
       </div>
 
       {/* --- Columna derecha con el formulario --- */}

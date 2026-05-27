@@ -25,7 +25,7 @@ function Login() {
   // Favicon y título dinámicos
   useEffect(() => {
     const link = document.querySelector("link[rel~='icon']");
-    if (link) link.href = "/logo.png";
+    if (link) link.href = `${import.meta.env.BASE_URL}logo.png`;
     document.title = "Inicio Sesión | Koa Macramé";
   }, []);
 
@@ -165,7 +165,7 @@ function Login() {
 
       {/* Columna Izquierda: El formulario */}
       <div className="form-container">
-        <img className="Logo" src="/logo.png" alt="Logo"/>
+        <img className="Logo" src={`${import.meta.env.BASE_URL}logo.png`} alt="Logo"/>
         <h2>Iniciar sesión</h2>
         <p>Introduzca sus datos</p>
 
@@ -225,7 +225,7 @@ function Login() {
       {/* Columna Derecha: La imagen */}
       <div className="image-container">
         <img
-          src="/arreglo-de-macrame-boho-en-interiores.jpg"
+          src={`${import.meta.env.BASE_URL}arreglo-de-macrame-boho-en-interiores.jpg`}
           alt="Ilustración de inicio de sesión"
         />
       </div>

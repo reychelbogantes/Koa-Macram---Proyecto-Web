@@ -21,7 +21,7 @@ function Homepage() {
    // Favicon y título dinámicos
   useEffect(() => {
     const link = document.querySelector("link[rel~='icon']");
-    if (link) link.href = "/logo.png";
+    if (link) link.href = `${import.meta.env.BASE_URL}logo.png`;
     document.title = "Koa Macramé";
   }, []);
 
@@ -70,7 +70,7 @@ function Homepage() {
           {destacados.map(prod => (
             <SwiperSlide key={prod.id}>
               <div className="card-carrusel">
-                <img src={prod.foto} alt={prod.nombre} />
+                <img src={`${import.meta.env.BASE_URL}${prod.foto}`} alt={prod.nombre} />
                 <div className="overlay">
                   <Link to={`/producto/${prod.id}`} className="btn-vermas"> Ver más </Link>
                 </div>
@@ -96,7 +96,7 @@ function Homepage() {
 
 
       </div>
-        <img className='bannerFijo' src="/BannerFijo.png" alt="BannerFijo" />
+        <img className='bannerFijo' src={`${import.meta.env.BASE_URL}BannerFijo.png`} alt="BannerFijo" />
          <Footer />
 
 

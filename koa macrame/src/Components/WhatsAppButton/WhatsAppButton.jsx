@@ -8,7 +8,7 @@ function WhatsAppButton() {
       accountName="Koa Macramé"
       statusMessage="Por lo general responde dentro de un día"
       chatMessage="Hola, quiero cotizar un producto personalizado"
-      avatar="/logo.png"
+      avatar={`${import.meta.env.BASE_URL}logo.png`}
     />
   );
 }

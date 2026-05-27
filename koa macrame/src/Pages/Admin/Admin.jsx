@@ -8,7 +8,7 @@ function Admin() {
    // Favicon y título dinámicos
   useEffect(() => {
     const link = document.querySelector("link[rel~='icon']");
-    if (link) link.href = "/logo.png";
+    if (link) link.href = `${import.meta.env.BASE_URL}logo.png`;
     document.title = "Adminitración | Koa Macramé";
   }, []);
 

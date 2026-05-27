@@ -19,11 +19,11 @@ function Banner() {
     <div className="banner-container">
       {/* Carrusel de imágenes */}
       <Slider {...settings} className="banner-slider">
-        <div><img src="/banner1.jpg" alt="slide 1" /></div>
-        <div><img src="/banner2.jpg" alt="slide 2" /></div>
-        <div><img src="/banner3.jpg"alt="slide 3" /></div>
-        <div><img src="/banner4.jpg"alt="slide 4" /></div>
-        <div><img src="/banner5.jpg"alt="slide 5" /></div>
+        <div><img src={`${import.meta.env.BASE_URL}banner1.jpg`} alt="slide 1" /></div>
+        <div><img src={`${import.meta.env.BASE_URL}banner2.jpg`} alt="slide 2" /></div>
+        <div><img src={`${import.meta.env.BASE_URL}banner3.jpg`} alt="slide 3" /></div>
+        <div><img src={`${import.meta.env.BASE_URL}banner4.jpg`} alt="slide 4" /></div>
+        <div><img src={`${import.meta.env.BASE_URL}banner5.jpg`} alt="slide 5" /></div>
       </Slider>
 
       {/* Capa oscura */}
@@ -31,7 +31,7 @@ function Banner() {
 
       {/* Logo fijo al centro */}
       <div className="banner-logo">
-        <img src="/logo.png" alt="Logo Koa Macramé" />
+        <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Logo Koa Macramé" />
       </div>
     </div>
   );
